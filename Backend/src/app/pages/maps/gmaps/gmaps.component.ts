@@ -11,7 +11,7 @@ export class GmapsComponent {
   lat = 49.239486;
   lng = 6.994886; 
 
-  markers:marker[] = []
+  markers:marker[] = [];
   index: string  = 'M';
   i:number = 0;
   
