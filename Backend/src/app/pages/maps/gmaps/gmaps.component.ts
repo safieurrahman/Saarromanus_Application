@@ -15,10 +15,9 @@ export class GmapsComponent {
   index: string  = 'M';
   i:number = 0;
   
-
-
-  clickedMarker(label: string, index: number) {
-    console.log(`clicked the marker: ${label || index}`)
+  clickedMarker(label: string, index: number) 
+  {
+    console.log(`clicked the marker: ${label || index}`);
   }
   
   mapClicked($event: MouseEvent) {
@@ -26,7 +25,7 @@ export class GmapsComponent {
       lat: $event.coords.lat,
       lng: $event.coords.lng,
       label: this.index+this.i++,
-      draggable: true
+      draggable: true,
     });
     console.log (this.markers);
   }
