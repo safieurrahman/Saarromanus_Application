@@ -3,7 +3,7 @@ import { MouseEvent } from '@agm/core';
 @Component({
   selector: 'ngx-gmaps',
   styleUrls: ['./gmaps.component.scss'],
-  templateUrl: './gmaps.component.html',
+  templateUrl: './gmap.component.html',
 
 })
 export class GmapsComponent {

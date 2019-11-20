@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
-import { AgmCoreModule } from '@agm/core';
+import { AgmCoreModule,GoogleMapsAPIWrapper } from '@agm/core';
+import { AgmDirectionModule } from 'agm-direction';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { NgxEchartsModule } from 'ngx-echarts';
 import { NbCardModule } from '@nebular/theme';
@@ -14,6 +15,7 @@ import { MapsRoutingModule, routedComponents } from './maps-routing.module';
       apiKey: 'AIzaSyAGnNX97TtPX9IJrrB7bEo1bJANBgaOtN4',
       libraries: ['places'],
     }),
+    AgmDirectionModule,     // agm-direction
     LeafletModule.forRoot(),
     MapsRoutingModule,
     NgxEchartsModule,

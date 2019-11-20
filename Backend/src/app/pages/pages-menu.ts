@@ -33,6 +33,10 @@ export const MENU_ITEMS: NbMenuItem[] = [
         link: '/pages/maps/gmaps',
       },
       {
+        title: 'Routes',
+        link: '/pages/maps/routes',
+      },
+      {
         title: 'Leaflet Maps',
         link: '/pages/maps/leaflet',
       },
