@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import IndexScreen from './index-screen';
+import IndexScreen from './component';
 
 const mapStateToProps = ({ test: { message } }) => {
 	return { message };

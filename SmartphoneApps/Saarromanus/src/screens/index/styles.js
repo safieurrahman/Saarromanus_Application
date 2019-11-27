@@ -1,17 +1,20 @@
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
+	// Main container
 	container: {
 		display: 'flex',
 		flexDirection: 'column',
 		width: '100%',
 		height: '100%',
 	},
+
+	// Cover photo and logo section
 	coverContainer: {
 		display: 'flex',
 		alignItems: 'center',
 		justifyContent: 'center',
-		height: '40%',
+		flexBasis: '40%',
 	},
 	logoContainer: {
 		display: 'flex',
@@ -19,15 +22,25 @@ export default StyleSheet.create({
 		justifyContent: 'center',
 		width: '100%',
 		height: '100%',
-		// opacity: 0.5,
 	},
-	label: {
-		fontSize: 20,
-		marginTop: 15,
-		paddingHorizontal: 15,
+
+	// Main options section
+	mainOptionsContainer: {
+		display: 'flex',
+		flexDirection: 'column',
+		justifyContent: 'center',
+		alignItems: 'stretch',
+		flex: 1,
 	},
-	image: {
-		width: 200,
-		height: 200,
+	optionLabelContainer: {
+		display: 'flex',
+		alignItems: 'center',
+		justifyContent: 'center',
+		flex: 1,
+	},
+	optionLabel: {
+		fontSize: 40,
+		color: '#FFF',
+		fontWeight: 'bold',
 	},
 });
