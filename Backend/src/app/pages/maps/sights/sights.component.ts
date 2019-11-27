@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { MouseEvent } from '@agm/core';
 @Component({
-  selector: 'ngx-gmaps',
-  styleUrls: ['./gmaps.component.scss'],
-  templateUrl: './gmap.component.html',
+  selector: 'ngx-sights',
+  styleUrls: ['./sights.component.scss'],
+  templateUrl: './sights.component.html',
 
 })
-export class GmapsComponent {
+export class SightsComponent {
 
   lat = 49.239486;
   lng = 6.994886; 
@@ -28,10 +28,6 @@ export class GmapsComponent {
       draggable: true,
     });
     console.log (this.markers);
-  }
-  
-  markerDragEnd(m: marker, $event: MouseEvent) {
-    console.log('dragEnd', m, $event);
   }
 
 }

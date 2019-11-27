@@ -2,11 +2,22 @@
         <nb-card-header>Google Maps</nb-card-header>
         <nb-card-body>
 
-            <agm-map [latitude]="lat" [longitude]="lng">
-                <agm-direction [origin]="origin" [destination]="destination" [waypoints]="waypoints" [travelMode]="travelMode" [renderOptions]="renderOptions" [markerOptions]="markerOptions"></agm-direction>
-              </agm-map>
+            <agm-map [latitude]="lat" [longitude]="lng" (mapClick)="mapClicked($event)">
+
+              <agm-marker>
+                <agm-direction [origin]="origin" [destination]="destination" [waypoints]="waypoints" [travelMode]="travelMode" [renderOptions]="renderOptions" [markerOptions]="markerOptions"></agm-direction> 
+              </agm-marker>
+              
+
+            </agm-map>
     
         </nb-card-body>
+
 </nb-card>
+  
+  <div class="row">
 
+      <button type="marker" name="add_marker">Add Marker</button>
 
+  </div>
+  

@@ -25,12 +25,12 @@ export const MENU_ITEMS: NbMenuItem[] = [
   },
 
   {
-    title: 'Maps',
+    title: 'Routes / Sights',
     icon: 'map-outline',
     children: [
       {
-        title: 'Google Maps',
-        link: '/pages/maps/gmaps',
+        title: 'Sights',
+        link: '/pages/maps/sights',
       },
       {
         title: 'Routes',

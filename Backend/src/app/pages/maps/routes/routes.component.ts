@@ -12,13 +12,15 @@ export class RoutesComponent {
 
   lat: Number = 41.85
   lng: Number = -87.65
+  
+  waypoints:waypoint[] = [];
 
   origin = { lat: 29.8174782, lng: -95.6814757 }
   destination = { lat: 40.6976637, lng: -74.119764 }
-  waypoints = [
+  /*waypoints = [
      {location: { lat: 39.0921167, lng: -94.8559005 }},
      {location: { lat: 42.8339037, lng: -87.8720468 }}
-  ]
+  ]*/
 
   public renderOptions: any = {
     draggable: true,
@@ -35,20 +37,20 @@ export class RoutesComponent {
         infoWindow: 'This is destination.',
         draggable: true,
         opacity: 0.8,
-    },
-    waypoints: [
-      {
-        draggable: true,
-        opacity: 0.8,
-      },
-      {
-        draggable: true,
-        opacity: 0.8,
-      },
-    ]
+    }
 }
 
+  mapClicked($event: MouseEvent) 
+  {
+  this.waypoints.push({
+    location: { lat:  $event.coords.lat, lng: $event.coords.lng }},
+  );
+  console.log (this.waypoints);
+  }
 
 
 }
 
+interface waypoint {
+  location: { lat:  number, lng: number}
+}

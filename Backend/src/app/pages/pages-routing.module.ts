@@ -69,11 +69,6 @@ const routes: Routes = [{
         .then(m => m.MiscellaneousModule),
     },
     {
-      path: '',
-      redirectTo: 'maps/gmaps',
-      pathMatch: 'full',
-    },
-    {
       path: '**',
       component: NotFoundComponent,
     },

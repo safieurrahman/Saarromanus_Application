@@ -1,7 +1,84 @@
-<agm-map [latitude]="latitude"
+<nb-card>
+  <agm-map [latitude]="latitude"
          [longitude]="longitude"
          [scrollwheel]="false"
          [zoom]="zoom">
-  <agm-marker [latitude]="latitude"
-              [longitude]="longitude"></agm-marker>
-</agm-map>
+    
+         <agm-marker [latitude]="latitude"
+              [longitude]="longitude" [markerDraggable]=true
+              (dragEnd)="markerDragEnd($event)">
+          </agm-marker>
+  </agm-map>
+</nb-card>
+
+<br><br><br>
+
+<div class="row">
+    <div class="col-md-10">
+      
+          <form role="form" method="" action="" [formGroup]="sightsForm" (ngSubmit)="onSubmit()">
+            <div class="form-group row">
+              <label for="inputEmail1" class="label col-sm-3 col-form-label">Name</label>
+              <div class="col-sm-9">
+                <input type="text" nbInput fullWidth  placeholder="Name" id="sightsName" name="sightsName" formControlName="sightsName">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputPassword2" class="label col-sm-3 col-form-label">Description</label>
+              <div class="col-sm-9">
+                  <textarea rows="5" nbInput fullWidth placeholder="Description" id="sightsDescription" name="sightsDescription" formControlName="sightsDescription"></textarea>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-3 label">Type</label>
+              <div class="col-sm-9">
+                  <nb-select selected="Roman Villas" id="sightsType" name="sightsType" formControlName="sightsType">
+                      <nb-option value="Roman Villas">Roman Villas</nb-option>
+                      <nb-option value="Settlements">Settlements</nb-option>
+                      <nb-option value="Sanctuaries">Sanctuaries</nb-option>
+                    </nb-select>
+              </div>       
+            </div>
+
+
+              <div class="form-group row">
+                  <label class="col-sm-3 label">Image</label>
+                  <div class="col-sm-9">          
+                     
+                          <input type="file" name="image" (change)="ImageProgress($event)" />
+                      
+                      <div *ngIf="fileUploadProgress">
+                          Upload progress: {{ fileUploadProgress }}
+                      </div>
+                      <div class="image-preview mb-3" *ngIf="previewUrl">
+                          <img [src]="previewUrl" height="300" />                 
+                      </div>
+                      <div class="mb-3" *ngIf="uploadedFilePath">
+                          {{uploadedFilePath}}
+                      </div>
+                  </div>
+              </div>
+
+              <div class="form-group row">
+                  <label class="col-sm-3 label">Audio</label>
+                  <div class="col-sm-9">          
+                      
+                          <input type="file" name="audio" (change)="AudioProgress($event)" />
+                      
+                  </div>
+              </div>
+
+            <br><br><br>
+
+            <div class="form-group row">
+              <div class="offset-sm-6 col-sm-9">
+                <button type="submit" nbButton status="primary" value="Submit">Submit</button>
+              </div>
+            </div>
+          </form>
+
+
+    </div>
+</div>
+
+

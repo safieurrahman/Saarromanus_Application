@@ -4,6 +4,21 @@ import { AgmDirectionModule } from 'agm-direction';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { NgxEchartsModule } from 'ngx-echarts';
 import { NbCardModule } from '@nebular/theme';
+import { HttpClient, HttpEventType, HttpClientModule } from '@angular/common/http';
+
+import { FormsModule as ngFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+
+import {
+  NbActionsModule,
+  NbButtonModule,
+  NbCheckboxModule,
+  NbDatepickerModule, NbIconModule,
+  NbInputModule,
+  NbRadioModule,
+  NbSelectModule,
+  NbUserModule,
+} from '@nebular/theme';
 
 import { ThemeModule } from '../../@theme/theme.module';
 import { MapsRoutingModule, routedComponents } from './maps-routing.module';
@@ -13,13 +28,29 @@ import { MapsRoutingModule, routedComponents } from './maps-routing.module';
     ThemeModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyAGnNX97TtPX9IJrrB7bEo1bJANBgaOtN4',
-      libraries: ['places'],
+      libraries: ['places','geometry','drawing'],
     }),
     AgmDirectionModule,     // agm-direction
     LeafletModule.forRoot(),
     MapsRoutingModule,
     NgxEchartsModule,
     NbCardModule,
+    ThemeModule,
+    NbInputModule,
+    NbCardModule,
+    NbButtonModule,
+    NbActionsModule,
+    NbUserModule,
+    NbCheckboxModule,
+    NbRadioModule,
+    NbDatepickerModule,
+    NbSelectModule,
+    NbIconModule,
+    ngFormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+
+
   ],
   exports: [],
   declarations: [
