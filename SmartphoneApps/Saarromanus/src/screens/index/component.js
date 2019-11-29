@@ -1,5 +1,12 @@
 import React, { useEffect } from 'react';
-import { View, Text, Image, ImageBackground } from 'react-native';
+import {
+	View,
+	Text,
+	Image,
+	ImageBackground,
+	TouchableOpacity,
+} from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 
 import VerticalSeparator from '../../components/helpers/vertical-separator';
 
@@ -9,7 +16,7 @@ import sightsBackground from '../../../assets/sights-background.png';
 
 import styles from './styles';
 
-const IndexScreen = ({ message, updateScreen }) => {
+const IndexScreen = ({ message, updateScreen, navigation }) => {
 	useEffect(() => {
 		updateScreen();
 	}, []);
@@ -21,7 +28,7 @@ const IndexScreen = ({ message, updateScreen }) => {
 					source={backgroundCover}
 					style={styles.logoContainer}
 					imageStyle={{ opacity: 0.6, backgroundColor: 'yellow' }}>
-					<Image source={logo} />
+					<Image source={logo} style={styles.logo} />
 				</ImageBackground>
 			</View>
 
@@ -50,11 +57,35 @@ const IndexScreen = ({ message, updateScreen }) => {
 					source={sightsBackground}
 					style={styles.optionLabelContainer}
 					imageStyle={{ opacity: 0.5, backgroundColor: 'blue' }}>
-					<Text style={styles.optionLabel}>GAMES</Text>
+					<Text style={styles.optionLabel}>GAME</Text>
 				</ImageBackground>
 			</View>
 		</View>
 	);
+};
+
+IndexScreen.navigationOptions = ({ navigation }) => {
+	return {
+		title: 'Saarromanus',
+		headerTintColor: '#dddddd',
+		headerStyle: {
+			backgroundColor: 'rgba(0, 128, 128, 1)',
+		},
+		headerRight: (
+			<TouchableOpacity
+				onPress={() =>
+					// navigation.navigate('foobar')
+					console.log('Loading settings screen...')
+				}>
+				<Ionicons
+					name="md-options"
+					size={30}
+					color={'#dddddd'}
+					style={styles.icon}
+				/>
+			</TouchableOpacity>
+		),
+	};
 };
 
 export default IndexScreen;

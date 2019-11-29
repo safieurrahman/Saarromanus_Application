@@ -23,6 +23,10 @@ export default StyleSheet.create({
 		width: '100%',
 		height: '100%',
 	},
+	logo: {
+		width: 250,
+		height: 250,
+	},
 
 	// Main options section
 	mainOptionsContainer: {
@@ -42,5 +46,10 @@ export default StyleSheet.create({
 		fontSize: 40,
 		color: '#FFF',
 		fontWeight: 'bold',
+	},
+
+	// Navigation Bar
+	icon: {
+		marginRight: 10,
 	},
 });

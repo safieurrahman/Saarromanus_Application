@@ -14,12 +14,6 @@ const navigator = createStackNavigator(
 	},
 	{
 		initialRouteName: 'Index',
-		defaultNavigationOptions: {
-			title: 'Saarromanus',
-			headerStyle: {
-				backgroundColor: 'rgba(0, 128, 128, 1)',
-			},
-		},
 		headerLayoutPreset: 'center',
 	}
 );
