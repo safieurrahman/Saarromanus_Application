@@ -10,25 +10,31 @@ export default ({
 	labelFontSize = 20,
 	labelFontWeight = 'normal',
 	separator = false,
-	center,
+	absoluteIconPosition = null,
+	backgroundColor = '#ffffff',
 }) => {
+	const getStyle = () =>
+		absoluteIconPosition
+			? { position: 'absolute', [absoluteIconPosition]: '30%' }
+			: {};
 	return (
 		<View
 			style={{
 				display: 'flex',
 				justifyContent: 'center',
 				alignItems: 'center',
+				backgroundColor,
 			}}>
 			<View
 				style={{
 					display: 'flex',
 					flexDirection: 'row',
 					alignItems: 'center',
-					justifyContent: center ? 'center' : 'space-evenly',
-					width: center ? '100%' : '40%',
+					justifyContent: 'center',
+					width: '100%',
 				}}>
-				{iconEl}
-				<SpaceLeft value={iconEl && center ? 15 : 0}>
+				<View style={getStyle()}>{iconEl}</View>
+				<SpaceLeft value={absoluteIconPosition || !iconEl ? 0 : 15}>
 					<Text
 						style={{
 							fontSize: labelFontSize,

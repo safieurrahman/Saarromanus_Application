@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { View, Text, TouchableOpacity, Button } from 'react-native';
 import { Card } from 'react-native-elements';
-import { Entypo, AntDesign } from '@expo/vector-icons';
+import { Entypo, MaterialIcons } from '@expo/vector-icons';
 
 import VerticalSeparator from '../../components/helpers/vertical-separator';
 import LabelIcon from '../../components/helpers/label_with_icon';
@@ -19,17 +19,30 @@ const SelectLanguage = ({ selectedLanguage }) => {
 					iconEl={
 						<Entypo name="language" size={30} color={'#000000'} />
 					}
-					label={'Change Language'}
+					label="Change Language"
 					labelFontSize={25}
-					labelFontWeight={'bold'}
+					labelFontWeight="bold"
 					separator
 					center
 				/>
 			}>
 			<View>
-				<Button title="English" />
+				{/* <TouchableOpacity> */}
+				<LabelIcon
+					iconEl={
+						<MaterialIcons
+							name="done"
+							size={20}
+							color={'#ffffff'}
+						/>
+					}
+					label="English"
+					backgroundColor="#00C851"
+					absoluteIconPosition="left"
+				/>
+				{/* </TouchableOpacity> */}
 				<VerticalSeparator />
-				<Button title="German" color="grey" />
+				<LabelIcon label="German" center />
 			</View>
 		</Card>
 	);
