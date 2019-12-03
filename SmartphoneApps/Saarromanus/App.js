@@ -5,12 +5,14 @@ import { createStackNavigator } from 'react-navigation-stack';
 import { Provider } from 'react-redux';
 
 import IndexScreen from './src/screens/index';
+import SettingsScreen from './src/screens/settings';
 
 import store from './src/store/';
 
 const navigator = createStackNavigator(
 	{
 		Index: IndexScreen,
+		Settings: SettingsScreen,
 	},
 	{
 		initialRouteName: 'Index',

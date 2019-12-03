@@ -92,11 +92,7 @@ IndexScreen.navigationOptions = ({ navigation }) => {
 			backgroundColor: 'rgba(0, 128, 128, 1)',
 		},
 		headerRight: (
-			<TouchableOpacity
-				onPress={() =>
-					// navigation.navigate('foobar')
-					console.log('Loading settings screen...')
-				}>
+			<TouchableOpacity onPress={() => navigation.navigate('Settings')}>
 				<Ionicons
 					name="md-options"
 					size={30}
