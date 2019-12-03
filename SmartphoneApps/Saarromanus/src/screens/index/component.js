@@ -35,30 +35,50 @@ const IndexScreen = ({ message, updateScreen, navigation }) => {
 			<VerticalSeparator />
 
 			<View style={styles.mainOptionsContainer}>
-				<ImageBackground
-					source={sightsBackground}
-					style={styles.optionLabelContainer}
-					imageStyle={{ opacity: 0.5, backgroundColor: 'red' }}>
-					<Text style={styles.optionLabel}>ROUTES</Text>
-				</ImageBackground>
-
+				<TouchableOpacity
+					style={styles.singleOptionContainer}
+					activeOpacity={0.5}
+					onPress={() =>
+						// navigation.navigate('foobar')
+						console.log('Loading routes screen...')
+					}>
+					<ImageBackground
+						source={sightsBackground}
+						style={styles.optionLabelContainer}
+						imageStyle={{ opacity: 0.5, backgroundColor: 'red' }}>
+						<Text style={styles.optionLabel}>ROUTES</Text>
+					</ImageBackground>
+				</TouchableOpacity>
 				<VerticalSeparator />
-
-				<ImageBackground
-					source={sightsBackground}
-					style={styles.optionLabelContainer}
-					imageStyle={{ opacity: 0.5, backgroundColor: 'green' }}>
-					<Text style={styles.optionLabel}>SIGHTS</Text>
-				</ImageBackground>
-
+				<TouchableOpacity
+					style={styles.singleOptionContainer}
+					activeOpacity={0.5}
+					onPress={() =>
+						// navigation.navigate('foobar')
+						console.log('Loading sights screen...')
+					}>
+					<ImageBackground
+						style={styles.optionLabelContainer}
+						source={sightsBackground}
+						imageStyle={{ opacity: 0.5, backgroundColor: 'green' }}>
+						<Text style={styles.optionLabel}>SIGHTS</Text>
+					</ImageBackground>
+				</TouchableOpacity>
 				<VerticalSeparator />
-
-				<ImageBackground
-					source={sightsBackground}
-					style={styles.optionLabelContainer}
-					imageStyle={{ opacity: 0.5, backgroundColor: 'blue' }}>
-					<Text style={styles.optionLabel}>GAME</Text>
-				</ImageBackground>
+				<TouchableOpacity
+					style={styles.singleOptionContainer}
+					activeOpacity={0.5}
+					onPress={() =>
+						// navigation.navigate('foobar')
+						console.log('Loading game screen...')
+					}>
+					<ImageBackground
+						source={sightsBackground}
+						style={styles.optionLabelContainer}
+						imageStyle={{ opacity: 0.5, backgroundColor: 'blue' }}>
+						<Text style={styles.optionLabel}>GAME</Text>
+					</ImageBackground>
+				</TouchableOpacity>
 			</View>
 		</View>
 	);

@@ -36,6 +36,9 @@ export default StyleSheet.create({
 		alignItems: 'stretch',
 		flex: 1,
 	},
+	singleOptionContainer: {
+		flex: 1,
+	},
 	optionLabelContainer: {
 		display: 'flex',
 		alignItems: 'center',
