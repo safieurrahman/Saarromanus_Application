@@ -2,8 +2,12 @@ import { connect } from 'react-redux';
 
 import SettingsScreen from './component';
 
-const mapStateToProps = () => ({});
+import { storeLanguage } from '../../actions/language';
 
-const mapActoinToProps = {};
+const mapStateToProps = ({ config: { language } }) => {
+	return { language };
+};
+
+const mapActoinToProps = { storeLanguage };
 
 export default connect(mapStateToProps, mapActoinToProps)(SettingsScreen);

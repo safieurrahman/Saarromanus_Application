@@ -2,7 +2,9 @@ import { connect } from 'react-redux';
 
 import SettingsScreen from './component';
 
-const mapStateToProps = () => ({});
+const mapStateToProps = ({ config: { language } }) => {
+	return { language };
+};
 
 const mapActoinToProps = {};
 

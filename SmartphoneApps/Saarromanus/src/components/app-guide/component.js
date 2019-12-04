@@ -1,13 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View, Text } from 'react-native';
 import { Card } from 'react-native-elements';
 import { AntDesign } from '@expo/vector-icons';
 
 import LabelIcon from '../../components/helpers/label_with_icon';
+import T from '../../utils/translator';
 
 import styles from './styles';
 
-const AppGuide = ({}) => {
+const AppGuide = ({ language }) => {
 	return (
 		<Card
 			title={
@@ -16,10 +17,10 @@ const AppGuide = ({}) => {
 						<AntDesign
 							name="infocirlceo"
 							size={25}
-							color={'#008800'}
+							color={'#343A40'}
 						/>
 					}
-					label={'App Guide'}
+					label={T.t('userGuildeline')}
 					labelFontSize={25}
 					labelFontWeight={'bold'}
 					separator
@@ -27,19 +28,7 @@ const AppGuide = ({}) => {
 				/>
 			}>
 			<View>
-				<Text style={styles.label}>
-					Lorem ipsum, or lipsum as it is sometimes known, is dummy
-					text used in laying out print, graphic or web designs. The
-					passage is attributed to an unknown typesetter in the 15th
-					century who is thought to have scrambled parts of Cicero's
-					De Finibus Bonorum et Malorum for use in a type specimen
-					book. Lorem ipsum, or lipsum as it is sometimes known, is
-					dummy text used in laying out print, graphic or web designs.
-					The passage is attributed to an unknown typesetter in the
-					15th century who is thought to have scrambled parts of
-					Cicero's De Finibus Bonorum et Malorum for use in a type
-					specimen book.
-				</Text>
+				<Text style={styles.label}>{T.t('loremText')}</Text>
 			</View>
 		</Card>
 	);

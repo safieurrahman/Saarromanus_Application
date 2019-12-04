@@ -1,7 +1,13 @@
 const en = {
-	english: 'English',
-	german: 'German',
+	'en-US': 'English',
+	'de-DE': 'German',
+	routes: 'ROUTES',
+	sights: 'SIGHTS',
+	game: 'GAME',
+	userGuildeline: 'User Guideline',
 	changeLanguage: 'Change Language',
+	settings: 'Settings',
+	loremText: `Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Cicero's De Finibus Bonorum et Malorum for use in a type specimen book. Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Cicero's De Finibus Bonorum et Malorum for use in a type specimen book.`,
 	// foo: 'Bar {{someValue}}',
 };
 
