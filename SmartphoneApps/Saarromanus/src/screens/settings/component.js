@@ -16,7 +16,9 @@ const SettingsScreen = ({}) => {
 
 	return (
 		<View style={styles.container}>
-			<SelectLanguage />
+			<View style={styles.languageContainer}>
+				<SelectLanguage />
+			</View>
 			<AppGuide />
 		</View>
 	);

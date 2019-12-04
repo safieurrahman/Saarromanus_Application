@@ -12,6 +12,7 @@ export default ({
 	separator = false,
 	absoluteIconPosition = null,
 	backgroundColor = '#ffffff',
+	flexible = false,
 }) => {
 	const getStyle = () =>
 		absoluteIconPosition
@@ -24,6 +25,8 @@ export default ({
 				justifyContent: 'center',
 				alignItems: 'center',
 				backgroundColor,
+				width: '100%',
+				flex: flexible ? 1 : 0,
 			}}>
 			<View
 				style={{
