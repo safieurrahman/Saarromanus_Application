@@ -5,10 +5,10 @@ import rootSaga from '../sagas';
 
 const sagaMiddleware = createSagaMiddleware();
 
-import testReducer from '../reducers/test-reducer';
+import configReducer from '../reducers/config-reducer';
 
 const store = createStore(
-	combineReducers({ test: testReducer }),
+	combineReducers({ config: configReducer }),
 	applyMiddleware(sagaMiddleware)
 );
 

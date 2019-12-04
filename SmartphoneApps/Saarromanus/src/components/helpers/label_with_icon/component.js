@@ -47,7 +47,7 @@ export default ({
 					</Text>
 				</SpaceLeft>
 			</View>
-			{separator && <VerticalSeparator />}
+			{separator && <VerticalSeparator marginVertical={5} />}
 		</View>
 	);
 };

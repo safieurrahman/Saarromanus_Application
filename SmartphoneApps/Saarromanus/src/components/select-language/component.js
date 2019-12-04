@@ -5,6 +5,7 @@ import { Entypo, MaterialIcons } from '@expo/vector-icons';
 
 import VerticalSeparator from '../../components/helpers/vertical-separator';
 import LabelIcon from '../../components/helpers/label_with_icon';
+import T from '../../utils/translator';
 
 import styles from './styles';
 
@@ -60,7 +61,7 @@ const SelectLanguage = ({ selectedLanguage }) => {
 					iconEl={
 						<Entypo name="language" size={30} color={'#000000'} />
 					}
-					label="Change Language"
+					label={T.t('changeLanguage')}
 					labelFontSize={25}
 					labelFontWeight="bold"
 					separator

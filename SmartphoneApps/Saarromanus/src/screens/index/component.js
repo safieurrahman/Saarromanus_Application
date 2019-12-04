@@ -9,6 +9,7 @@ import {
 import { Ionicons } from '@expo/vector-icons';
 
 import VerticalSeparator from '../../components/helpers/vertical-separator';
+import T from '../../utils/translator';
 
 import logo from '../../../assets/logo.png';
 import backgroundCover from '../../../assets/background-cover.jpg';
@@ -16,10 +17,15 @@ import sightsBackground from '../../../assets/sights-background.png';
 
 import styles from './styles';
 
-const IndexScreen = ({ message, updateScreen, navigation }) => {
+const IndexScreen = ({ language, detectLanguage, navigation }) => {
 	useEffect(() => {
-		updateScreen();
+		detectLanguage();
 	}, []);
+
+	useEffect(() => {
+		console.log('indexscreen:initial language:', language);
+		T.locale = language;
+	}, [language]);
 
 	return (
 		<View style={styles.container}>

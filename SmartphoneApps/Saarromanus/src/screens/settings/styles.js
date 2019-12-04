@@ -9,6 +9,6 @@ export default StyleSheet.create({
 	},
 
 	languageContainer: {
-		flexBasis: '40%',
+		flexBasis: '45%',
 	},
 });
