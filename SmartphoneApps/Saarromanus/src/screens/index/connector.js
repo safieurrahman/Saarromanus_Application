@@ -1,13 +1,14 @@
 import { connect } from 'react-redux';
 
 import IndexScreen from './component';
+import { detectLanguage } from '../../actions/language';
 
-const mapStateToProps = ({ test: { message } }) => {
-	return { message };
+const mapStateToProps = ({ config: { language } }) => {
+	return { language };
 };
 
 const mapActoinToProps = {
-	updateScreen: () => ({ type: 'US' }),
+	detectLanguage,
 };
 
 export default connect(mapStateToProps, mapActoinToProps)(IndexScreen);

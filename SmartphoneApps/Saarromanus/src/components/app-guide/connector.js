@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import SettingsScreen from './component';
+import AppGuide from './component';
 
 const mapStateToProps = ({ config: { language } }) => {
 	return { language };
@@ -8,4 +8,4 @@ const mapStateToProps = ({ config: { language } }) => {
 
 const mapActoinToProps = {};
 
-export default connect(mapStateToProps, mapActoinToProps)(SettingsScreen);
+export default connect(mapStateToProps, mapActoinToProps)(AppGuide);

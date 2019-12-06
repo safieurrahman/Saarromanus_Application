@@ -1,7 +1,11 @@
 import { all, fork } from 'redux-saga/effects';
 
-import { testSagaWatcher } from './test-saga';
+import { detectLanguageSagaWatcher } from './detect-language';
+import { storeLanguageSagaWatcher } from './store-language';
 
 export default function* rootSaga() {
-	yield all([fork(testSagaWatcher)]);
+	yield all([
+		fork(detectLanguageSagaWatcher),
+		fork(storeLanguageSagaWatcher),
+	]);
 }

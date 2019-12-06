@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
 	View,
 	Text,
@@ -9,6 +9,8 @@ import {
 import { Ionicons } from '@expo/vector-icons';
 
 import VerticalSeparator from '../../components/helpers/vertical-separator';
+import T from '../../utils/translator';
+import useUpdateTranslation from '../../hooks/use-update-translation';
 
 import logo from '../../../assets/logo.png';
 import backgroundCover from '../../../assets/background-cover.jpg';
@@ -16,10 +18,17 @@ import sightsBackground from '../../../assets/sights-background.png';
 
 import styles from './styles';
 
-const IndexScreen = ({ message, updateScreen, navigation }) => {
+const IndexScreen = ({ language, detectLanguage, navigation }) => {
+	const updateTranslation = useUpdateTranslation();
+
 	useEffect(() => {
-		updateScreen();
+		detectLanguage();
 	}, []);
+
+	useEffect(() => {
+		T.locale = language;
+		updateTranslation();
+	}, [language]);
 
 	return (
 		<View style={styles.container}>
@@ -46,7 +55,7 @@ const IndexScreen = ({ message, updateScreen, navigation }) => {
 						source={sightsBackground}
 						style={styles.optionLabelContainer}
 						imageStyle={{ opacity: 0.5, backgroundColor: 'red' }}>
-						<Text style={styles.optionLabel}>ROUTES</Text>
+						<Text style={styles.optionLabel}>{T.t('routes')}</Text>
 					</ImageBackground>
 				</TouchableOpacity>
 				<VerticalSeparator />
@@ -61,7 +70,7 @@ const IndexScreen = ({ message, updateScreen, navigation }) => {
 						style={styles.optionLabelContainer}
 						source={sightsBackground}
 						imageStyle={{ opacity: 0.5, backgroundColor: 'green' }}>
-						<Text style={styles.optionLabel}>SIGHTS</Text>
+						<Text style={styles.optionLabel}>{T.t('sights')}</Text>
 					</ImageBackground>
 				</TouchableOpacity>
 				<VerticalSeparator />
@@ -76,7 +85,7 @@ const IndexScreen = ({ message, updateScreen, navigation }) => {
 						source={sightsBackground}
 						style={styles.optionLabelContainer}
 						imageStyle={{ opacity: 0.5, backgroundColor: 'blue' }}>
-						<Text style={styles.optionLabel}>GAME</Text>
+						<Text style={styles.optionLabel}>{T.t('game')}</Text>
 					</ImageBackground>
 				</TouchableOpacity>
 			</View>
