@@ -62,10 +62,7 @@ const IndexScreen = ({ language, detectLanguage, navigation }) => {
 				<TouchableOpacity
 					style={styles.singleOptionContainer}
 					activeOpacity={0.5}
-					onPress={() =>
-						// navigation.navigate('foobar')
-						console.log('Loading sights screen...')
-					}>
+					onPress={() => navigation.navigate('Sights')}>
 					<ImageBackground
 						style={styles.optionLabelContainer}
 						source={sightsBackground}
