@@ -1,15 +1,18 @@
 import React, { useEffect } from 'react';
 import { View, Text, TouchableOpacity, Image } from 'react-native';
-import { Entypo, MaterialIcons } from '@expo/vector-icons';
+import { MaterialIcons } from '@expo/vector-icons';
+import { withNavigation } from 'react-navigation';
 
 import T from '../../utils/translator';
 
 import styles from './styles';
 
-const SingleCategory = ({ iconName, categoryName }) => {
+const SingleCategory = ({ navigation, iconName, categoryName }) => {
 	return (
 		// <View>
-		<TouchableOpacity style={styles.container}>
+		<TouchableOpacity
+			style={styles.container}
+			onPress={() => navigation.navigate('SightsList')}>
 			<View style={styles.iconContainer}>
 				<MaterialIcons name={iconName} size={60} />
 			</View>
@@ -24,4 +27,4 @@ const SingleCategory = ({ iconName, categoryName }) => {
 	);
 };
 
-export default SingleCategory;
+export default withNavigation(SingleCategory);

@@ -7,6 +7,7 @@ import { Provider } from 'react-redux';
 import IndexScreen from './src/screens/index';
 import SettingsScreen from './src/screens/settings';
 import SightsCategoryScreen from './src/screens/sights-category';
+import SightsListScreen from './src/screens/sights-list';
 
 import store from './src/store/';
 
@@ -15,6 +16,7 @@ const navigator = createStackNavigator(
 		Index: IndexScreen,
 		Settings: SettingsScreen,
 		Sights: SightsCategoryScreen,
+		SightsList: SightsListScreen,
 	},
 	{
 		initialRouteName: 'Index',
