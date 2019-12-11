@@ -1,13 +1,16 @@
 import React, { useEffect } from 'react';
 import { View, Text, TouchableOpacity, Image } from 'react-native';
+import { withNavigation } from 'react-navigation';
 
 import T from '../../utils/translator';
 
 import styles from './styles';
 
-const SingleSight = ({ thumbnail, name, description }) => {
+const SingleSight = ({ thumbnail, name, description, navigation }) => {
 	return (
-		<TouchableOpacity style={styles.container}>
+		<TouchableOpacity
+			style={styles.container}
+			onPress={() => navigation.navigate('SightDetails')}>
 			<View style={styles.imageContainer}>
 				<Image source={thumbnail} style={styles.image} />
 			</View>
@@ -19,4 +22,4 @@ const SingleSight = ({ thumbnail, name, description }) => {
 	);
 };
 
-export default SingleSight;
+export default withNavigation(SingleSight);
