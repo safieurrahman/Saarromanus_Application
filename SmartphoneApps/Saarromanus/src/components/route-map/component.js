@@ -20,6 +20,13 @@ const RouteMap = ({ sights }) => {
 					latitudeDelta: 0.09,
 					longitudeDelta: 0.09,
 				}}>
+				{sights.map(sight => (
+					<MapView.Marker
+						key={sight.en.name}
+						coordinate={sight.geo_location}
+						opacity={0.7}
+					/>
+				))}
 				<MapView.Polyline
 					coordinates={[
 						...sights.map(sight => ({
