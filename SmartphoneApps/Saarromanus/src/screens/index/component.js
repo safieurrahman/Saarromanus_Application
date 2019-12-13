@@ -47,10 +47,7 @@ const IndexScreen = ({ language, detectLanguage, navigation }) => {
 				<TouchableOpacity
 					style={styles.singleOptionContainer}
 					activeOpacity={0.5}
-					onPress={() =>
-						// navigation.navigate('foobar')
-						console.log('Loading routes screen...')
-					}>
+					onPress={() => navigation.navigate('RouteView')}>
 					<ImageBackground
 						source={sightsBackground}
 						style={styles.optionLabelContainer}

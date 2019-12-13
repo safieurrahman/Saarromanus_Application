@@ -14,8 +14,10 @@ const SingleSight = ({ thumbnail, name, description, navigation }) => {
 			<View style={styles.imageContainer}>
 				<Image source={thumbnail} style={styles.image} />
 			</View>
-			<View>
-				<Text style={styles.headingText}>{name}</Text>
+			<View style={styles.textGroup}>
+				<Text numberOfLines={1} style={styles.headingText}>
+					{name}
+				</Text>
 				<Text>{description}</Text>
 			</View>
 		</TouchableOpacity>
