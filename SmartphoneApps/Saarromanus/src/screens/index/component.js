@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import {
+	SafeAreaView,
 	View,
 	Text,
 	Image,
@@ -31,59 +32,61 @@ const IndexScreen = ({ language, detectLanguage, navigation }) => {
 	}, [language]);
 
 	return (
-		<View style={styles.container}>
-			<View style={styles.coverContainer}>
-				<ImageBackground
-					source={backgroundCover}
-					style={styles.logoContainer}
-					imageStyle={{ opacity: 0.6, backgroundColor: 'yellow' }}>
-					<Image source={logo} style={styles.logo} />
-				</ImageBackground>
-			</View>
+		<SafeAreaView style={{ flex: 1 }}>
+			<View style={styles.container}>
+				<View style={styles.coverContainer}>
+					<ImageBackground
+						source={backgroundCover}
+						style={styles.logoContainer}
+						imageStyle={{ opacity: 0.6, backgroundColor: 'yellow' }}>
+						<Image source={logo} style={styles.logo} />
+					</ImageBackground>
+				</View>
 
-			<VerticalSeparator />
+				<VerticalSeparator />
 
-			<View style={styles.mainOptionsContainer}>
-				<TouchableOpacity
-					style={styles.singleOptionContainer}
-					activeOpacity={0.5}
-					onPress={() => navigation.navigate('RouteView')}>
-					<ImageBackground
-						source={sightsBackground}
-						style={styles.optionLabelContainer}
-						imageStyle={{ opacity: 0.5, backgroundColor: 'red' }}>
-						<Text style={styles.optionLabel}>{T.t('routes')}</Text>
-					</ImageBackground>
-				</TouchableOpacity>
-				<VerticalSeparator />
-				<TouchableOpacity
-					style={styles.singleOptionContainer}
-					activeOpacity={0.5}
-					onPress={() => navigation.navigate('Sights')}>
-					<ImageBackground
-						style={styles.optionLabelContainer}
-						source={sightsBackground}
-						imageStyle={{ opacity: 0.5, backgroundColor: 'green' }}>
-						<Text style={styles.optionLabel}>{T.t('sights')}</Text>
-					</ImageBackground>
-				</TouchableOpacity>
-				<VerticalSeparator />
-				<TouchableOpacity
-					style={styles.singleOptionContainer}
-					activeOpacity={0.5}
-					onPress={() =>
-						// navigation.navigate('foobar')
-						console.log('Loading game screen...')
-					}>
-					<ImageBackground
-						source={sightsBackground}
-						style={styles.optionLabelContainer}
-						imageStyle={{ opacity: 0.5, backgroundColor: 'blue' }}>
-						<Text style={styles.optionLabel}>{T.t('game')}</Text>
-					</ImageBackground>
-				</TouchableOpacity>
+				<View style={styles.mainOptionsContainer}>
+					<TouchableOpacity
+						style={styles.singleOptionContainer}
+						activeOpacity={0.5}
+						onPress={() => navigation.navigate('RouteView')}>
+						<ImageBackground
+							source={sightsBackground}
+							style={styles.optionLabelContainer}
+							imageStyle={{ opacity: 0.5, backgroundColor: 'red' }}>
+							<Text style={styles.optionLabel}>{T.t('routes')}</Text>
+						</ImageBackground>
+					</TouchableOpacity>
+					<VerticalSeparator />
+					<TouchableOpacity
+						style={styles.singleOptionContainer}
+						activeOpacity={0.5}
+						onPress={() => navigation.navigate('Sights')}>
+						<ImageBackground
+							style={styles.optionLabelContainer}
+							source={sightsBackground}
+							imageStyle={{ opacity: 0.5, backgroundColor: 'green' }}>
+							<Text style={styles.optionLabel}>{T.t('sights')}</Text>
+						</ImageBackground>
+					</TouchableOpacity>
+					<VerticalSeparator />
+					<TouchableOpacity
+						style={styles.singleOptionContainer}
+						activeOpacity={0.5}
+						onPress={() =>
+							// navigation.navigate('foobar')
+							console.log('Loading game screen...')
+						}>
+						<ImageBackground
+							source={sightsBackground}
+							style={styles.optionLabelContainer}
+							imageStyle={{ opacity: 0.5, backgroundColor: 'blue' }}>
+							<Text style={styles.optionLabel}>{T.t('game')}</Text>
+						</ImageBackground>
+					</TouchableOpacity>
+				</View>
 			</View>
-		</View>
+		</SafeAreaView>
 	);
 };
 
