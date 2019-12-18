@@ -38,7 +38,10 @@ const IndexScreen = ({ language, detectLanguage, navigation }) => {
 					<ImageBackground
 						source={backgroundCover}
 						style={styles.logoContainer}
-						imageStyle={{ opacity: 0.6, backgroundColor: 'yellow' }}>
+						imageStyle={{
+							opacity: 0.6,
+							backgroundColor: 'yellow',
+						}}>
 						<Image source={logo} style={styles.logo} />
 					</ImageBackground>
 				</View>
@@ -49,12 +52,17 @@ const IndexScreen = ({ language, detectLanguage, navigation }) => {
 					<TouchableOpacity
 						style={styles.singleOptionContainer}
 						activeOpacity={0.5}
-						onPress={() => navigation.navigate('RouteView')}>
+						onPress={() => navigation.navigate('RouteList')}>
 						<ImageBackground
 							source={sightsBackground}
 							style={styles.optionLabelContainer}
-							imageStyle={{ opacity: 0.5, backgroundColor: 'red' }}>
-							<Text style={styles.optionLabel}>{T.t('routes')}</Text>
+							imageStyle={{
+								opacity: 0.5,
+								backgroundColor: 'red',
+							}}>
+							<Text style={styles.optionLabel}>
+								{T.t('routes')}
+							</Text>
 						</ImageBackground>
 					</TouchableOpacity>
 					<VerticalSeparator />
@@ -65,8 +73,13 @@ const IndexScreen = ({ language, detectLanguage, navigation }) => {
 						<ImageBackground
 							style={styles.optionLabelContainer}
 							source={sightsBackground}
-							imageStyle={{ opacity: 0.5, backgroundColor: 'green' }}>
-							<Text style={styles.optionLabel}>{T.t('sights')}</Text>
+							imageStyle={{
+								opacity: 0.5,
+								backgroundColor: 'green',
+							}}>
+							<Text style={styles.optionLabel}>
+								{T.t('sights')}
+							</Text>
 						</ImageBackground>
 					</TouchableOpacity>
 					<VerticalSeparator />
@@ -80,8 +93,13 @@ const IndexScreen = ({ language, detectLanguage, navigation }) => {
 						<ImageBackground
 							source={sightsBackground}
 							style={styles.optionLabelContainer}
-							imageStyle={{ opacity: 0.5, backgroundColor: 'blue' }}>
-							<Text style={styles.optionLabel}>{T.t('game')}</Text>
+							imageStyle={{
+								opacity: 0.5,
+								backgroundColor: 'blue',
+							}}>
+							<Text style={styles.optionLabel}>
+								{T.t('game')}
+							</Text>
 						</ImageBackground>
 					</TouchableOpacity>
 				</View>
