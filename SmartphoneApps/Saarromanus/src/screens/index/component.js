@@ -15,7 +15,9 @@ import useUpdateTranslation from '../../hooks/use-update-translation';
 
 import logo from '../../../assets/logo.png';
 import backgroundCover from '../../../assets/background-cover.jpg';
-import sightsBackground from '../../../assets/sights-background.png';
+import routesBackground from '../../../assets/routes-background.jpg';
+import sightsBackground from '../../../assets/sights-background.jpg';
+import gameBackground from '../../../assets/game-background.jpg';
 
 import styles from './styles';
 
@@ -40,7 +42,7 @@ const IndexScreen = ({ language, detectLanguage, navigation }) => {
 						style={styles.logoContainer}
 						imageStyle={{
 							opacity: 0.6,
-							backgroundColor: 'yellow',
+							backgroundColor: 'teal',
 						}}>
 						<Image source={logo} style={styles.logo} />
 					</ImageBackground>
@@ -54,11 +56,12 @@ const IndexScreen = ({ language, detectLanguage, navigation }) => {
 						activeOpacity={0.5}
 						onPress={() => navigation.navigate('RouteList')}>
 						<ImageBackground
-							source={sightsBackground}
+							source={routesBackground}
 							style={styles.optionLabelContainer}
+							resizeMode="stretch"
 							imageStyle={{
 								opacity: 0.5,
-								backgroundColor: 'red',
+								backgroundColor: '#020204',
 							}}>
 							<Text style={styles.optionLabel}>
 								{T.t('routes')}
@@ -73,11 +76,12 @@ const IndexScreen = ({ language, detectLanguage, navigation }) => {
 						<ImageBackground
 							style={styles.optionLabelContainer}
 							source={sightsBackground}
+							resizeMode="cover"
 							imageStyle={{
 								opacity: 0.5,
 								backgroundColor: 'green',
 							}}>
-							<Text style={styles.optionLabel}>
+							<Text numberOfLines={1} style={styles.optionLabel}>
 								{T.t('sights')}
 							</Text>
 						</ImageBackground>
@@ -91,11 +95,12 @@ const IndexScreen = ({ language, detectLanguage, navigation }) => {
 							console.log('Loading game screen...')
 						}>
 						<ImageBackground
-							source={sightsBackground}
+							source={gameBackground}
 							style={styles.optionLabelContainer}
+							resizeMode="cover"
 							imageStyle={{
 								opacity: 0.5,
-								backgroundColor: 'blue',
+								backgroundColor: 'purple',
 							}}>
 							<Text style={styles.optionLabel}>
 								{T.t('game')}
