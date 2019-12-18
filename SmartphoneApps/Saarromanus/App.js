@@ -9,7 +9,8 @@ import SettingsScreen from './src/screens/settings';
 import SightsCategoryScreen from './src/screens/sights-category';
 import SightsListScreen from './src/screens/sights-list';
 import SightDetailsScreen from './src/screens/sight-details';
-import RouteViewScreen from './src/screens//route-view';
+import RouteViewScreen from './src/screens/route-view';
+import RouteListScreen from './src/screens/route-list';
 
 import store from './src/store/';
 
@@ -21,6 +22,7 @@ const navigator = createStackNavigator(
 		SightsList: SightsListScreen,
 		SightDetails: SightDetailsScreen,
 		RouteView: RouteViewScreen,
+		RouteList: RouteListScreen,
 	},
 	{
 		initialRouteName: 'Index',
