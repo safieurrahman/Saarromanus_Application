@@ -1,16 +1,75 @@
 <nb-card>
-        <nb-card-header>Google Maps</nb-card-header>
+  <nb-card-header>Develop Route</nb-card-header>
+
         <nb-card-body>
-          <agm-map [latitude]="lat" [longitude]="lng" (mapClick)="mapClicked($event)">
+          <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" (mapClick)="mapClicked($event)">
+
                 <agm-marker 
+                
                     *ngFor="let m of markers; let i = index"
                     (markerClick)="clickedMarker(m.label, i)"
                     [latitude]="m.lat"
                     [longitude]="m.lng"
                     [label]="m.label"
                     [markerDraggable]="m.draggable"
-                    (dragEnd)="markerDragEnd(m, $event)">
+                    >
                  </agm-marker>
+
+
+                 <agm-polyline *ngFor="let m of markers" >
+                  <agm-polyline-point *ngFor="let m of markers" [latitude]="m.lat" [longitude]="m.lng">
+                  </agm-polyline-point>
+              </agm-polyline>
+
+
+
+
+
           </agm-map>
         </nb-card-body>
 </nb-card>
+
+<!-- (dragEnd)="markerDragEnd(m, $event)" -->
+
+<br><br><br>
+
+<div class="row">
+    <div class="col-md-10">
+      
+          <form role="form" method="" action="" [formGroup]="routeForm" (ngSubmit)="onSubmit()">
+            <div class="form-group row">
+              <label for="inputEmail1" class="label col-sm-3 col-form-label">Name</label>
+              <div class="col-sm-9">
+                <input type="text" nbInput fullWidth  placeholder="Name" id="routeName" name="routeName" formControlName="routeName">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputPassword2" class="label col-sm-3 col-form-label">Description</label>
+              <div class="col-sm-9">
+                  <textarea rows="5" nbInput fullWidth placeholder="Description" id="routeDescription" name="routeDescription" formControlName="routeDescription"></textarea>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-3 label">Type</label>
+              <div class="col-sm-9">
+                  <nb-select selected="Roman Villas" id="routeType" name="routeType" formControlName="routeType">
+                      <nb-option value="Roman Villas">Roman Villas</nb-option>
+                      <nb-option value="Settlements">Settlements</nb-option>
+                      <nb-option value="Sanctuaries">Sanctuaries</nb-option>
+                    </nb-select>
+              </div>       
+            </div>
+
+
+            <br><br><br>
+
+            <div class="form-group row">
+              <div class="offset-sm-6 col-sm-9">
+                <button type="submit" nbButton status="primary" value="Submit">Submit</button>
+              </div>
+            </div>
+          </form>
+
+
+    </div>
+</div>
