@@ -31,6 +31,7 @@ export class MapComponent implements OnInit {
   sightsDescription = new FormControl();
   sightsType = new FormControl();
 
+
   @Input()
   public set searchedLocation(searchedLocation: Location) {
     this.latitude = searchedLocation.latitude;
@@ -61,12 +62,15 @@ export class MapComponent implements OnInit {
     this.sightsForm = this.formBuilder.group({
       sightsName: [''],  
       sightsDescription: [''],
-      sightsType: ['']
+      sightsType: [''],
+      
+      de_sightsDescription: [''], 
     });
   }
 
   fileData: File = null;
   AudioData: File = null;
+  de_AudioData: File = null;
   previewUrl:any = null;
   fileUploadProgress: string = null;
   uploadedFilePath: string = null;
@@ -94,6 +98,11 @@ AudioProgress(fileInput: any) {
   this.AudioData = <File>fileInput.target.files[0];
 }
 
+DE_AudioProgress(fileInput: any) {
+  this.de_AudioData = <File>fileInput.target.files[0];
+}
+
+
 
 public onSubmit() {
   {
@@ -109,11 +118,13 @@ public onSubmit() {
     let new_sights = {};
       new_sights["name"]=this.sightsForm.value.sightsName;
       new_sights["description"]=this.sightsForm.value.sightsDescription;
+      new_sights["de_description"]=this.sightsForm.value.de_sightsDescription;
       new_sights["type"]=this.sightsForm.value.sightsType;
       new_sights["longiitude"]=this.longitude;
       new_sights["latitude"]=this.latitude;
       new_sights["image"]=formData;
       new_sights["audio"]=formData1;
+      new_sights["de_audio"]=formData1;
 
       //add image and audio data to new_sights and new_sights would be sent to data base via a service.
 
