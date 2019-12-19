@@ -23,6 +23,7 @@ import {
   NbToastrModule,
   NbWindowModule,
 } from '@nebular/theme';
+import { AuthGuard } from './auth/auth-guard.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -44,6 +45,9 @@ import {
       messageGoogleMapKey: 'AIzaSyA_wNuCzia92MAmdLRzmqitRGvCF7wCZPY',
     }),
     CoreModule.forRoot(),
+  ],
+  providers: [
+    AuthGuard
   ],
   bootstrap: [AppComponent],
 })
