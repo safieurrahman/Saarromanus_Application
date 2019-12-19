@@ -32,8 +32,8 @@
             <div class="form-group row">
               <label class="col-sm-3 label">Type</label>
               <div class="col-sm-9">
-                  <nb-select selected="Roman Villas" id="sightsType" name="sightsType" formControlName="sightsType">
-                      <nb-option value="Roman Villas">Roman Villas</nb-option>
+                  <nb-select id="sightsType" name="sightsType" formControlName="sightsType">
+                      <nb-option selected value="Roman Villas">Roman Villas</nb-option>
                       <nb-option value="Settlements">Settlements</nb-option>
                       <nb-option value="Sanctuaries">Sanctuaries</nb-option>
                     </nb-select>
@@ -41,11 +41,11 @@
             </div>
 
 
-              <div class="form-group row">
+               <div class="form-group row">
                   <label class="col-sm-3 label">Image</label>
                   <div class="col-sm-9">          
                      
-                          <input type="file" name="image" (change)="ImageProgress($event)" />
+                          <input type="file" name="image" multiple />
                       
                       <div *ngIf="fileUploadProgress">
                           Upload progress: {{ fileUploadProgress }}
@@ -57,7 +57,13 @@
                           {{uploadedFilePath}}
                       </div>
                   </div>
-              </div>
+              </div> 
+
+              
+
+
+
+
 
               <div class="form-group row">
                   <label class="col-sm-3 label">Audio</label>

@@ -2,7 +2,7 @@ const de = {
 	'en-US': 'Englisch',
 	'de-DE': 'Deutsch',
 	routes: 'ROUTEN',
-	sights: 'SEITEN',
+	sights: 'SEHENSWÜRDIGKEITEN',
 	game: 'SPIEL',
 	userGuildeline: 'Bedienungsanleitung',
 	changeLanguage: 'Sprache Ändern',

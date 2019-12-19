@@ -46,7 +46,7 @@ export default StyleSheet.create({
 		flex: 1,
 	},
 	optionLabel: {
-		fontSize: 40,
+		fontSize: 35,
 		color: '#FFF',
 		fontWeight: 'bold',
 	},

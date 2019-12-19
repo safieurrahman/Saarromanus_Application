@@ -11,9 +11,10 @@ import { HttpClient, HttpEventType } from '@angular/common/http';
   styleUrls: ['./map.component.scss'],
 })
 export class MapComponent implements OnInit {
-  latitude: number;
-  longitude: number;
-  zoom: number;
+  zoom: number = 15;
+
+  latitude:number = 49.239486;
+  longitude:number = 6.994886; 
 
   sightsForm: FormGroup;
   
@@ -34,7 +35,7 @@ export class MapComponent implements OnInit {
   public set searchedLocation(searchedLocation: Location) {
     this.latitude = searchedLocation.latitude;
     this.longitude = searchedLocation.longitude;
-    this.zoom = 12;
+    this.zoom = 15;
   }
 
   ngOnInit(): void {
@@ -71,7 +72,7 @@ export class MapComponent implements OnInit {
   uploadedFilePath: string = null;
  
 ImageProgress(fileInput: any) {
-      this.fileData = <File>fileInput.target.files[0];
+      this.fileData = <File>fileInput.target.files[1];
       this.preview();
 }
  

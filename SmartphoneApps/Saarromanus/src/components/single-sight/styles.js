@@ -1,13 +1,12 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 
 export default StyleSheet.create({
 	container: {
 		display: 'flex',
-		alignItems: 'flex-start',
 		flexDirection: 'row',
+		alignItems: 'center',
 		justifyContent: 'center',
 		width: '100%',
-		flex: 1,
 		paddingVertical: 10,
 	},
 	imageContainer: {
@@ -16,14 +15,18 @@ export default StyleSheet.create({
 		alignItems: 'center',
 		justifyContent: 'center',
 		marginRight: 5,
+		alignSelf: 'flex-start',
 	},
 	image: {
-		width: 100,
-		height: 80,
+		width: 90,
+		height: 70,
 		borderRadius: 5,
 	},
+	textGroup: {
+		flexBasis: '70%',
+	},
 	headingText: {
-		fontSize: 30,
+		fontSize: 20,
 		fontWeight: 'bold',
 	},
 });
