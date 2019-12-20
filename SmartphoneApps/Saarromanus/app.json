@@ -15,7 +15,7 @@
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#000000"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -27,7 +27,12 @@
       "supportsTablet": true
 	},
 	"android": {
-		"package": "com.saarromanus"
+		"package": "com.se.saarromanus",
+		"config": {
+			"googleMaps": {
+				"apiKey": "AIzaSyBbHT6Ry6A7alZTNOVy9T6LVM0etuz2xOA"
+			}
+		}
 	}
   }
 }

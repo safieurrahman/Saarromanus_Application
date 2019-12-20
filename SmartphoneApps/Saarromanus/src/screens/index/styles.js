@@ -1,27 +1,27 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 
 export default StyleSheet.create({
 	// Main container
 	container: {
 		display: 'flex',
-		flexDirection: 'column',
 		width: '100%',
-		height: '100%',
+		height: Math.floor(Dimensions.get('window').height),
+		flex: 1, // TODO: s8karabi : Change it later
 	},
 
 	// Cover photo and logo section
 	coverContainer: {
 		display: 'flex',
-		alignItems: 'center',
+		alignItems: 'stretch',
 		justifyContent: 'center',
 		flexBasis: '40%',
+		flex: 1,
 	},
 	logoContainer: {
 		display: 'flex',
 		alignItems: 'center',
 		justifyContent: 'center',
-		width: '100%',
-		height: '100%',
+		flex: 1,
 	},
 	logo: {
 		width: 250,
@@ -31,13 +31,15 @@ export default StyleSheet.create({
 	// Main options section
 	mainOptionsContainer: {
 		display: 'flex',
-		flexDirection: 'column',
 		justifyContent: 'center',
 		alignItems: 'stretch',
-		flex: 1,
+		flexBasis: '50%',
 	},
 	singleOptionContainer: {
-		flex: 1,
+		flexBasis: '33%',
+		display: 'flex',
+		alignItems: 'stretch',
+		justifyContent: 'center',
 	},
 	optionLabelContainer: {
 		display: 'flex',
