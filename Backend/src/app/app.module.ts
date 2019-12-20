@@ -24,6 +24,9 @@ import {
   NbWindowModule,
 } from '@nebular/theme';
 import { AuthGuard } from './auth/auth-guard.service';
+import { AngularFireModule, } from 'angularfire2';
+import { environment } from '../environments/environment';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
 
 @NgModule({
   declarations: [AppComponent],
@@ -44,10 +47,12 @@ import { AuthGuard } from './auth/auth-guard.service';
     NbChatModule.forRoot({
       messageGoogleMapKey: 'AIzaSyA_wNuCzia92MAmdLRzmqitRGvCF7wCZPY',
     }),
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule.enablePersistence(),
     CoreModule.forRoot(),
   ],
   providers: [
-    AuthGuard
+    AuthGuard,
   ],
   bootstrap: [AppComponent],
 })

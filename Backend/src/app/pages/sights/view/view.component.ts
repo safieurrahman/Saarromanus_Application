@@ -14,8 +14,8 @@ import { resolve } from 'url';
   styleUrls: ['./view.component.scss'],
 })
 export class SightsViewComponent {
-
   settings = {
+    hideSubHeader: true,
     add: {
       addButtonContent: '<i class="nb-plus"></i>',
       createButtonContent: '<i class="nb-checkmark"></i>',
@@ -62,13 +62,13 @@ export class SightsViewComponent {
     },
   };
 
-  source: LocalDataSource = new LocalDataSource();
-  public items: Observable<any[]>;
+  public source: LocalDataSource;
 
-  constructor (private service: SmartTableData, db: AngularFirestore) {
-    const data = db.collection('/historic_sites').get();
-    // console.log(data);
-    // this.source.load(data);
+  constructor (private service: SmartTableData, private afs: AngularFirestore) {
+    // this.items = afs.collection('historic_sites').valueChanges();
+    afs.collection('historic_sites').valueChanges().subscribe(res => {
+      this.source= new LocalDataSource(res);
+    })
   }
 
   onDeleteConfirm(event): void {
