@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { SafeAreaView, ScrollView, Text, View } from 'react-native';
+import { SafeAreaView, ScrollView, Text, TouchableOpacity } from 'react-native';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 import SightsList from '../../components/sights-list';
 
@@ -90,6 +91,17 @@ RouteViewScreen.navigationOptions = ({ navigation }) => {
 		headerStyle: {
 			backgroundColor: 'rgba(0, 128, 128, 1)',
 		},
+		headerRight: (
+			<TouchableOpacity
+				onPress={() => console.log('Donwloading current route...')}>
+				<MaterialCommunityIcons
+					name="download-multiple"
+					size={30}
+					color={'#dddddd'}
+					style={styles.icon}
+				/>
+			</TouchableOpacity>
+		),
 	};
 };
 
