@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import {
 	View,
 	Image,
@@ -76,6 +76,13 @@ const AudioPlayer = ({ audios }) => {
 			loadAudio();
 		}
 	}, [currentIndex]);
+
+	useEffect(() => {
+		return () => {
+			isPlaying && soundObject.stopAsync();
+		};
+	});
+
 	return (
 		<View style={styles.container}>
 			{audios.map((audio, index) => {
