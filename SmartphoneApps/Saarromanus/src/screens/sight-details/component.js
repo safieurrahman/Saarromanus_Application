@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { ScrollView, Text, View } from 'react-native';
+import { ScrollView, Text, View, TouchableOpacity } from 'react-native';
 import { Audio } from 'expo-av';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 import VerticalSeparator from '../../components/helpers/vertical-separator';
 
@@ -63,6 +64,17 @@ SightDetailsScreen.navigationOptions = ({ navigation }) => {
 		headerStyle: {
 			backgroundColor: 'rgba(0, 128, 128, 1)',
 		},
+		headerRight: (
+			<TouchableOpacity
+				onPress={() => console.log('Donwloading current sight...')}>
+				<MaterialCommunityIcons
+					name="download"
+					size={30}
+					color={'#dddddd'}
+					style={styles.icon}
+				/>
+			</TouchableOpacity>
+		),
 	};
 };
 
