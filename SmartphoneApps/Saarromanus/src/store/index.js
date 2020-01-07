@@ -6,9 +6,10 @@ import rootSaga from '../sagas';
 const sagaMiddleware = createSagaMiddleware();
 
 import configReducer from '../reducers/config-reducer';
+import DBReducer from '../reducers/db-reducer';
 
 const store = createStore(
-	combineReducers({ config: configReducer }),
+	combineReducers({ config: configReducer, DB: DBReducer }),
 	applyMiddleware(sagaMiddleware)
 );
 
