@@ -52,7 +52,7 @@ const IndexScreen = ({ language, detectLanguage, navigation, DB }) => {
 
 	useEffect(() => {
 		// createSightsTable();
-		insertSight();
+		// insertSight();
 		detectLanguage();
 	}, []);
 
@@ -81,7 +81,7 @@ const IndexScreen = ({ language, detectLanguage, navigation, DB }) => {
 				<TouchableOpacity
 					style={styles.singleOptionContainer}
 					activeOpacity={0.5}
-					onPress={() => navigation.navigate('RouteView')}>
+					onPress={() => navigation.navigate('RouteList')}>
 					<ImageBackground
 						source={routesBackground}
 						style={styles.optionLabelContainer}

@@ -52,6 +52,7 @@
 			"sights": [
 				{
 					"id": 1,
+					"thumbnail": "https://i.picsum.photos/id/450/600/600.jpg",
 					"name": "Römerkastell",
 					"coordinate": {
 						"lat": 49.223798,
@@ -60,6 +61,7 @@
 				},
 				{
 					"id": 2,
+					"thumbnail": "https://i.picsum.photos/id/450/600/600.jpg",
 					"name": "Mithraskapelle am Halberg",
 					"coordinate": {
 						"lat": 49.222481,
@@ -67,6 +69,8 @@
 					}
 				},
 				{
+					"id": 3,
+					"thumbnail": "https://i.picsum.photos/id/450/600/600.jpg",
 					"name": "Römerstadt",
 					"coordinate": {
 						"lat": 49.22476,
@@ -74,6 +78,8 @@
 					}
 				},
 				{
+					"id": 4,
+					"thumbnail": "https://i.picsum.photos/id/450/600/600.jpg",
 					"name": "Römerbrunnen",
 					"coordinate": {
 						"lat": 49.238264,
@@ -81,6 +87,8 @@
 					}
 				},
 				{
+					"id": 5,
+					"thumbnail": "https://i.picsum.photos/id/450/600/600.jpg",
 					"name": "Schwarzenbergturm",
 					"coordinate": {
 						"lat": 49.246836,
@@ -88,6 +96,8 @@
 					}
 				},
 				{
+					"id": 6,
+					"thumbnail": "https://i.picsum.photos/id/450/600/600.jpg",
 					"name": "Saarland University",
 					"coordinate": {
 						"lat": 49.255022,
@@ -95,6 +105,8 @@
 					}
 				},
 				{
+					"id": 7,
+					"thumbnail": "https://i.picsum.photos/id/450/600/600.jpg",
 					"name": "Sengscheider Hof",
 					"coordinate": {
 						"lat": 49.253514,
@@ -155,6 +167,7 @@
 			"sights": [
 				{
 					"id": 1,
+					"thumbnail": "https://i.picsum.photos/id/450/600/600.jpg",
 					"name": "Römerkastell",
 					"coordinate": {
 						"lat": 49.223798,
@@ -163,6 +176,7 @@
 				},
 				{
 					"id": 2,
+					"thumbnail": "https://i.picsum.photos/id/450/600/600.jpg",
 					"name": "Mithraskapelle am Halberg",
 					"coordinate": {
 						"lat": 49.222481,
@@ -170,6 +184,8 @@
 					}
 				},
 				{
+					"id": 3,
+					"thumbnail": "https://i.picsum.photos/id/450/600/600.jpg",
 					"name": "Römerstadt",
 					"coordinate": {
 						"lat": 49.22476,
@@ -177,6 +193,8 @@
 					}
 				},
 				{
+					"id": 4,
+					"thumbnail": "https://i.picsum.photos/id/450/600/600.jpg",
 					"name": "Römerbrunnen",
 					"coordinate": {
 						"lat": 49.238264,
@@ -184,6 +202,8 @@
 					}
 				},
 				{
+					"id": 5,
+					"thumbnail": "https://i.picsum.photos/id/450/600/600.jpg",
 					"name": "Schwarzenbergturm",
 					"coordinate": {
 						"lat": 49.246836,
@@ -191,6 +211,8 @@
 					}
 				},
 				{
+					"id": 6,
+					"thumbnail": "https://i.picsum.photos/id/450/600/600.jpg",
 					"name": "Saarland University",
 					"coordinate": {
 						"lat": 49.255022,
@@ -198,6 +220,8 @@
 					}
 				},
 				{
+					"id": 7,
+					"thumbnail": "https://i.picsum.photos/id/450/600/600.jpg",
 					"name": "Sengscheider Hof",
 					"coordinate": {
 						"lat": 49.253514,
@@ -293,6 +317,7 @@
 			]
 		},
 		{
+			"id": 3,
 			"name": "Römerstadt",
 			"coordinate": {
 				"lat": 49.22476,
@@ -334,6 +359,7 @@
 			]
 		},
 		{
+			"id": 4,
 			"name": "Römerbrunnen",
 			"coordinate": {
 				"lat": 49.238264,
@@ -375,6 +401,7 @@
 			]
 		},
 		{
+			"id": 5,
 			"name": "Schwarzenbergturm",
 			"coordinate": {
 				"lat": 49.246836,
@@ -416,6 +443,7 @@
 			]
 		},
 		{
+			"id": 6,
 			"name": "Saarland University",
 			"coordinate": {
 				"lat": 49.255022,
@@ -457,6 +485,7 @@
 			]
 		},
 		{
+			"id": 7,
 			"name": "Sengscheider Hof",
 			"coordinate": {
 				"lat": 49.253514,
@@ -497,5 +526,84 @@
 				}
 			]
 		}
+	],
+	"sight_categories": [
+		{
+			"id": 1,
+			"name": "All",
+			"sights": [
+				{
+					"id": 1,
+					"thumbnail": "https://i.picsum.photos/id/450/600/600.jpg",
+					"name": "Römerkastell",
+					"coordinate": {
+						"lat": 49.223798,
+						"long": 7.024046
+					}
+				},
+				{
+					"id": 2,
+					"thumbnail": "https://i.picsum.photos/id/450/600/600.jpg",
+					"name": "Mithraskapelle am Halberg",
+					"coordinate": {
+						"lat": 49.222481,
+						"long": 7.028262
+					}
+				},
+				{
+					"id": 3,
+					"thumbnail": "https://i.picsum.photos/id/450/600/600.jpg",
+					"name": "Römerstadt",
+					"coordinate": {
+						"lat": 49.22476,
+						"long": 7.027018
+					}
+				},
+				{
+					"id": 4,
+					"thumbnail": "https://i.picsum.photos/id/450/600/600.jpg",
+					"name": "Römerbrunnen",
+					"coordinate": {
+						"lat": 49.238264,
+						"long": 7.03135
+					}
+				}
+			]
+		},
+		{
+			"id": 2,
+			"name": "Settlements",
+			"sights": [
+				{
+					"id": 5,
+					"thumbnail": "https://i.picsum.photos/id/450/600/600.jpg",
+					"name": "Schwarzenbergturm",
+					"coordinate": {
+						"lat": 49.246836,
+						"long": 7.040374
+					}
+				},
+				{
+					"id": 6,
+					"thumbnail": "https://i.picsum.photos/id/450/600/600.jpg",
+					"name": "Saarland University",
+					"coordinate": {
+						"lat": 49.255022,
+						"long": 7.041043
+					}
+				},
+				{
+					"id": 7,
+					"thumbnail": "https://i.picsum.photos/id/450/600/600.jpg",
+					"name": "Sengscheider Hof",
+					"coordinate": {
+						"lat": 49.253514,
+						"long": 7.099069
+					}
+				}
+			]
+		},
+		{ "id": 3, "name": "Roman Villas" },
+		{ "id": 4, "name": "Sanctuaries" }
 	]
 }
