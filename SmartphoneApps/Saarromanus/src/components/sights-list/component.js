@@ -3,8 +3,6 @@ import { View, FlatList } from 'react-native';
 
 import SingleSight from '../single-sight';
 
-import T from '../../utils/translator';
-
 import styles from './styles';
 
 const SighstList = ({ sights }) => {
@@ -12,12 +10,13 @@ const SighstList = ({ sights }) => {
 		<View style={styles.container}>
 			<FlatList
 				data={sights}
-				keyExtractor={({ en }) => en.name}
+				keyExtractor={sight => sight.id + ''}
 				renderItem={({ item }) => {
 					return (
 						<SingleSight
-							name={item.en.name}
-							description={item.en.description}
+							id={item.id}
+							name={item.name}
+							description={'item.en.description'}
 							thumbnail={item.thumbnail}
 						/>
 					);

@@ -1,19 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import {
-	View,
-	Image,
-	TouchableOpacity,
-	Modal,
-	Text,
-	TouchableHighlight,
-	MaskedViewComponent,
-} from 'react-native';
+import { View, Text } from 'react-native';
 
 import { MaterialIcons } from '@expo/vector-icons';
-
-import VerticalSeparator from '../helpers/vertical-separator';
-
-import T from '../../utils/translator';
 
 import styles from './styles';
 
