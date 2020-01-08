@@ -3,7 +3,7 @@ import { takeLatest, put, call } from 'redux-saga/effects';
 import { GET_ROUTE_LIST, populateRouteList } from '../actions/routes';
 import getRouteList from './services/get-route-list';
 
-function* listRouteSaga() {
+function* listRoutesSaga() {
 	try {
 		const response = yield call(getRouteList);
 		// if(response.status) {
@@ -15,6 +15,6 @@ function* listRouteSaga() {
 	}
 }
 
-export function* listRouteSagaWatcher() {
-	yield takeLatest(GET_ROUTE_LIST, listRouteSaga);
+export function* listRoutesSagaWatcher() {
+	yield takeLatest(GET_ROUTE_LIST, listRoutesSaga);
 }

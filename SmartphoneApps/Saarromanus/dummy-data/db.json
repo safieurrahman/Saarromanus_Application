@@ -266,10 +266,12 @@
 				},
 				{
 					"type": "audio/mpeg",
+					"title": "Audio 1",
 					"url": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
 				},
 				{
 					"type": "audio/mpeg",
+					"title": "Audio 8",
 					"url": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3"
 				}
 			]
@@ -308,10 +310,12 @@
 				},
 				{
 					"type": "audio/mpeg",
+					"title": "Audio 1",
 					"url": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
 				},
 				{
 					"type": "audio/mpeg",
+					"title": "Audio 8",
 					"url": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3"
 				}
 			]
@@ -350,10 +354,12 @@
 				},
 				{
 					"type": "audio/mpeg",
+					"title": "Audio 1",
 					"url": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
 				},
 				{
 					"type": "audio/mpeg",
+					"title": "Audio 8",
 					"url": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3"
 				}
 			]
@@ -392,10 +398,12 @@
 				},
 				{
 					"type": "audio/mpeg",
+					"title": "Audio 1",
 					"url": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
 				},
 				{
 					"type": "audio/mpeg",
+					"title": "Audio 8",
 					"url": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3"
 				}
 			]
@@ -434,10 +442,12 @@
 				},
 				{
 					"type": "audio/mpeg",
+					"title": "Audio 1",
 					"url": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
 				},
 				{
 					"type": "audio/mpeg",
+					"title": "Audio 8",
 					"url": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3"
 				}
 			]
@@ -476,10 +486,12 @@
 				},
 				{
 					"type": "audio/mpeg",
+					"title": "Audio 1",
 					"url": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
 				},
 				{
 					"type": "audio/mpeg",
+					"title": "Audio 8",
 					"url": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3"
 				}
 			]
@@ -518,10 +530,12 @@
 				},
 				{
 					"type": "audio/mpeg",
+					"title": "Audio 1",
 					"url": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
 				},
 				{
 					"type": "audio/mpeg",
+					"title": "Audio 8",
 					"url": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3"
 				}
 			]
@@ -530,7 +544,15 @@
 	"sight_categories": [
 		{
 			"id": 1,
-			"name": "All",
+			"en": {
+				"name": "All"
+			},
+			"de": {
+				"name": "Alles"
+			},
+			"fr": {
+				"name": "All fr"
+			},
 			"sights": [
 				{
 					"id": 1,
@@ -543,7 +565,7 @@
 				},
 				{
 					"id": 2,
-					"thumbnail": "https://i.picsum.photos/id/450/600/600.jpg",
+					"thumbnail": "https://i.picsum.photos/id/451/600/600.jpg",
 					"name": "Mithraskapelle am Halberg",
 					"coordinate": {
 						"latitude": 49.222481,
@@ -552,7 +574,7 @@
 				},
 				{
 					"id": 3,
-					"thumbnail": "https://i.picsum.photos/id/450/600/600.jpg",
+					"thumbnail": "https://i.picsum.photos/id/452/600/600.jpg",
 					"name": "Römerstadt",
 					"coordinate": {
 						"latitude": 49.22476,
@@ -561,7 +583,7 @@
 				},
 				{
 					"id": 4,
-					"thumbnail": "https://i.picsum.photos/id/450/600/600.jpg",
+					"thumbnail": "https://i.picsum.photos/id/453/600/600.jpg",
 					"name": "Römerbrunnen",
 					"coordinate": {
 						"latitude": 49.238264,
@@ -572,11 +594,19 @@
 		},
 		{
 			"id": 2,
-			"name": "Settlements",
+			"en": {
+				"name": "Settlements"
+			},
+			"de": {
+				"name": "Settlementen"
+			},
+			"fr": {
+				"name": "Settlements fr"
+			},
 			"sights": [
 				{
 					"id": 5,
-					"thumbnail": "https://i.picsum.photos/id/450/600/600.jpg",
+					"thumbnail": "https://i.picsum.photos/id/454/600/600.jpg",
 					"name": "Schwarzenbergturm",
 					"coordinate": {
 						"latitude": 49.246836,
@@ -585,7 +615,7 @@
 				},
 				{
 					"id": 6,
-					"thumbnail": "https://i.picsum.photos/id/450/600/600.jpg",
+					"thumbnail": "https://i.picsum.photos/id/455/600/600.jpg",
 					"name": "Saarland University",
 					"coordinate": {
 						"latitude": 49.255022,
@@ -594,7 +624,7 @@
 				},
 				{
 					"id": 7,
-					"thumbnail": "https://i.picsum.photos/id/450/600/600.jpg",
+					"thumbnail": "https://i.picsum.photos/id/456/600/600.jpg",
 					"name": "Sengscheider Hof",
 					"coordinate": {
 						"latitude": 49.253514,
@@ -603,7 +633,29 @@
 				}
 			]
 		},
-		{ "id": 3, "name": "Roman Villas" },
-		{ "id": 4, "name": "Sanctuaries" }
+		{
+			"id": 3,
+			"en": {
+				"name": "Roman Villas"
+			},
+			"de": {
+				"name": "Roman Villan"
+			},
+			"fr": {
+				"name": "Roman Villas fr"
+			}
+		},
+		{
+			"id": 4,
+			"en": {
+				"name": "Sanctuaries"
+			},
+			"de": {
+				"name": "Sanctuarinten"
+			},
+			"fr": {
+				"name": "Sanctuaries fr"
+			}
+		}
 	]
 }
