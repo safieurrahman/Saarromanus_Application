@@ -7,9 +7,16 @@ const sagaMiddleware = createSagaMiddleware();
 
 import configReducer from '../reducers/config-reducer';
 import DBReducer from '../reducers/db-reducer';
+import RoutesReducer from '../reducers/routes-reducer';
+import RouteReducer from '../reducers/route-reducer';
 
 const store = createStore(
-	combineReducers({ config: configReducer, DB: DBReducer }),
+	combineReducers({
+		config: configReducer,
+		DB: DBReducer,
+		routes: RoutesReducer,
+		route: RouteReducer,
+	}),
 	applyMiddleware(sagaMiddleware)
 );
 
