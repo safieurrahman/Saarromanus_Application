@@ -1,15 +1,21 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
+import { SightCategoriesComponent } from './sight-categories.component';
 import { SightCategoriesViewComponent } from './view/view.component';
+import { SightCategoriesDetailComponent } from './detail/detail.component';
 
 const routes: Routes = [{
   path: '',
-  component: SightCategoriesViewComponent,
+  component: SightCategoriesComponent,
   children: [
     {
       path: 'view',
       component: SightCategoriesViewComponent,
+    },
+    {
+      path: 'create',
+      component: SightCategoriesDetailComponent,
     },
   ],
 }];
@@ -21,5 +27,7 @@ const routes: Routes = [{
 export class SightCategoriesRoutingModule { }
 
 export const routedComponents = [
-  SightCategoriesViewComponent
+  SightCategoriesComponent,
+  SightCategoriesViewComponent,
+  SightCategoriesDetailComponent
 ];

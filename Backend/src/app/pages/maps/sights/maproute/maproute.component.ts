@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Component, Input, OnInit } from '@angular/core';
 import { Location } from '../entity/Location';
 import { MouseEvent } from '@agm/core';
-import { FormGroup, FormControl, FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
 import { HttpClient, HttpEventType } from '@angular/common/http';
 
 @Component({

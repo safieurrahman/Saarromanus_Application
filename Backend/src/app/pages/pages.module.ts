@@ -9,6 +9,7 @@ import { PagesRoutingModule } from './pages-routing.module';
 import { MiscellaneousModule } from './miscellaneous/miscellaneous.module';
 import { SightsModule } from './sights/sights.module';
 import { HistoricRoutesModule } from './historic-routes/historic-routes.module';
+import { SightCategoriesModule } from './sight-categories/sight-categories.module';
 
 @NgModule({
   imports: [
@@ -18,6 +19,7 @@ import { HistoricRoutesModule } from './historic-routes/historic-routes.module';
     DashboardModule,
     ECommerceModule,
     MiscellaneousModule,
+    SightCategoriesModule,
     SightsModule,
     HistoricRoutesModule,
   ],

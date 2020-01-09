@@ -222,6 +222,10 @@ export const MENU_ITEMS: NbMenuItem[] = [
         title: 'View',
         link: '/pages/sight-categories/view',
       },
+      {
+        title: 'Create',
+        link: '/pages/sight-categories/create',
+      },
     ],
   },
   {

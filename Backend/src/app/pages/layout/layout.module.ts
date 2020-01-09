@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
   NbAccordionModule,
   NbButtonModule,
@@ -24,8 +23,6 @@ import { NewsService } from './news.service';
 
 @NgModule({
   imports: [
-    FormsModule,
-    ReactiveFormsModule,
     ThemeModule,
     NbTabsetModule,
     NbRouteTabsetModule,
