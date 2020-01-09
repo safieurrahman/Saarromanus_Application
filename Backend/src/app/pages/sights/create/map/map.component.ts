@@ -72,7 +72,7 @@ export class MapComponent implements OnInit {
   uploadedFilePath: string = null;
  
 ImageProgress(fileInput: any) {
-      this.fileData = <File>fileInput.target.files[10];
+      this.fileData = <File>fileInput.target.files[1];
       this.preview();
 }
  
