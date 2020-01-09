@@ -219,8 +219,18 @@ export const MENU_ITEMS: NbMenuItem[] = [
     icon: 'umbrella-outline',
     children: [
       {
-        title: 'Views',
-        link: '/pages/sights/sight-view',
+        title: 'View',
+        link: '/pages/sights/view',
+      },
+    ],
+  },
+  {
+    title: 'Routes',
+    icon: 'umbrella-outline',
+    children: [
+      {
+        title: 'View',
+        link: '/pages/historic-routes/view',
       },
     ],
   },

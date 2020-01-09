@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { SightsViewComponent } from './view/view.component';
+import { HistoricRoutesViewComponent } from './view/view.component';
 
 const routes: Routes = [{
   path: '',
-  component: SightsViewComponent,
+  component: HistoricRoutesViewComponent,
   children: [
     {
       path: 'view',
-      component: SightsViewComponent,
+      component: HistoricRoutesViewComponent,
     },
   ],
 }];
@@ -18,8 +18,8 @@ const routes: Routes = [{
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class SightsRoutingModule { }
+export class HistoricRoutesRoutingModule { }
 
 export const routedComponents = [
-    SightsViewComponent
+    HistoricRoutesViewComponent
 ];

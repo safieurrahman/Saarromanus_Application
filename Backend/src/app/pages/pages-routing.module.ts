@@ -64,15 +64,20 @@ const routes: Routes = [{
         .then(m => m.SightsModule),
     },
     {
-      path: 'tables',
-      loadChildren: () => import('./tables/tables.module')
-        .then(m => m.TablesModule),
+      path: 'historic-routes',
+      loadChildren: () => import('./historic-routes/historic-routes.module')
+        .then(m => m.HistoricRoutesModule),
     },
-    {
-      path: 'miscellaneous',
-      loadChildren: () => import('./miscellaneous/miscellaneous.module')
-        .then(m => m.MiscellaneousModule),
-    },
+    // {
+    //   path: 'tables',
+    //   loadChildren: () => import('./tables/tables.module')
+    //     .then(m => m.TablesModule),
+    // },
+    // {
+    //   path: 'miscellaneous',
+    //   loadChildren: () => import('./miscellaneous/miscellaneous.module')
+    //     .then(m => m.MiscellaneousModule),
+    // },
     {
       path: '**',
       component: NotFoundComponent,
