@@ -36,7 +36,8 @@ export default StyleSheet.create({
 		flexBasis: '100%',
 	},
 	imageFull: {
-		// flexBasis: '100%',
+		width: '100%',
+		height: '100%',
 		width: Math.floor(Dimensions.get('window').width),
 	},
 });

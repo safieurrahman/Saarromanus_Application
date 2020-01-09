@@ -1,11 +1,12 @@
 import { connect } from 'react-redux';
 
 import c from './component';
+import { getSightsByCategory } from '../../actions/sights';
 
-const mapStateToProps = () => {
-	return {};
+const mapStateToProps = ({ sights }) => {
+	return { sights };
 };
 
-const mapActoinToProps = {};
+const mapActoinToProps = { getSightsByCategory };
 
 export default connect(mapStateToProps, mapActoinToProps)(c);

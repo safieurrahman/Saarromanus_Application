@@ -7,12 +7,16 @@ import T from '../../utils/translator';
 
 import styles from './styles';
 
-const SingleCategory = ({ navigation, iconName, categoryName }) => {
+const SingleCategory = ({ id, iconName, categoryName, navigation }) => {
 	return (
-		// <View>
 		<TouchableOpacity
 			style={styles.container}
-			onPress={() => navigation.navigate('SightsList')}>
+			onPress={() =>
+				navigation.navigate('SightsList', {
+					categoryId: id,
+					categoryName,
+				})
+			}>
 			<View style={styles.iconContainer}>
 				<MaterialIcons name={iconName} size={60} />
 			</View>
@@ -23,7 +27,6 @@ const SingleCategory = ({ navigation, iconName, categoryName }) => {
 				{/* </View> */}
 			</View>
 		</TouchableOpacity>
-		// </View>
 	);
 };
 

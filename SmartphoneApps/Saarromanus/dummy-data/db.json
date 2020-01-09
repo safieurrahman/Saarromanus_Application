@@ -52,53 +52,65 @@
 			"sights": [
 				{
 					"id": 1,
+					"thumbnail": "https://i.picsum.photos/id/450/600/600.jpg",
 					"name": "Römerkastell",
 					"coordinate": {
-						"lat": 49.223798,
-						"long": 7.024046
+						"latitude": 49.223798,
+						"longitude": 7.024046
 					}
 				},
 				{
 					"id": 2,
+					"thumbnail": "https://i.picsum.photos/id/451/600/600.jpg",
 					"name": "Mithraskapelle am Halberg",
 					"coordinate": {
-						"lat": 49.222481,
-						"long": 7.028262
+						"latitude": 49.222481,
+						"longitude": 7.028262
 					}
 				},
 				{
+					"id": 3,
+					"thumbnail": "https://i.picsum.photos/id/452/600/600.jpg",
 					"name": "Römerstadt",
 					"coordinate": {
-						"lat": 49.22476,
-						"long": 7.027018
+						"latitude": 49.22476,
+						"longitude": 7.027018
 					}
 				},
 				{
+					"id": 4,
+					"thumbnail": "https://i.picsum.photos/id/453/600/600.jpg",
 					"name": "Römerbrunnen",
 					"coordinate": {
-						"lat": 49.238264,
-						"long": 7.03135
+						"latitude": 49.238264,
+						"longitude": 7.03135
 					}
 				},
 				{
+					"id": 5,
+					"thumbnail": "https://i.picsum.photos/id/454/600/600.jpg",
 					"name": "Schwarzenbergturm",
 					"coordinate": {
-						"lat": 49.246836,
-						"long": 7.040374
+						"latitude": 49.246836,
+						"longitude": 7.040374
 					}
 				},
 				{
+					"id": 6,
+					"thumbnail": "https://i.picsum.photos/id/455/600/600.jpg",
 					"name": "Saarland University",
 					"coordinate": {
-						"lat": 49.255022,
-						"long": 7.041043
+						"latitude": 49.255022,
+						"longitude": 7.041043
 					}
 				},
 				{
+					"id": 7,
+					"thumbnail": "https://i.picsum.photos/id/456/600/600.jpg",
 					"name": "Sengscheider Hof",
 					"coordinate": {
-						"lat": 49.253514,
-						"long": 7.099069
+						"latitude": 49.253514,
+						"longitude": 7.099069
 					}
 				}
 			]
@@ -155,53 +167,65 @@
 			"sights": [
 				{
 					"id": 1,
+					"thumbnail": "https://i.picsum.photos/id/450/600/600.jpg",
 					"name": "Römerkastell",
 					"coordinate": {
-						"lat": 49.223798,
-						"long": 7.024046
+						"latitude": 49.223798,
+						"longitude": 7.024046
 					}
 				},
 				{
 					"id": 2,
+					"thumbnail": "https://i.picsum.photos/id/450/600/600.jpg",
 					"name": "Mithraskapelle am Halberg",
 					"coordinate": {
-						"lat": 49.222481,
-						"long": 7.028262
+						"latitude": 49.222481,
+						"longitude": 7.028262
 					}
 				},
 				{
+					"id": 3,
+					"thumbnail": "https://i.picsum.photos/id/450/600/600.jpg",
 					"name": "Römerstadt",
 					"coordinate": {
-						"lat": 49.22476,
-						"long": 7.027018
+						"latitude": 49.22476,
+						"longitude": 7.027018
 					}
 				},
 				{
+					"id": 4,
+					"thumbnail": "https://i.picsum.photos/id/450/600/600.jpg",
 					"name": "Römerbrunnen",
 					"coordinate": {
-						"lat": 49.238264,
-						"long": 7.03135
+						"latitude": 49.238264,
+						"longitude": 7.03135
 					}
 				},
 				{
+					"id": 5,
+					"thumbnail": "https://i.picsum.photos/id/450/600/600.jpg",
 					"name": "Schwarzenbergturm",
 					"coordinate": {
-						"lat": 49.246836,
-						"long": 7.040374
+						"latitude": 49.246836,
+						"longitude": 7.040374
 					}
 				},
 				{
+					"id": 6,
+					"thumbnail": "https://i.picsum.photos/id/450/600/600.jpg",
 					"name": "Saarland University",
 					"coordinate": {
-						"lat": 49.255022,
-						"long": 7.041043
+						"latitude": 49.255022,
+						"longitude": 7.041043
 					}
 				},
 				{
+					"id": 7,
+					"thumbnail": "https://i.picsum.photos/id/450/600/600.jpg",
 					"name": "Sengscheider Hof",
 					"coordinate": {
-						"lat": 49.253514,
-						"long": 7.099069
+						"latitude": 49.253514,
+						"longitude": 7.099069
 					}
 				}
 			]
@@ -212,8 +236,8 @@
 			"id": 1,
 			"name": "Römerkastell",
 			"coordinate": {
-				"lat": 49.223798,
-				"long": 7.024046
+				"latitude": 49.223798,
+				"longitude": 7.024046
 			},
 			"en": {
 				"information": "Some useful info...",
@@ -242,10 +266,12 @@
 				},
 				{
 					"type": "audio/mpeg",
+					"title": "Audio 1",
 					"url": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
 				},
 				{
 					"type": "audio/mpeg",
+					"title": "Audio 8",
 					"url": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3"
 				}
 			]
@@ -254,8 +280,8 @@
 			"id": 2,
 			"name": "Mithraskapelle am Halberg",
 			"coordinate": {
-				"lat": 49.222481,
-				"long": 7.028262
+				"latitude": 49.222481,
+				"longitude": 7.028262
 			},
 			"en": {
 				"information": "Some useful info...",
@@ -284,19 +310,22 @@
 				},
 				{
 					"type": "audio/mpeg",
+					"title": "Audio 1",
 					"url": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
 				},
 				{
 					"type": "audio/mpeg",
+					"title": "Audio 8",
 					"url": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3"
 				}
 			]
 		},
 		{
+			"id": 3,
 			"name": "Römerstadt",
 			"coordinate": {
-				"lat": 49.22476,
-				"long": 7.027018
+				"latitude": 49.22476,
+				"longitude": 7.027018
 			},
 			"en": {
 				"information": "Some useful info...",
@@ -325,19 +354,22 @@
 				},
 				{
 					"type": "audio/mpeg",
+					"title": "Audio 1",
 					"url": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
 				},
 				{
 					"type": "audio/mpeg",
+					"title": "Audio 8",
 					"url": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3"
 				}
 			]
 		},
 		{
+			"id": 4,
 			"name": "Römerbrunnen",
 			"coordinate": {
-				"lat": 49.238264,
-				"long": 7.03135
+				"latitude": 49.238264,
+				"longitude": 7.03135
 			},
 			"en": {
 				"information": "Some useful info...",
@@ -366,19 +398,22 @@
 				},
 				{
 					"type": "audio/mpeg",
+					"title": "Audio 1",
 					"url": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
 				},
 				{
 					"type": "audio/mpeg",
+					"title": "Audio 8",
 					"url": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3"
 				}
 			]
 		},
 		{
+			"id": 5,
 			"name": "Schwarzenbergturm",
 			"coordinate": {
-				"lat": 49.246836,
-				"long": 7.040374
+				"latitude": 49.246836,
+				"longitude": 7.040374
 			},
 			"en": {
 				"information": "Some useful info...",
@@ -407,19 +442,22 @@
 				},
 				{
 					"type": "audio/mpeg",
+					"title": "Audio 1",
 					"url": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
 				},
 				{
 					"type": "audio/mpeg",
+					"title": "Audio 8",
 					"url": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3"
 				}
 			]
 		},
 		{
+			"id": 6,
 			"name": "Saarland University",
 			"coordinate": {
-				"lat": 49.255022,
-				"long": 7.041043
+				"latitude": 49.255022,
+				"longitude": 7.041043
 			},
 			"en": {
 				"information": "Some useful info...",
@@ -448,19 +486,22 @@
 				},
 				{
 					"type": "audio/mpeg",
+					"title": "Audio 1",
 					"url": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
 				},
 				{
 					"type": "audio/mpeg",
+					"title": "Audio 8",
 					"url": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3"
 				}
 			]
 		},
 		{
+			"id": 7,
 			"name": "Sengscheider Hof",
 			"coordinate": {
-				"lat": 49.253514,
-				"long": 7.099069
+				"latitude": 49.253514,
+				"longitude": 7.099069
 			},
 			"en": {
 				"information": "Some useful info...",
@@ -489,13 +530,132 @@
 				},
 				{
 					"type": "audio/mpeg",
+					"title": "Audio 1",
 					"url": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
 				},
 				{
 					"type": "audio/mpeg",
+					"title": "Audio 8",
 					"url": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3"
 				}
 			]
+		}
+	],
+	"sight_categories": [
+		{
+			"id": 1,
+			"en": {
+				"name": "All"
+			},
+			"de": {
+				"name": "Alles"
+			},
+			"fr": {
+				"name": "All fr"
+			},
+			"sights": [
+				{
+					"id": 1,
+					"thumbnail": "https://i.picsum.photos/id/450/600/600.jpg",
+					"name": "Römerkastell",
+					"coordinate": {
+						"latitude": 49.223798,
+						"longitude": 7.024046
+					}
+				},
+				{
+					"id": 2,
+					"thumbnail": "https://i.picsum.photos/id/451/600/600.jpg",
+					"name": "Mithraskapelle am Halberg",
+					"coordinate": {
+						"latitude": 49.222481,
+						"longitude": 7.028262
+					}
+				},
+				{
+					"id": 3,
+					"thumbnail": "https://i.picsum.photos/id/452/600/600.jpg",
+					"name": "Römerstadt",
+					"coordinate": {
+						"latitude": 49.22476,
+						"longitude": 7.027018
+					}
+				},
+				{
+					"id": 4,
+					"thumbnail": "https://i.picsum.photos/id/453/600/600.jpg",
+					"name": "Römerbrunnen",
+					"coordinate": {
+						"latitude": 49.238264,
+						"longitude": 7.03135
+					}
+				}
+			]
+		},
+		{
+			"id": 2,
+			"en": {
+				"name": "Settlements"
+			},
+			"de": {
+				"name": "Settlementen"
+			},
+			"fr": {
+				"name": "Settlements fr"
+			},
+			"sights": [
+				{
+					"id": 5,
+					"thumbnail": "https://i.picsum.photos/id/454/600/600.jpg",
+					"name": "Schwarzenbergturm",
+					"coordinate": {
+						"latitude": 49.246836,
+						"longitude": 7.040374
+					}
+				},
+				{
+					"id": 6,
+					"thumbnail": "https://i.picsum.photos/id/455/600/600.jpg",
+					"name": "Saarland University",
+					"coordinate": {
+						"latitude": 49.255022,
+						"longitude": 7.041043
+					}
+				},
+				{
+					"id": 7,
+					"thumbnail": "https://i.picsum.photos/id/456/600/600.jpg",
+					"name": "Sengscheider Hof",
+					"coordinate": {
+						"latitude": 49.253514,
+						"longitude": 7.099069
+					}
+				}
+			]
+		},
+		{
+			"id": 3,
+			"en": {
+				"name": "Roman Villas"
+			},
+			"de": {
+				"name": "Roman Villan"
+			},
+			"fr": {
+				"name": "Roman Villas fr"
+			}
+		},
+		{
+			"id": 4,
+			"en": {
+				"name": "Sanctuaries"
+			},
+			"de": {
+				"name": "Sanctuarinten"
+			},
+			"fr": {
+				"name": "Sanctuaries fr"
+			}
 		}
 	]
 }

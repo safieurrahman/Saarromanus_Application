@@ -1,11 +1,12 @@
 import { connect } from 'react-redux';
 
 import c from './component';
+import { getRouteList } from '../../actions/routes';
 
-const mapStateToProps = () => {
-	return {};
+const mapStateToProps = ({ routes }) => {
+	return { routes };
 };
 
-const mapActoinToProps = {};
+const mapActoinToProps = { getRouteList };
 
 export default connect(mapStateToProps, mapActoinToProps)(c);

@@ -6,4 +6,7 @@ export default StyleSheet.create({
 		alignItems: 'center',
 		justifyContent: 'flex-start',
 	},
+	icon: {
+		marginRight: 10,
+	},
 });
