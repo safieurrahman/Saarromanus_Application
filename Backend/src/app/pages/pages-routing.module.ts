@@ -68,6 +68,11 @@ const routes: Routes = [{
       loadChildren: () => import('./historic-routes/historic-routes.module')
         .then(m => m.HistoricRoutesModule),
     },
+    {
+      path: 'sight-categories',
+      loadChildren: () => import('./sight-categories/sight-categories.module')
+        .then(m => m.SightCategoriesModule),
+    },
     // {
     //   path: 'tables',
     //   loadChildren: () => import('./tables/tables.module')

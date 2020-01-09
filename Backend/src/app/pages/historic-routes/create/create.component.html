@@ -1,0 +1,8 @@
+<nb-card>
+  <nb-card-header>Develop Route</nb-card-header>
+  <nb-card-body>
+    <ngx-searchroute (positionChanged)="updateLocation($event)"></ngx-searchroute>
+    <ngx-maproute [searchedLocation]="searchedLocation"></ngx-maproute>
+    
+  </nb-card-body>
+</nb-card>

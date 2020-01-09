@@ -11,7 +11,7 @@ import { SmartTableData } from '../../../@core/data/smart-table';
   templateUrl: './view.component.html',
   styleUrls: ['./view.component.scss'],
 })
-export class HistoricRoutesViewComponent {
+export class SightCategoriesViewComponent {
   settings = {
     hideSubHeader: true,
     mode: 'external',
@@ -46,25 +46,13 @@ export class HistoricRoutesViewComponent {
         title: 'Name (French)',
         type: 'string',
       },
-      information_de: {
-        title: 'Information (Deutsch)',
-        type: 'string',
-      },
-      information_en: {
-        title: 'Information (English)',
-        type: 'number',
-      },
-      information_fr: {
-        title: 'Information (French)',
-        type: 'number',
-      },
     },
   };
 
   public source: LocalDataSource;
 
   constructor (private service: SmartTableData, private afs: AngularFirestore) {
-    afs.collection('historic_routes').valueChanges().subscribe(res => {
+    afs.collection('sight_categories').valueChanges().subscribe(res => {
       const result = res.map(row => { 
         for (let key in row['de']) {
           row[key+'_en'] = row['en'][key]

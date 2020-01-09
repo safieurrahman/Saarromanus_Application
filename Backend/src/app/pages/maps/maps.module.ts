@@ -6,9 +6,6 @@ import { NgxEchartsModule } from 'ngx-echarts';
 import { NbCardModule } from '@nebular/theme';
 import { HttpClient, HttpEventType, HttpClientModule } from '@angular/common/http';
 
-import { FormsModule as ngFormsModule } from '@angular/forms';
-import { ReactiveFormsModule } from '@angular/forms';
-
 import {
   NbActionsModule,
   NbButtonModule,
@@ -46,8 +43,6 @@ import { MapsRoutingModule, routedComponents } from './maps-routing.module';
     NbDatepickerModule,
     NbSelectModule,
     NbIconModule,
-    ngFormsModule,
-    ReactiveFormsModule,
     HttpClientModule,
 
 

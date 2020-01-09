@@ -1,0 +1,8 @@
+<nb-card>
+  <nb-card-header>Search Sight</nb-card-header>
+  <nb-card-body>
+    <ngx-search (positionChanged)="updateLocation($event)"></ngx-search>
+    <ngx-map [searchedLocation]="searchedLocation"></ngx-map>
+    
+  </nb-card-body>
+</nb-card>

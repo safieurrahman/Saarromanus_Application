@@ -215,9 +215,27 @@ export const MENU_ITEMS: NbMenuItem[] = [
   //   ],
   // },
   {
+    title: 'Sight Categories',
+    icon: 'pricetags-outline',
+    children: [
+      {
+        title: 'View',
+        link: '/pages/sight-categories/view',
+      },
+      {
+        title: 'Create',
+        link: '/pages/sight-categories/create',
+      },
+    ],
+  },
+  {
     title: 'Sights',
     icon: 'umbrella-outline',
     children: [
+      {
+        title: 'Create',
+        link: '/pages/sights/create',
+      },
       {
         title: 'View',
         link: '/pages/sights/view',
@@ -226,8 +244,12 @@ export const MENU_ITEMS: NbMenuItem[] = [
   },
   {
     title: 'Routes',
-    icon: 'umbrella-outline',
+    icon: 'pin-outline',
     children: [
+      {
+        title: 'Create',
+        link: '/pages/historic-routes/create',
+      },
       {
         title: 'View',
         link: '/pages/historic-routes/view',
