@@ -59,6 +59,11 @@ const routes: Routes = [{
         .then(m => m.EditorsModule),
     },
     {
+      path: 'sights',
+      loadChildren: () => import('./sights/sights.module')
+        .then(m => m.SightsModule),
+    },
+    {
       path: 'tables',
       loadChildren: () => import('./tables/tables.module')
         .then(m => m.TablesModule),
