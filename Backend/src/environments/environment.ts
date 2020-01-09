@@ -10,4 +10,13 @@
 
 export const environment = {
   production: false,
+  firebase: {
+    apiKey: "AIzaSyBIJOEcstXk1Sz3mGWhye-9DpEqvXaqW5E",
+    authDomain: "saarromanus-519b6.firebaseapp.com",
+    databaseURL: "https://saarromanus-519b6.firebaseio.com",
+    projectId: "saarromanus-519b6",
+    storageBucket: "saarromanus-519b6.appspot.com",
+    messagingSenderId: "296702649264",
+    appId: "1:296702649264:web:e1a7e4254ece9cb3c7ec75",
+  }
 };

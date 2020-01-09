@@ -11,4 +11,7 @@ export default StyleSheet.create({
 		textAlign: 'center',
 		marginTop: 10,
 	},
+	icon: {
+		marginRight: 10,
+	},
 });
