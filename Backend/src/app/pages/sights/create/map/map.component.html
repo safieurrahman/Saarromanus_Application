@@ -45,7 +45,7 @@
                   <label class="col-sm-3 label">Image</label>
                   <div class="col-sm-9">          
                      
-                          <input type="file" name="image" multiple />
+                          <input type="file" name="image" multiple (change)="ImageProgress($event)"/>
                       
                       <div *ngIf="fileUploadProgress">
                           Upload progress: {{ fileUploadProgress }}
