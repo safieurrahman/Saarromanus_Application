@@ -14,6 +14,7 @@ import { SmartTableData } from '../../../@core/data/smart-table';
 export class SightCategoriesViewComponent {
   settings = {
     hideSubHeader: true,
+    mode: 'external',
     add: {
       addButtonContent: '<i class="nb-plus"></i>',
       createButtonContent: '<i class="nb-checkmark"></i>',
@@ -53,10 +54,10 @@ export class SightCategoriesViewComponent {
   constructor (private service: SmartTableData, private afs: AngularFirestore) {
     afs.collection('sight_categories').valueChanges().subscribe(res => {
       const result = res.map(row => { 
-        for (let key in row.de) {
-          row[key+'_en'] = row.en[key]
-          row[key+'_de'] = row.de[key]
-          row[key+'_fr'] = row.fr[key]
+        for (let key in row['de']) {
+          row[key+'_en'] = row['en'][key]
+          row[key+'_de'] = row['de'][key]
+          row[key+'_fr'] = row['fr'][key]
         }
         return row;
       });
