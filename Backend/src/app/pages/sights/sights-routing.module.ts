@@ -2,16 +2,23 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { SightsViewComponent } from './view/view.component';
+import { SightCreateComponent } from './create/create.component';
+import { MapComponent } from './create/map/map.component';
+import { SearchComponent } from './create/search/search.component';
+import { SightsComponent } from './sights.component';
+
 
 const routes: Routes = [{
   path: '',
-  component: SightsViewComponent,
-  children: [
-    {
-      path: 'view',
-      component: SightsViewComponent,
-    },
-  ],
+  component: SightsComponent,
+  children: [{
+    path: 'create',
+    component: SightCreateComponent,
+  }, {
+    path: 'view',
+    component: SightsViewComponent,
+  }
+],
 }];
 
 @NgModule({
@@ -21,5 +28,9 @@ const routes: Routes = [{
 export class SightsRoutingModule { }
 
 export const routedComponents = [
-    SightsViewComponent
+    SightsComponent,
+    SightsViewComponent,
+    SightCreateComponent,
+    MapComponent,
+    SearchComponent
 ];
