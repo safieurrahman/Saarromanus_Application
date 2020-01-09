@@ -243,6 +243,10 @@ export const MENU_ITEMS: NbMenuItem[] = [
     icon: 'pin-outline',
     children: [
       {
+        title: 'Create',
+        link: '/pages/historic-routes/create',
+      },
+      {
         title: 'View',
         link: '/pages/historic-routes/view',
       },
