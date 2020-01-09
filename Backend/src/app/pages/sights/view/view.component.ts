@@ -65,9 +65,16 @@ export class SightsViewComponent {
   public source: LocalDataSource;
 
   constructor (private service: SmartTableData, private afs: AngularFirestore) {
-    // this.items = afs.collection('historic_sites').valueChanges();
     afs.collection('historic_sites').valueChanges().subscribe(res => {
-      this.source= new LocalDataSource(res);
+      const result = res.map(row => { 
+        for (let key in row.de) {
+          row[key+'_en'] = row.en[key]
+          row[key+'_de'] = row.de[key]
+          row[key+'_fr'] = row.fr[key]
+        }
+        return row;
+      });
+      this.source= new LocalDataSource(result);
     })
   }
 

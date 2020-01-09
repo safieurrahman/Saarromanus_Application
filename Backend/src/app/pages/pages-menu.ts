@@ -215,6 +215,16 @@ export const MENU_ITEMS: NbMenuItem[] = [
   //   ],
   // },
   {
+    title: 'Sight Categories',
+    icon: 'pricetags-outline',
+    children: [
+      {
+        title: 'View',
+        link: '/pages/sight-categories/view',
+      },
+    ],
+  },
+  {
     title: 'Sights',
     icon: 'umbrella-outline',
     children: [
@@ -226,7 +236,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
   },
   {
     title: 'Routes',
-    icon: 'umbrella-outline',
+    icon: 'pin-outline',
     children: [
       {
         title: 'View',
