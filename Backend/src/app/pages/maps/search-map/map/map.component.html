@@ -23,12 +23,22 @@
                 <input type="text" nbInput fullWidth  placeholder="Name" id="sightsName" name="sightsName" formControlName="sightsName">
               </div>
             </div>
+
             <div class="form-group row">
               <label for="inputPassword2" class="label col-sm-3 col-form-label">Description</label>
               <div class="col-sm-9">
-                  <textarea rows="5" nbInput fullWidth placeholder="Description" id="sightsDescription" name="sightsDescription" formControlName="sightsDescription"></textarea>
+                  <textarea rows="5" nbInput fullWidth placeholder="Description " id="sightsDescription" name="sightsDescription" formControlName="sightsDescription"></textarea>
               </div>
             </div>
+
+            <div class="form-group row">
+              <label for="inputPassword2" class="label col-sm-3 col-form-label">Beschreibung</label>
+              <div class="col-sm-9">
+                  <textarea rows="5" nbInput fullWidth placeholder="Beschreibung" id="de_sightsDescription" name="de_sightsDescription" formControlName="de_sightsDescription"></textarea>
+              </div>
+            </div>
+
+
             <div class="form-group row">
               <label class="col-sm-3 label">Type</label>
               <div class="col-sm-9">
@@ -63,13 +73,23 @@
 
 
               <div class="form-group row">
-                  <label class="col-sm-3 label">Audio</label>
+                  <label class="col-sm-3 label">Audio in English</label>
                   <div class="col-sm-9">          
                       
                           <input type="file" name="audio" (change)="AudioProgress($event)" />
                       
                   </div>
               </div>
+
+              
+              <div class="form-group row">
+                <label class="col-sm-3 label">Audio in Deutsche</label>
+                <div class="col-sm-9">          
+                    
+                        <input type="file" name="de_audio" (change)="AudioProgress($event)" />
+                    
+                </div>
+            </div>
 
             <br><br><br>
 
