@@ -21,38 +21,10 @@ import gameBackground from '../../../assets/game-background.jpg';
 
 import styles from './styles';
 
-const IndexScreen = ({ language, detectLanguage, navigation, DB }) => {
+const IndexScreen = ({ language, detectLanguage, navigation }) => {
 	const updateTranslation = useUpdateTranslation();
 
-	const createSightsTable = () => {
-		DB.transaction(tx => {
-			tx.executeSql(
-				'create table if not exists sights (id varchar(200) primary key not null, name varchar(200), description text);'
-			);
-		});
-	};
-
-	const insertSight = () => {
-		DB.transaction(tx => {
-			tx.executeSql(
-				'insert into sights (id, name, description) values (?, ?, ?)',
-				['new_id_123', 'Dudweiler', 'New Lorem Ipsum Doller Sit Amet'],
-				() => {
-					console.log('Inserted Data');
-				},
-				err => {
-					console.log('INSERTION_ERROR:');
-				}
-			);
-			tx.executeSql('select * from sights', [], (_, { rows }) =>
-				console.log('Sights Rows', JSON.stringify(rows))
-			);
-		});
-	};
-
 	useEffect(() => {
-		// createSightsTable();
-		// insertSight();
 		detectLanguage();
 	}, []);
 

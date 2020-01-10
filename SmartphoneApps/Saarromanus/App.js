@@ -14,6 +14,8 @@ import RouteListScreen from './src/screens/route-list';
 
 import store from './src/store/';
 
+import { createTable, SIGHT_TABLE } from './src/hooks/use-download-contents';
+
 const navigator = createStackNavigator(
 	{
 		Index: IndexScreen,
@@ -33,6 +35,7 @@ const navigator = createStackNavigator(
 const App = createAppContainer(navigator);
 
 export default function() {
+	createTable(SIGHT_TABLE);
 	return (
 		<Provider store={store}>
 			<App />
