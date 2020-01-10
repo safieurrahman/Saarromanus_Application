@@ -81,7 +81,7 @@ export class SightsViewComponent {
   }
 
   onEdit(event): void {
-    this.router.navigate(['/pages/historic_sites/detail', ]);
+    this.router.navigate(['/pages/sights/detail', event.data.id]);
   }
 
   onDelete(event): void {

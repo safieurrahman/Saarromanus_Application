@@ -12,32 +12,32 @@ export const MENU_ITEMS: NbMenuItem[] = [
   //   ],
   // },
 
-  {
-    title: 'Routes / Sights',
-    icon: 'map-outline',
-    children: [
-      {
-        title: 'Sights',
-        link: '/pages/maps/sights',
-      },
-      {
-        title: 'Routes',
-        link: '/pages/maps/routes',
-      },
-      {
-        title: 'Leaflet Maps',
-        link: '/pages/maps/leaflet',
-      },
-      {
-        title: 'Bubble Maps',
-        link: '/pages/maps/bubble',
-      },
-      {
-        title: 'Search Maps',
-        link: '/pages/maps/searchmap',
-      },
-    ],
-  },
+  // {
+  //   title: 'Routes / Sights',
+  //   icon: 'map-outline',
+  //   children: [
+  //     {
+  //       title: 'Sights',
+  //       link: '/pages/maps/sights',
+  //     },
+  //     {
+  //       title: 'Routes',
+  //       link: '/pages/maps/routes',
+  //     },
+  //     {
+  //       title: 'Leaflet Maps',
+  //       link: '/pages/maps/leaflet',
+  //     },
+  //     {
+  //       title: 'Bubble Maps',
+  //       link: '/pages/maps/bubble',
+  //     },
+  //     {
+  //       title: 'Search Maps',
+  //       link: '/pages/maps/searchmap',
+  //     },
+  //   ],
+  // },
 
   // {
   //   title: 'E-commerce',

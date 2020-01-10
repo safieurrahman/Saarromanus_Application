@@ -14,12 +14,16 @@ const routes: Routes = [{
   component: HistoricRoutesComponent,
   children: [
     {
+      path: 'view',
+      component: HistoricRoutesViewComponent,
+    },
+    {
       path: 'create',
       component: HistoricRoutesCreateComponent,
     },
     {
-      path: 'view',
-      component: HistoricRoutesViewComponent,
+      path: 'detail/:id',
+      component: HistoricRoutesCreateComponent,
     },
   ],
 }];

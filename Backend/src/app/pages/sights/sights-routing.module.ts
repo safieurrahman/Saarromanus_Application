@@ -11,13 +11,19 @@ import { SightsComponent } from './sights.component';
 const routes: Routes = [{
   path: '',
   component: SightsComponent,
-  children: [{
-    path: 'create',
-    component: SightCreateComponent,
-  }, {
-    path: 'view',
-    component: SightsViewComponent,
-  }
+  children: [
+    {
+      path: 'view',
+      component: SightsViewComponent,
+    },
+    {
+      path: 'create',
+      component: SightCreateComponent,
+    },
+    {
+      path: 'detail/:id',
+      component: SightCreateComponent,
+    },
 ],
 }];
 

@@ -79,7 +79,7 @@ export class HistoricRoutesViewComponent {
   }
 
   onEdit(event): void {
-    this.router.navigate(['/pages/historic_routes/detail', ]);
+    this.router.navigate(['/pages/historic-routes/detail', event.data.id]);
   }
 
   onDelete(event): void {

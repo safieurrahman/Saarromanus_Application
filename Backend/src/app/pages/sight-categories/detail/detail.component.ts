@@ -31,8 +31,6 @@ export class SightCategoriesDetailComponent {
         'name_fr': res.fr.name,
         'name_en': res.en.name
       });
-      // this.sightCategoryForm.value.name_en = res.en.name;
-      // this.sightCategoryForm.value.name_fr = res.fr.name;
     });
 
   }
