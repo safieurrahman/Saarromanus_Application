@@ -17,6 +17,10 @@ const routes: Routes = [{
       path: 'create',
       component: SightCategoriesDetailComponent,
     },
+    {
+      path: 'detail/:id',
+      component: SightCategoriesDetailComponent,
+    },
   ],
 }];
 

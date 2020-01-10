@@ -67,7 +67,7 @@ export class SightCategoriesViewComponent {
   }
 
   onEdit(event): void {
-    this.router.navigate(['/pages/sight_categories/detail', ]);
+    this.router.navigate(['/pages/sight-categories/detail', event.data.id]);
   }
 
   onDelete(event): void {
