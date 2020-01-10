@@ -5,6 +5,7 @@ import { AngularFirestore } from 'angularfire2/firestore';
 
 
 import { SmartTableData } from '../../../@core/data/smart-table';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'ngx-smart-table',
@@ -51,8 +52,8 @@ export class SightCategoriesViewComponent {
 
   public source: LocalDataSource;
 
-  constructor (private service: SmartTableData, private afs: AngularFirestore) {
-    afs.collection('sight_categories').valueChanges().subscribe(res => {
+  constructor (private service: SmartTableData, private afs: AngularFirestore, private router: Router) {
+    afs.collection('sight_categories').valueChanges({idField: 'id'}).subscribe(res => {
       const result = res.map(row => { 
         for (let key in row['de']) {
           row[key+'_en'] = row['en'][key]
@@ -65,11 +66,14 @@ export class SightCategoriesViewComponent {
     })
   }
 
-  onDeleteConfirm(event): void {
+  onEdit(event): void {
+    this.router.navigate(['/pages/sight_categories/detail', ]);
+  }
+
+  onDelete(event): void {
     if (window.confirm('Are you sure you want to delete?')) {
-      event.confirm.resolve();
-    } else {
-      event.confirm.reject();
+      this.afs.collection('sight_categories').doc(event.data.id).delete()
     }
   }
+
 }

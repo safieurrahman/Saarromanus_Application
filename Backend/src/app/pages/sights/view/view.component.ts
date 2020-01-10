@@ -7,6 +7,7 @@ import { AngularFirestore } from 'angularfire2/firestore';
 
 import { SmartTableData } from '../../../@core/data/smart-table';
 import { resolve } from 'url';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'ngx-smart-table',
@@ -65,8 +66,8 @@ export class SightsViewComponent {
 
   public source: LocalDataSource;
 
-  constructor (private service: SmartTableData, private afs: AngularFirestore) {
-    afs.collection('historic_sites').valueChanges().subscribe(res => {
+  constructor (private service: SmartTableData, private afs: AngularFirestore, private router: Router) {
+    afs.collection('historic_sites').valueChanges({idField: 'id'}).subscribe(res => {
       const result = res.map(row => { 
         for (let key in row['de']) {
           row[key+'_en'] = row['en'][key]
@@ -79,11 +80,13 @@ export class SightsViewComponent {
     })
   }
 
-  onDeleteConfirm(event): void {
+  onEdit(event): void {
+    this.router.navigate(['/pages/historic_sites/detail', ]);
+  }
+
+  onDelete(event): void {
     if (window.confirm('Are you sure you want to delete?')) {
-      event.confirm.resolve();
-    } else {
-      event.confirm.reject();
+      this.afs.collection('historic_sites').doc(event.data.id).delete()
     }
   }
 }
