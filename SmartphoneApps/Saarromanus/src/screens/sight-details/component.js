@@ -10,14 +10,39 @@ import AudioPlayer from '../../components/audio-player';
 import TextBox from '../../components/text-box';
 
 import getLocale from '../../hooks/use-current-locale-short';
+import {
+	storeSightAsync,
+	SIGHT_TABLE,
+	findOneById,
+} from '../../hooks/use-download-contents';
 
 import styles from './styles';
 
-const SightDetailsScreen = ({ sight, getSight, navigation }) => {
+const SightDetailsScreen = ({ sight, getSight, populateSight, navigation }) => {
+	const [status, setStatus] = useState(null);
+
 	useEffect(() => {
 		const sightId = navigation.getParam('sightId');
-		getSight(sightId);
+		findOneById(SIGHT_TABLE, sightId, setStatus, populateSight);
 	}, []);
+
+	useEffect(() => {
+		// console.log(status);
+		if (status === false) {
+			const sightId = navigation.getParam('sightId');
+			getSight(sightId);
+		}
+		navigation.setParams({
+			status,
+		});
+	}, [status]);
+
+	useEffect(() => {
+		navigation.setParams({
+			sight,
+		});
+	}, [sight]);
+
 	return (
 		<ScrollView contentContainerStyle={styles.container}>
 			<View>
@@ -49,15 +74,16 @@ const SightDetailsScreen = ({ sight, getSight, navigation }) => {
 };
 
 SightDetailsScreen.navigationOptions = ({ navigation }) => {
+	const sight = navigation.getParam('sight', {});
+	const status = navigation.getParam('status', false);
 	return {
 		title: 'Sight Details',
 		headerTintColor: '#dddddd',
 		headerStyle: {
 			backgroundColor: 'rgba(0, 128, 128, 1)',
 		},
-		headerRight: (
-			<TouchableOpacity
-				onPress={() => console.log('Donwloading current sight...')}>
+		headerRight: status !== true && (
+			<TouchableOpacity onPress={() => storeSightAsync(sight)}>
 				<MaterialCommunityIcons
 					name="download"
 					size={30}
