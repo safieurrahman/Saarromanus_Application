@@ -2,6 +2,10 @@
 # Please try to use absolute paths to avoid conflicts
 
 /SmartphoneApps/Saarromanus/node_modules
+/SmartphoneApps/Saarromanus/__snapshots__
+__snapshots__
+/SmartphoneApps/Saarromanus/test-report-jest.html
+/SmartphoneApps/Saarromanus/test-report.html
 /SmartphoneApps/Saarromanus/.expo
 npm-debug.*
 *.jks
