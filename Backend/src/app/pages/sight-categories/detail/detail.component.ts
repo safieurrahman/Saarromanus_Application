@@ -22,16 +22,20 @@ export class SightCategoriesDetailComponent {
   
   constructor(private afs: AngularFirestore, private router: Router, private route: ActivatedRoute) {
     route.params.subscribe(params => {
-      this.objectId = params.id;
+      this.objectId = params.id == null ? null : params.id;
+      if(this.objectId !== null) {
+        this.objectDoc = this.afs.doc('sight_categories/'+this.objectId);
+        this.objectDoc.valueChanges().subscribe(res => {
+          this.sightCategoryForm.patchValue({
+            'name_de': res.de.name,
+            'name_fr': res.fr.name,
+            'name_en': res.en.name
+          });
+        });
+      }
     });
-    this.objectDoc = this.afs.doc('sight_categories/'+this.objectId);
-    this.objectDoc.valueChanges().subscribe(res => {
-      this.sightCategoryForm.patchValue({
-        'name_de': res.de.name,
-        'name_fr': res.fr.name,
-        'name_en': res.en.name
-      });
-    });
+
+
 
   }
 
@@ -49,10 +53,15 @@ export class SightCategoriesDetailComponent {
         name : this.sightCategoryForm.value.name_fr
       }
     }
-    
-    this.afs.collection('sight_categories').add(result).then(() => {
-      this.router.navigate(['/pages/sight-categories/view'])
-    })
+    if(this.objectId !== null) { 
+      this.afs.collection('sight_categories').add(result).then(() => {
+        this.router.navigate(['/pages/sight-categories/view']);
+      });
+    } else {
+      this.afs.doc('sight_categories/'+this.objectId).set(result).then(() => {
+        this.router.navigate(['/pages/sight-categories/view']);
+      })
+    } 
 
   }
 }
