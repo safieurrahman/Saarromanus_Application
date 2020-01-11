@@ -37,7 +37,6 @@ export class SightsDetailComponent implements OnInit {
   constructor(private afs: AngularFirestore, private router: Router, private route: ActivatedRoute,
      private mapsAPILoader: MapsAPILoader, private ngZone: NgZone) {
     route.params.subscribe(params => {
-      debugger;
       this.objectId = params.id == null ? null : params.id;
       if(this.objectId !== null) {
         this.objectDoc = this.afs.doc('historic_sites/'+this.objectId);
@@ -115,7 +114,6 @@ export class SightsDetailComponent implements OnInit {
         _long: this.longitude
       }
     }
-    debugger;
     if(this.objectId == null) { 
       this.afs.collection('historic_sites').add(result).then(() => {
         this.router.navigate(['/pages/sights/view']);

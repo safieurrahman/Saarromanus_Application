@@ -53,7 +53,7 @@ export class SightCategoriesDetailComponent {
         name : this.sightCategoryForm.value.name_fr
       }
     }
-    if(this.objectId !== null) { 
+    if(this.objectId == null) { 
       this.afs.collection('sight_categories').add(result).then(() => {
         this.router.navigate(['/pages/sight-categories/view']);
       });
