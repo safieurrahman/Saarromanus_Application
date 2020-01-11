@@ -8,6 +8,14 @@
             <div class="col-md-6">
               <form [formGroup]="sightForm" (ngSubmit)="onSubmit()">
                 <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label for="sight_category" class="label">Sight Category</label>
+                      <nb-select fullWidth formControlName="sight_category">
+                        <nb-option value="{{option.id}}" *ngFor="let option of sight_categories">{{option.de.name}}</nb-option>
+                      </nb-select>
+                    </div>
+                  </div>
                   <div class="col-sm-12">
                     <div class="form-group">
                       <label for="inputFirstName" class="label">Name (Deutsche)</label>

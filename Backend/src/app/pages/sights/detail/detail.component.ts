@@ -19,7 +19,9 @@ export class SightsDetailComponent implements OnInit {
   longitude: number;
   zoom: number;
   address: string;
+  sight_categories: any;
   private geoCoder;
+
 
   @ViewChild('search')
   public searchElementRef: ElementRef;
@@ -30,31 +32,39 @@ export class SightsDetailComponent implements OnInit {
     name_en: new FormControl(''),
     information_de: new FormControl(''),
     information_fr: new FormControl(''),
-    information_en: new FormControl('')
+    information_en: new FormControl(''),
+    sight_category: new FormControl('')
 
   });
 
-  constructor(private afs: AngularFirestore, private router: Router, private route: ActivatedRoute,
-     private mapsAPILoader: MapsAPILoader, private ngZone: NgZone) {
-    route.params.subscribe(params => {
-      this.objectId = params.id == null ? null : params.id;
-      if(this.objectId !== null) {
-        this.objectDoc = this.afs.doc('historic_sites/'+this.objectId);
-        this.objectDoc.valueChanges().subscribe(res => {
-          console.log("TRETS", res);
-          this.longitude = res.geolocation._long;
-          this.latitude = res.geolocation._lat;
-          this.sightForm.patchValue({
-            'name_de': res.de.name,
-            'name_fr': res.fr.name,
-            'name_en': res.en.name,
-            'information_de': res.de.information,
-            'information_fr': res.fr.information,
-            'information_en': res.en.information
+  constructor( private afs: AngularFirestore, 
+      private route: ActivatedRoute, private router: Router,
+      private mapsAPILoader: MapsAPILoader, private ngZone: NgZone
+    ) {
+      // this.sight_categories = {};
+      this.afs.collection('sight_categories').valueChanges({idField: 'id'}).subscribe(res => {
+        this.sight_categories = res;
+      });
+      route.params.subscribe(params => {
+        this.objectId = params.id == null ? null : params.id;
+        if(this.objectId !== null) {
+          this.objectDoc = this.afs.doc('historic_sites/'+this.objectId);
+          this.objectDoc.valueChanges().subscribe(res => {
+            console.log(res.sight_category);
+            this.longitude = res.geolocation._long;
+            this.latitude = res.geolocation._lat;
+            this.sightForm.patchValue({
+              'name_de': res.de.name,
+              'name_fr': res.fr.name,
+              'name_en': res.en.name,
+              'information_de': res.de.information,
+              'information_fr': res.fr.information,
+              'information_en': res.en.information,
+              'sight_category': res.sight_category.id
+            });
           });
-        });
-      }
-    });
+        }
+      });
   }
 
   ngOnInit() {
@@ -112,7 +122,8 @@ export class SightsDetailComponent implements OnInit {
       geolocation: {
         _lat: this.latitude,
         _long: this.longitude
-      }
+      },
+      sight_category: this.afs.doc('sight_categories/'+this.sightForm.value.sight_category).ref
     }
     if(this.objectId == null) { 
       this.afs.collection('historic_sites').add(result).then(() => {
