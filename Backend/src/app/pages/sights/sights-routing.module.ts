@@ -2,9 +2,10 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { SightsViewComponent } from './view/view.component';
-import { SightCreateComponent } from './create/create.component';
-import { MapComponent } from './create/map/map.component';
-import { SearchComponent } from './create/search/search.component';
+// import { SightCreateComponent } from './create/create.component';
+// import { MapComponent } from './create/map/map.component';
+// import { SearchComponent } from './create/search/search.component';
+import { SightsDetailComponent } from './detail/detail.component';
 import { SightsComponent } from './sights.component';
 
 
@@ -18,11 +19,11 @@ const routes: Routes = [{
     },
     {
       path: 'create',
-      component: SightCreateComponent,
+      component: SightsDetailComponent,
     },
     {
       path: 'detail/:id',
-      component: SightCreateComponent,
+      component: SightsDetailComponent,
     },
 ],
 }];
@@ -36,7 +37,8 @@ export class SightsRoutingModule { }
 export const routedComponents = [
     SightsComponent,
     SightsViewComponent,
-    SightCreateComponent,
-    MapComponent,
-    SearchComponent
+    SightsDetailComponent
+    // SightCreateComponent,
+    // MapComponent,
+    // SearchComponent
 ];

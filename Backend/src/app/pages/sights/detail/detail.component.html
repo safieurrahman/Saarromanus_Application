@@ -1,0 +1,71 @@
+<div class="row">
+  
+    <div class="col-md-12">  
+      <nb-card>
+        <nb-card-header>Sight</nb-card-header>
+        <nb-card-body>
+          <div class="row">
+            <div class="col-md-6">
+              <form [formGroup]="sightForm" (ngSubmit)="onSubmit()">
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="form-group">
+                      <label for="inputFirstName" class="label">Name (Deutsche)</label>
+                      <input type="text" nbInput fullWidth  placeholder="Sight Name" formControlName="name_de">
+                    </div>
+                  </div>
+                  <div class="col-sm-12">
+                    <div class="form-group">
+                      <label for="inputLastName" class="label">Information (Deutsche)</label>
+                      <textarea rows="5" nbInput fullWidth shape="round"  placeholder="Details for the sight" formControlName="information_de"></textarea>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="form-group">
+                      <label for="inputLastName" class="label">Name (English)</label>
+                      <input type="text" nbInput fullWidth placeholder="Sight Name" formControlName="name_en">
+                    </div>
+                  </div>
+                  <div class="col-sm-12">
+                    <div class="form-group">
+                      <label for="inputLastName" class="label">Information (English)</label>
+                      <textarea rows="5" nbInput fullWidth shape="round"  placeholder="Details for the sight" formControlName="information_en"></textarea>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="form-group">
+                      <label for="inputEmail" class="label">Name (Francais)</label>
+                      <input type="text" nbInput fullWidth placeholder="Sight Name" formControlName="name_fr">
+                    </div>
+                  </div>
+                  <div class="col-sm-12">
+                    <div class="form-group">
+                      <label for="inputLastName" class="label">Information (Francais)</label>
+                      <textarea rows="5" nbInput fullWidth shape="round"  placeholder="Details for the sight" formControlName="information_fr"></textarea>
+                    </div>
+                  </div>
+                </div>
+                <button type="submit" nbButton>Submit</button>
+              </form>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <!-- <label for="inputFirstName" class="label"></label> -->
+                <input type="text" nbInput fullWidth  placeholder="Search Address" 
+                (keydown.enter)="$event.preventDefault()" 
+                autocapitalize="off" autocomplete="off" spellcheck="off" #search>
+              </div>
+              <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
+                <agm-marker [latitude]="latitude" [longitude]="longitude" [markerDraggable]="true"
+                  (dragEnd)="markerDragEnd($event)"></agm-marker>
+              </agm-map>
+              </div>
+          </div>
+        </nb-card-body>
+      </nb-card> 
+    </div>
+  </div>
