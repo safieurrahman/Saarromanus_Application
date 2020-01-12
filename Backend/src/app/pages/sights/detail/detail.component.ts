@@ -15,9 +15,9 @@ export class SightsDetailComponent implements OnInit {
   objectId: string;
   objectDoc: any;
   objectData: any;
-  latitude: number;
-  longitude: number;
-  zoom: number;
+  latitude: number = 49.239486;
+  longitude: number = 6.994886;
+  zoom: number = 15;
   address: string;
   sight_categories: any;
   private geoCoder;
