@@ -60,8 +60,8 @@ export class HistoricRouteDetailComponent implements OnInit {
         if(this.objectId !== null) {
           this.objectDoc = this.afs.doc('historic_routes/'+this.objectId);
           this.objectDoc.valueChanges().subscribe(res => {
-            // this.longitude = res.geolocation._long;
-            // this.latitude = res.geolocation._lat;
+            this.sightArray = this.historic_sites.filter(px => !!res.sights.find(x => x.id == px.id))
+            this.routePath = res.routePath;
             this.audioArray = res.audio_array;
             this.imagesArray = res.images_array;
             this.prev_imagesArray = [...res.images_array];
@@ -73,7 +73,6 @@ export class HistoricRouteDetailComponent implements OnInit {
               'information_de': res.de.information,
               'information_fr': res.fr.information,
               'information_en': res.en.information,
-              'sight_category': res.sight_category.id
             });
           });
         }
@@ -170,7 +169,6 @@ export class HistoricRouteDetailComponent implements OnInit {
 
   addSight(option){
     const found = this.sightArray.find(x => x.de.name == option.de.name);
-    console.log("option", option);
     if (found == null)
     this.sightArray.push(option);
   }
