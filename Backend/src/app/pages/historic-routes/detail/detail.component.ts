@@ -30,7 +30,7 @@ export class HistoricRouteDetailComponent implements OnInit {
   audioArray: any = [];
   sightArray: any = [];
 
-  @ViewChild('search')
+  @ViewChild('search', {static:true})
   public searchElementRef: ElementRef;
   
   historicRouteForm = new FormGroup({
@@ -233,8 +233,8 @@ export class HistoricRouteDetailComponent implements OnInit {
 
   onMapClick($event: MouseEvent) {
     this.routePath.push({
-      _lat: $event.coords.lat,
-      _long: $event.coords.lng,
+      _lat: $event['coords']['lat'],
+      _long: $event['``coords``']['lng'],
     });
   }
 

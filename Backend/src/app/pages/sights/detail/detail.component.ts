@@ -27,7 +27,7 @@ export class SightsDetailComponent implements OnInit {
   imagesArray: any = [];
   audioArray: any = [];
 
-  @ViewChild('search')
+  @ViewChild('search', {static:true})
   public searchElementRef: ElementRef;
   
   sightForm = new FormGroup({
@@ -77,7 +77,7 @@ export class SightsDetailComponent implements OnInit {
 
   ngOnInit() {
     this.mapsAPILoader.load().then(() => {
-      this.setCurrentLocation();        
+      // this.setCurrentLocation();        
       this.geoCoder = new google.maps.Geocoder;
 
       let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
