@@ -5,7 +5,7 @@ import getLocale from '../../hooks/use-current-locale-short';
 import SingleCategory from '../../components/single-category';
 
 import {
-	upsertIntoMainList,
+	insertNewRow,
 	SIGHT_CATEGORIES_TABLE,
 	findOneById,
 } from '../../hooks/use-download-contents';
@@ -45,19 +45,16 @@ const SightsCategoryScreen = ({
 			);
 			if (
 				resp &&
-				resp.length &&
 				JSON.stringify(resp) !== JSON.stringify(sightCategories)
 			) {
-				upsertIntoMainList(
-					SIGHT_CATEGORIES_TABLE,
-					JSON.stringify(resp)
-				);
+				insertNewRow(SIGHT_CATEGORIES_TABLE, '1', JSON.stringify(resp));
 				populateSightCategories(resp);
 			}
 		};
 		if (status === false && sightCategories.length) {
-			upsertIntoMainList(
+			insertNewRow(
 				SIGHT_CATEGORIES_TABLE,
+				'1',
 				JSON.stringify(sightCategories)
 			);
 		} else if (status === true && sightCategories.length && connected) {

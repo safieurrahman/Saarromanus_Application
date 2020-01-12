@@ -3,6 +3,8 @@ import * as FileSystem from 'expo-file-system';
 
 export const SIGHT_TABLE = 'sights';
 export const SIGHT_CATEGORIES_TABLE = 'sight_categories';
+export const SIGHTS_BY_CATEGORY_TABLE = 'sights_by_category';
+export const SIGHT_LIST_TABLE = 'sight_list';
 export const ROUTE_TABLE = 'routes';
 export const ROUTE_LIST_TABLE = 'route_list';
 
@@ -13,35 +15,19 @@ export const createTable = tableName => {
 		tx.executeSql(
 			`CREATE TABLE IF NOT EXISTS ${tableName} (id VARCHAR PRIMARY KEY NOT NULL, object TEXT NOT NULL);`
 		);
-		// console.log('Created table', tableName);
 	});
 };
 
-const insertNewRow = (tableName, id, object) => {
+export const insertNewRow = (tableName, id, object) => {
 	DB.transaction(tx => {
 		tx.executeSql(
-			`INSERT INTO ${tableName} (id, object) VALUES (?, ?)`,
+			`INSERT OR REPLACE INTO ${tableName} (id, object) VALUES (?, ?)`,
 			[id, object],
 			() => {
 				console.log('Successfully Inserted Data Into', tableName);
 			},
 			err => {
 				console.log(`INSERTION_ERROR: Table Name: ${tableName}`);
-			}
-		);
-	});
-};
-
-export const upsertIntoMainList = (tableName, object) => {
-	DB.transaction(tx => {
-		tx.executeSql(
-			`INSERT OR REPLACE INTO ${tableName} (id, object) VALUES (?, ?)`,
-			['1', object],
-			() => {
-				console.log('Successfully Upserted Data Into', tableName);
-			},
-			err => {
-				console.log(`UPSERTION_ERROR: Table Name: ${tableName}`);
 			}
 		);
 	});
@@ -62,23 +48,24 @@ export function findOneById(
 				(_, { rows }) => {
 					try {
 						const data = rows._array[0];
-						// console.log('data:', data);
 						if (data) {
 							const result = JSON.parse(data.object);
 							// console.log('resul:', result);
 							setStatus(true);
 							populate(result);
 						} else {
+							console.log('no data..');
 							setStatus(false);
 						}
 					} catch (error) {
+						setStatus(false);
 						console.log('Data corrupted');
 					}
 				}
 			);
 		});
 	} catch (error) {
-		console.log('some shit just happend');
+		console.log('something weired just happend');
 	}
 }
 
@@ -118,7 +105,7 @@ const mapSightAsync = async sight => {
 						resource.url,
 						localPath,
 						ind
-					);
+					).catch(err => console.log('something went wrong.'));
 					return { ...resource, url: localUri };
 				})()
 			);
@@ -131,6 +118,65 @@ const mapSightAsync = async sight => {
 			"Could not download the resources. This sight is probably already downloaded.\nIf that's not the case, remove Saarromanus App cache and the try to download again."
 		);
 	}
+};
+
+export const mapSightsWithoutDownload = sightList => {
+	const localPath = 'thumbnails';
+	const mappedSights = sightList.map((sight, ind) => {
+		const pos = sight.thumbnail.lastIndexOf('/') + 1;
+		const fileName = sight.thumbnail.substring(pos);
+		return {
+			...sight,
+			thumbnail:
+				FileSystem.documentDirectory + localPath + '/' + ind + fileName,
+		};
+	});
+	return mappedSights;
+};
+
+const mapSightListAsync = async sightList => {
+	const localPath = 'thumbnails';
+	try {
+		await createLocalFolderAsync(localPath);
+	} catch (error) {
+		console.log('Could not create folder, probably already exists.');
+	}
+	try {
+		const mappedSightListPromises = [];
+		sightList.map(async (sight, ind) => {
+			mappedSightListPromises.push(
+				(async () => {
+					const localUri = await downloadFileAsync(
+						sight.thumbnail,
+						localPath,
+						ind
+					).catch(err => console.log('something went wrong.'));
+					return { ...sight, thumbnail: localUri };
+				})()
+			);
+		});
+		const mappedSightList = await Promise.all(mappedSightListPromises);
+		return mappedSightList;
+	} catch (error) {
+		console.log(
+			"Could not download the resources. This sight is probably already downloaded.\nIf that's not the case, remove Saarromanus App cache and the try to download again."
+		);
+	}
+};
+
+export const storeSightsByCategoryAsync = async (
+	categoryId,
+	sights,
+	populateSights
+) => {
+	const localSights = await mapSightListAsync(sights);
+	// console.log('local sights', localSights);
+	insertNewRow(
+		SIGHTS_BY_CATEGORY_TABLE,
+		categoryId,
+		JSON.stringify(localSights)
+	);
+	populateSights(localSights);
 };
 
 export const storeSightAsync = async sight => {
