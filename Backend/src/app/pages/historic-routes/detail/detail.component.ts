@@ -234,7 +234,7 @@ export class HistoricRouteDetailComponent implements OnInit {
   onMapClick($event: MouseEvent) {
     this.routePath.push({
       _lat: $event['coords']['lat'],
-      _long: $event['``coords``']['lng'],
+      _long: $event['coords']['lng'],
     });
   }
 
