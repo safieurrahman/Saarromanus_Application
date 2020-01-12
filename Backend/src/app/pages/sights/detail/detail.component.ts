@@ -2,10 +2,8 @@ import { Component, OnInit, NgZone, ViewChild, ElementRef, } from '@angular/core
 import { FormGroup, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { AngularFireStorage } from 'angularfire2/storage';
-import { Router, Route, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { MapsAPILoader } from '@agm/core';
-import { ReadVarExpr } from '@angular/compiler';
-import { tap, finalize, concatAll } from 'rxjs/operators';
 
 
 @Component({
@@ -24,6 +22,8 @@ export class SightsDetailComponent implements OnInit {
   sight_categories: any;
   private geoCoder;
   fileReader: FileReader = new FileReader();
+  prev_imagesArray: any = [];
+  prev_audioArray: any = [];
   imagesArray: any = [];
   audioArray: any = [];
 
@@ -55,11 +55,12 @@ export class SightsDetailComponent implements OnInit {
         if(this.objectId !== null) {
           this.objectDoc = this.afs.doc('historic_sites/'+this.objectId);
           this.objectDoc.valueChanges().subscribe(res => {
-            console.log("RESULT", res);
             this.longitude = res.geolocation._long;
             this.latitude = res.geolocation._lat;
             this.audioArray = res.audio_array;
             this.imagesArray = res.images_array;
+            this.prev_imagesArray = [...res.images_array];
+            this.prev_audioArray = [...res.audio_array];
             this.sightForm.patchValue({
               'name_de': res.de.name,
               'name_fr': res.fr.name,
@@ -110,9 +111,19 @@ export class SightsDetailComponent implements OnInit {
     this.longitude = $event['coords']['lng'];
   }
 
+  
+
   public async onSubmit() {
     const images_ref = [];
-    debugger;
+    const deleted_images = this.prev_imagesArray.filter(px => {
+      const found = this.imagesArray.find(x => !x.downloadURL ? false : x.downloadURL == px.downloadURL );
+      if(found == null) {
+        return px;
+      }
+    });
+    for(let dx of deleted_images) {
+      await this.afStorage.storage.refFromURL(dx.downloadURL).delete();
+    };
     for (let x of this.imagesArray) {
       if(!!x.file) {
         images_ref.push(await this.startUpload(x.file, 'images'));
@@ -128,6 +139,15 @@ export class SightsDetailComponent implements OnInit {
         audio_ref.push(x);
       }
     }
+    const deleted_audio = this.prev_audioArray.filter(px => {
+      const found = this.prev_audioArray.find(x => !x.path ? false : x.path == px.path );
+      if(found == null) {
+        return px;
+      }
+    });
+    for(let element of deleted_audio) {
+      await this.afStorage.storage.refFromURL(element.downloadURL).delete();
+    };
     const result = {
       de: {
         name : this.sightForm.value.name_de,
