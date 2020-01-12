@@ -16,9 +16,9 @@ export class HistoricRouteDetailComponent implements OnInit {
   objectDoc: any;
   objectData: any;
   historic_sites: any;
-  latitude: number;
-  longitude: number;
-  zoom: number;
+  latitude: number = 49.239486;
+  longitude: number = 6.994886;
+  zoom: number = 15;
   address: string;
   routePath: any = [];
   sight_categories: any;
