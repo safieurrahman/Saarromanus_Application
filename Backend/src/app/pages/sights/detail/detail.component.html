@@ -1,78 +1,104 @@
 <div class="row">
-  
     <div class="col-md-12">  
       <nb-card>
         <nb-card-header>Sight</nb-card-header>
         <nb-card-body>
-          <div class="row">
-            <div class="col-md-6">
-              <form [formGroup]="sightForm" (ngSubmit)="onSubmit()">
-                <div class="row">
-                  <div class="col-md-12">
-                    <div class="form-group">
-                      <label for="sight_category" class="label">Sight Category</label>
-                      <nb-select fullWidth formControlName="sight_category">
-                        <nb-option value="{{option.id}}" *ngFor="let option of sight_categories">{{option.de.name}}</nb-option>
-                      </nb-select>
+          <form [formGroup]="sightForm" (ngSubmit)="onSubmit()">
+            <div class="row">
+              <div class="col-md-6">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label for="sight_category" class="label">Sight Category</label>
+                        <nb-select fullWidth formControlName="sight_category">
+                          <nb-option value="{{option.id}}" *ngFor="let option of sight_categories">{{option.de.name}}</nb-option>
+                        </nb-select>
+                      </div>
+                    </div>
+                    <div class="col-sm-12">
+                      <div class="form-group">
+                        <label for="inputFirstName" class="label">Name (Deutsche)</label>
+                        <input type="text" nbInput fullWidth  placeholder="Sight Name" formControlName="name_de">
+                      </div>
+                    </div>
+                    <div class="col-sm-12">
+                      <div class="form-group">
+                        <label for="inputLastName" class="label">Information (Deutsche)</label>
+                        <textarea rows="5" nbInput fullWidth shape="round"  placeholder="Details for the sight" formControlName="information_de"></textarea>
+                      </div>
                     </div>
                   </div>
-                  <div class="col-sm-12">
-                    <div class="form-group">
-                      <label for="inputFirstName" class="label">Name (Deutsche)</label>
-                      <input type="text" nbInput fullWidth  placeholder="Sight Name" formControlName="name_de">
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <div class="form-group">
+                        <label for="inputLastName" class="label">Name (English)</label>
+                        <input type="text" nbInput fullWidth placeholder="Sight Name" formControlName="name_en">
+                      </div>
+                    </div>
+                    <div class="col-sm-12">
+                      <div class="form-group">
+                        <label for="inputLastName" class="label">Information (English)</label>
+                        <textarea rows="5" nbInput fullWidth shape="round"  placeholder="Details for the sight" formControlName="information_en"></textarea>
+                      </div>
                     </div>
                   </div>
-                  <div class="col-sm-12">
-                    <div class="form-group">
-                      <label for="inputLastName" class="label">Information (Deutsche)</label>
-                      <textarea rows="5" nbInput fullWidth shape="round"  placeholder="Details for the sight" formControlName="information_de"></textarea>
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <div class="form-group">
+                        <label for="inputEmail" class="label">Name (Francais)</label>
+                        <input type="text" nbInput fullWidth placeholder="Sight Name" formControlName="name_fr">
+                      </div>
+                    </div>
+                    <div class="col-sm-12">
+                      <div class="form-group">
+                        <label for="inputLastName" class="label">Information (Francais)</label>
+                        <textarea rows="5" nbInput fullWidth shape="round"  placeholder="Details for the sight" formControlName="information_fr"></textarea>
+                      </div>
                     </div>
                   </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <!-- <label for="inputFirstName" class="label"></label> -->
+                  <input type="text" nbInput fullWidth  placeholder="Search Address" 
+                  (keydown.enter)="$event.preventDefault()" 
+                  autocapitalize="off" autocomplete="off" spellcheck="off" #search>
                 </div>
-                <div class="row">
-                  <div class="col-sm-12">
-                    <div class="form-group">
-                      <label for="inputLastName" class="label">Name (English)</label>
-                      <input type="text" nbInput fullWidth placeholder="Sight Name" formControlName="name_en">
-                    </div>
-                  </div>
-                  <div class="col-sm-12">
-                    <div class="form-group">
-                      <label for="inputLastName" class="label">Information (English)</label>
-                      <textarea rows="5" nbInput fullWidth shape="round"  placeholder="Details for the sight" formControlName="information_en"></textarea>
-                    </div>
-                  </div>
+                <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
+                  <agm-marker [latitude]="latitude" [longitude]="longitude" [markerDraggable]="true"
+                    (dragEnd)="markerDragEnd($event)"></agm-marker>
+                </agm-map>
+              </div>
+              <div class="col-md-6">
+                <h6>Images</h6>
+                <div class="uploadfilecontainer" (click)="imageInput.click()">
+                  <input hidden type="file" #imageInput accept="images/*" (change)="uploadFile($event.target.files, 'images')">
                 </div>
-                <div class="row">
-                  <div class="col-sm-12">
-                    <div class="form-group">
-                      <label for="inputEmail" class="label">Name (Francais)</label>
-                      <input type="text" nbInput fullWidth placeholder="Sight Name" formControlName="name_fr">
-                    </div>
-                  </div>
-                  <div class="col-sm-12">
-                    <div class="form-group">
-                      <label for="inputLastName" class="label">Information (Francais)</label>
-                      <textarea rows="5" nbInput fullWidth shape="round"  placeholder="Details for the sight" formControlName="information_fr"></textarea>
-                    </div>
-                  </div>
+                <div  class="files-list" *ngFor="let file of imagesArray;let i= index">
+                    <img src="{{file.src}}" class="preview-image">
+                    <button class="delete-file" (click)="deleteAttachment(i, 'images')">
+                      <img src="../../../../assets/images/Recycle_Bin_Full.png">
+                    </button>
                 </div>
+              </div>
+              <div class="col-md-6">
+                <h6>Audio Files</h6>
+                <div class="uploadfilecontainer" (click)="audioInput.click()">
+                  <input hidden type="file" #audioInput (change)="uploadFile($event.target.files, 'audio')">
+                </div>
+                <div  class="files-list" *ngFor="let file of audioArray;let i= index">
+                    <p>{{file.name}}</p>
+                    <button class="delete-file" (click)="deleteAttachment(i, 'audio')">
+                      <img src="../../../../assets/images/Recycle_Bin_Full.png">
+                    </button>
+                </div>
+              </div>
+
+              <div class="col-md-12">
                 <button type="submit" nbButton>Submit</button>
-              </form>
+              </div>
             </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <!-- <label for="inputFirstName" class="label"></label> -->
-                <input type="text" nbInput fullWidth  placeholder="Search Address" 
-                (keydown.enter)="$event.preventDefault()" 
-                autocapitalize="off" autocomplete="off" spellcheck="off" #search>
-              </div>
-              <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
-                <agm-marker [latitude]="latitude" [longitude]="longitude" [markerDraggable]="true"
-                  (dragEnd)="markerDragEnd($event)"></agm-marker>
-              </agm-map>
-              </div>
-          </div>
+          </form>
         </nb-card-body>
       </nb-card> 
     </div>

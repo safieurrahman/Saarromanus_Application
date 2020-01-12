@@ -26,6 +26,7 @@ import { AuthGuard } from './auth/auth-guard.service';
 import { AngularFireModule, } from 'angularfire2';
 import { environment } from '../environments/environment';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { AngularFireStorageModule } from 'angularfire2/storage';
 
 @NgModule({
   declarations: [AppComponent],
@@ -47,6 +48,7 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
     }),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule.enablePersistence(),
+    AngularFireStorageModule,
     CoreModule.forRoot(),
   ],
   providers: [

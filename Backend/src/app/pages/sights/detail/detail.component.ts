@@ -1,9 +1,11 @@
 import { Component, OnInit, NgZone, ViewChild, ElementRef, } from '@angular/core';
 import { FormGroup, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
+import { AngularFireStorage } from 'angularfire2/storage';
 import { Router, Route, ActivatedRoute } from '@angular/router';
 import { MapsAPILoader } from '@agm/core';
-import { debug } from 'util';
+import { ReadVarExpr } from '@angular/compiler';
+import { tap, finalize, concatAll } from 'rxjs/operators';
 
 
 @Component({
@@ -21,7 +23,9 @@ export class SightsDetailComponent implements OnInit {
   address: string;
   sight_categories: any;
   private geoCoder;
-
+  fileReader: FileReader = new FileReader();
+  imagesArray: any = [];
+  audioArray: any = [];
 
   @ViewChild('search')
   public searchElementRef: ElementRef;
@@ -39,7 +43,8 @@ export class SightsDetailComponent implements OnInit {
 
   constructor( private afs: AngularFirestore, 
       private route: ActivatedRoute, private router: Router,
-      private mapsAPILoader: MapsAPILoader, private ngZone: NgZone
+      private mapsAPILoader: MapsAPILoader, private ngZone: NgZone,
+      private afStorage: AngularFireStorage
     ) {
       // this.sight_categories = {};
       this.afs.collection('sight_categories').valueChanges({idField: 'id'}).subscribe(res => {
@@ -105,7 +110,15 @@ export class SightsDetailComponent implements OnInit {
     console.log(this.latitude, this.longitude);
   }
 
-  public onSubmit() {
+  public async onSubmit() {
+    const images_ref = [];
+    for (let x of this.imagesArray) {
+      images_ref.push(await this.startUpload(x.file, 'images'));
+    }
+    const audio_ref = [];
+    for (let x of this.audioArray) {
+      audio_ref.push(await this.startUpload(x.file, 'audio'));
+    }
     const result = {
       de: {
         name : this.sightForm.value.name_de,
@@ -123,7 +136,9 @@ export class SightsDetailComponent implements OnInit {
         _lat: this.latitude,
         _long: this.longitude
       },
-      sight_category: this.afs.doc('sight_categories/'+this.sightForm.value.sight_category).ref
+      sight_category: this.afs.doc('sight_categories/'+this.sightForm.value.sight_category).ref,
+      images_array: images_ref,
+      audio_array: audio_ref
     }
     if(this.objectId == null) { 
       this.afs.collection('historic_sites').add(result).then(() => {
@@ -135,5 +150,55 @@ export class SightsDetailComponent implements OnInit {
       })
     } 
 
+  }
+
+  uploadFile(fileList, mode) {
+    if(mode == 'audio') {
+      this.saveAudios(fileList);
+    } else {
+      this.saveImages(fileList);
+    }
+  }
+
+  private saveImages(fileList) {
+    for (let index = 0; index < fileList.length; index++) {
+      const element = fileList[index];
+      this.fileReader.readAsDataURL(element);
+      this.fileReader.onloadend = () => {
+        this.imagesArray.push({
+          file: element, 
+          src: this.fileReader.result
+          });  
+      }
+    }
+  }
+
+  private saveAudios(fileList) {
+    for (let index = 0; index < fileList.length; index++) {
+      const element = fileList[index];
+      this.audioArray.push({
+        file: element,
+        name: element.name
+      })
+    }
+  }
+
+  private async startUpload(file, main_folder) {
+    // The storage path
+    const path = `${main_folder}/${Date.now()}_${file.name}`;
+
+    // Reference to storage bucket
+    const ref = this.afStorage.ref(path);
+
+    // The main task
+    const task = this.afStorage.upload(path, file);
+    const snapshot = await task.snapshotChanges().toPromise()
+    const downloadURL = await ref.getDownloadURL().toPromise();
+    return {downloadURL, path};
+  }
+
+  deleteAttachment(index, mode: string) {
+    const targetArray = mode == 'audio' ? this.audioArray : this.imagesArray;
+    targetArray.splice(index, 1)
   }
 }
