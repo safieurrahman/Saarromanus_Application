@@ -3,7 +3,6 @@ import { LocalDataSource } from 'ng2-smart-table';
 
 import { AngularFirestore } from 'angularfire2/firestore';
 
-
 import { SmartTableData } from '../../../@core/data/smart-table';
 import { Router } from '@angular/router';
 

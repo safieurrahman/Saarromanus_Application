@@ -40,7 +40,8 @@ export class HistoricRouteDetailComponent implements OnInit {
     information_de: new FormControl(''),
     information_fr: new FormControl(''),
     information_en: new FormControl(''),
-    sight_category: new FormControl('')
+    sight_category: new FormControl(''),
+    google_map_link: new FormControl('')
 
   });
 
@@ -66,6 +67,8 @@ export class HistoricRouteDetailComponent implements OnInit {
             this.imagesArray = res.images_array;
             this.prev_imagesArray = [...res.images_array];
             this.prev_audioArray = [...res.audio_array];
+            this.longitude = this.routePath[0]._long;
+            this.latitude = this.routePath[0]._lat;
             this.historicRouteForm.patchValue({
               'name_de': res.de.name,
               'name_fr': res.fr.name,
@@ -73,6 +76,8 @@ export class HistoricRouteDetailComponent implements OnInit {
               'information_de': res.de.information,
               'information_fr': res.fr.information,
               'information_en': res.en.information,
+              'google_map_link': res.google_map_link,
+              
             });
           });
         }
@@ -152,7 +157,9 @@ export class HistoricRouteDetailComponent implements OnInit {
         return this.afs.doc('historic_sites/'+x.id).ref
       }),
       images_array: images_ref,
-      audio_array: audio_ref
+      audio_array: audio_ref,
+      google_map_link: this.historicRouteForm.value.google_map_link,
+      
     }
     debugger;
     if(this.objectId == null) { 

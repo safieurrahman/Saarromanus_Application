@@ -219,13 +219,14 @@ export const MENU_ITEMS: NbMenuItem[] = [
     icon: 'pricetags-outline',
     children: [
       {
-        title: 'View',
-        link: '/pages/sight-categories/view',
-      },
-      {
         title: 'Create',
         link: '/pages/sight-categories/create',
       },
+      {
+        title: 'View',
+        link: '/pages/sight-categories/view',
+      },
+      
     ],
   },
   {

@@ -10,12 +10,12 @@ const routes: Routes = [{
   component: SightCategoriesComponent,
   children: [
     {
-      path: 'view',
-      component: SightCategoriesViewComponent,
-    },
-    {
       path: 'create',
       component: SightCategoriesDetailComponent,
+    },
+    {
+      path: 'view',
+      component: SightCategoriesViewComponent,
     },
     {
       path: 'detail/:id',
