@@ -11,14 +11,16 @@ import { MapsAPILoader } from '@agm/core';
   styleUrls: ['./detail.component.scss'],
   templateUrl: './detail.component.html',
 })
-export class SightsDetailComponent implements OnInit {
+export class HistoricRouteDetailComponent implements OnInit {
   objectId: string;
   objectDoc: any;
   objectData: any;
+  historic_sites: any;
   latitude: number;
   longitude: number;
   zoom: number;
   address: string;
+  routePath: any = [];
   sight_categories: any;
   private geoCoder;
   fileReader: FileReader = new FileReader();
@@ -26,11 +28,12 @@ export class SightsDetailComponent implements OnInit {
   prev_audioArray: any = [];
   imagesArray: any = [];
   audioArray: any = [];
+  sightArray: any = [];
 
   @ViewChild('search')
   public searchElementRef: ElementRef;
   
-  sightForm = new FormGroup({
+  historicRouteForm = new FormGroup({
     name_de: new FormControl(''),
     name_fr: new FormControl(''),
     name_en: new FormControl(''),
@@ -41,27 +44,29 @@ export class SightsDetailComponent implements OnInit {
 
   });
 
+
+
   constructor( private afs: AngularFirestore, 
       private route: ActivatedRoute, private router: Router,
       private mapsAPILoader: MapsAPILoader, private ngZone: NgZone,
       private afStorage: AngularFireStorage
     ) {
       // this.sight_categories = {};
-      this.afs.collection('sight_categories').valueChanges({idField: 'id'}).subscribe(res => {
-        this.sight_categories = res;
+      this.afs.collection('historic_sites').valueChanges({idField: 'id'}).subscribe(res => {
+        this.historic_sites = res;
       });
       route.params.subscribe(params => {
         this.objectId = params.id == null ? null : params.id;
         if(this.objectId !== null) {
-          this.objectDoc = this.afs.doc('historic_sites/'+this.objectId);
+          this.objectDoc = this.afs.doc('historic_routes/'+this.objectId);
           this.objectDoc.valueChanges().subscribe(res => {
-            this.longitude = res.geolocation._long;
-            this.latitude = res.geolocation._lat;
+            // this.longitude = res.geolocation._long;
+            // this.latitude = res.geolocation._lat;
             this.audioArray = res.audio_array;
             this.imagesArray = res.images_array;
             this.prev_imagesArray = [...res.images_array];
             this.prev_audioArray = [...res.audio_array];
-            this.sightForm.patchValue({
+            this.historicRouteForm.patchValue({
               'name_de': res.de.name,
               'name_fr': res.fr.name,
               'name_en': res.en.name,
@@ -79,7 +84,6 @@ export class SightsDetailComponent implements OnInit {
     this.mapsAPILoader.load().then(() => {
       this.setCurrentLocation();        
       this.geoCoder = new google.maps.Geocoder;
-
       let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
         types: ["address"]
       });
@@ -106,11 +110,6 @@ export class SightsDetailComponent implements OnInit {
     }
   }
 
-  markerDragEnd($event: MouseEvent) {
-    this.latitude = $event['coords']['lat'];
-    this.longitude = $event['coords']['lng'];
-  }
-
   private async handleFiles(prevArray, fileArray, folder) {
     const ref_array = [];
     const deleted_ref = prevArray.filter(px => {
@@ -130,42 +129,54 @@ export class SightsDetailComponent implements OnInit {
       }
     }
     return ref_array;
-  }
+  }  
 
   public async onSubmit() {
     const images_ref = await this.handleFiles(this.prev_imagesArray, this.imagesArray, 'images');
     const audio_ref = await this.handleFiles(this.prev_audioArray, this.audioArray, 'audio');
+
     const result = {
       de: {
-        name : this.sightForm.value.name_de,
-        information: this.sightForm.value.information_de
+        name : this.historicRouteForm.value.name_de,
+        information: this.historicRouteForm.value.information_de
       },
       en: {
-        name : this.sightForm.value.name_en,
-        information: this.sightForm.value.information_en
+        name : this.historicRouteForm.value.name_en,
+        information: this.historicRouteForm.value.information_en
       },
       fr: {
-        name : this.sightForm.value.name_fr,
-        information: this.sightForm.value.information_fr
+        name : this.historicRouteForm.value.name_fr,
+        information: this.historicRouteForm.value.information_fr
       },
-      geolocation: {
-        _lat: this.latitude,
-        _long: this.longitude
-      },
-      sight_category: this.afs.doc('sight_categories/'+this.sightForm.value.sight_category).ref,
+      routePath: this.routePath,
+      sights: this.sightArray.map(x => {
+        return this.afs.doc('historic_sites/'+x.id).ref
+      }),
       images_array: images_ref,
       audio_array: audio_ref
     }
+    debugger;
     if(this.objectId == null) { 
-      this.afs.collection('historic_sites').add(result).then(() => {
-        this.router.navigate(['/pages/sights/view']);
+      this.afs.collection('historic_routes').add(result).then(() => {
+        this.router.navigate(['/pages/historic-routes/view']);
       });
     } else {
-      this.afs.doc('historic_sites/'+this.objectId).set(result).then(() => {
-        this.router.navigate(['/pages/sights/view']);
+      this.afs.doc('historic_routes/'+this.objectId).set(result).then(() => {
+        this.router.navigate(['/pages/historic-routes/view']);
       })
     } 
 
+  }
+
+  addSight(option){
+    const found = this.sightArray.find(x => x.de.name == option.de.name);
+    console.log("option", option);
+    if (found == null)
+    this.sightArray.push(option);
+  }
+
+  deleteSight(i){
+    this.sightArray.splice(i, 1);
   }
 
   uploadFile(fileList, mode) {
@@ -174,6 +185,10 @@ export class SightsDetailComponent implements OnInit {
     } else {
       this.saveImages(fileList);
     }
+  }
+
+  sightMarker() {
+    return require('../../../../assets/images/sightMarker.png');
   }
 
   private saveImages(fileList) {
@@ -216,5 +231,18 @@ export class SightsDetailComponent implements OnInit {
   deleteAttachment(index, mode: string) {
     const targetArray = mode == 'audio' ? this.audioArray : this.imagesArray;
     targetArray.splice(index, 1)
+  }
+
+  onMapClick($event: MouseEvent) {
+    this.routePath.push({
+      _lat: $event.coords.lat,
+      _long: $event.coords.lng,
+    });
+  }
+
+  onMarkerClick(index) {
+    if(window.confirm("Are you sure you want to delete this point?")) {
+      this.routePath.splice(index, 1);
+    }
   }
 }

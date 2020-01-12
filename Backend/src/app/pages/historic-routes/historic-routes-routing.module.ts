@@ -2,11 +2,9 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { HistoricRoutesViewComponent } from './view/view.component';
-import { HistoricRoutesCreateComponent } from "./create/HistoricRoutesCreateComponent";
+import { HistoricRouteDetailComponent } from "./detail/detail.component";
 import { HistoricRoutesComponent } from "./historic-routes.component";
 
-import { MapRouteComponent } from './create/maproute/maproute.component';
-import { SearchRouteComponent } from './create/searchroute/searchroute.component';
 
 
 const routes: Routes = [{
@@ -19,11 +17,11 @@ const routes: Routes = [{
     },
     {
       path: 'create',
-      component: HistoricRoutesCreateComponent,
+      component: HistoricRouteDetailComponent,
     },
     {
       path: 'detail/:id',
-      component: HistoricRoutesCreateComponent,
+      component: HistoricRouteDetailComponent,
     },
   ],
 }];
@@ -36,8 +34,6 @@ export class HistoricRoutesRoutingModule { }
 
 export const routedComponents = [
     HistoricRoutesViewComponent,
-    HistoricRoutesCreateComponent,
     HistoricRoutesComponent,
-    MapRouteComponent,
-    SearchRouteComponent
+    HistoricRouteDetailComponent,
 ];

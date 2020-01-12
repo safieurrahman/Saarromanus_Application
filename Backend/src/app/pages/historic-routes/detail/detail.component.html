@@ -1,30 +1,22 @@
 <div class="row">
     <div class="col-md-12">  
       <nb-card>
-        <nb-card-header>Sight</nb-card-header>
+        <nb-card-header>Historic Route</nb-card-header>
         <nb-card-body>
-          <form [formGroup]="sightForm" (ngSubmit)="onSubmit()">
+          <form [formGroup]="historicRouteForm" (ngSubmit)="onSubmit()">
             <div class="row">
               <div class="col-md-6">
                   <div class="row">
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label for="sight_category" class="label">Sight Category</label>
-                        <nb-select placeholder="Select a category" required fullWidth formControlName="sight_category">
-                          <nb-option value="{{option.id}}" *ngFor="let option of sight_categories">{{option.de.name}}</nb-option>
-                        </nb-select>
-                      </div>
-                    </div>
                     <div class="col-sm-12">
                       <div class="form-group">
                         <label for="inputFirstName" class="label">Name (Deutsche)</label>
-                        <input type="text" nbInput fullWidth  placeholder="Sight Name" formControlName="name_de">
+                        <input type="text" nbInput fullWidth  placeholder="Route Name" formControlName="name_de">
                       </div>
                     </div>
                     <div class="col-sm-12">
                       <div class="form-group">
                         <label for="inputLastName" class="label">Information (Deutsche)</label>
-                        <textarea rows="5" nbInput fullWidth shape="round"  placeholder="Details for the sight" formControlName="information_de"></textarea>
+                        <textarea rows="5" nbInput fullWidth shape="round"  placeholder="Details for the route" formControlName="information_de"></textarea>
                       </div>
                     </div>
                   </div>
@@ -32,13 +24,13 @@
                     <div class="col-sm-12">
                       <div class="form-group">
                         <label for="inputLastName" class="label">Name (English)</label>
-                        <input type="text" nbInput fullWidth placeholder="Sight Name" formControlName="name_en">
+                        <input type="text" nbInput fullWidth placeholder="Route Name" formControlName="name_en">
                       </div>
                     </div>
                     <div class="col-sm-12">
                       <div class="form-group">
                         <label for="inputLastName" class="label">Information (English)</label>
-                        <textarea rows="5" nbInput fullWidth shape="round"  placeholder="Details for the sight" formControlName="information_en"></textarea>
+                        <textarea rows="5" nbInput fullWidth shape="round"  placeholder="Details for the route" formControlName="information_en"></textarea>
                       </div>
                     </div>
                   </div>
@@ -46,28 +38,70 @@
                     <div class="col-sm-12">
                       <div class="form-group">
                         <label for="inputEmail" class="label">Name (Francais)</label>
-                        <input type="text" nbInput fullWidth placeholder="Sight Name" formControlName="name_fr">
+                        <input type="text" nbInput fullWidth placeholder="Route Name" formControlName="name_fr">
                       </div>
                     </div>
                     <div class="col-sm-12">
                       <div class="form-group">
                         <label for="inputLastName" class="label">Information (Francais)</label>
-                        <textarea rows="5" nbInput fullWidth shape="round"  placeholder="Details for the sight" formControlName="information_fr"></textarea>
+                        <textarea rows="5" nbInput fullWidth shape="round"  placeholder="Details for the route" formControlName="information_fr"></textarea>
                       </div>
                     </div>
                   </div>
               </div>
               <div class="col-md-6">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label for="sight_category" class="label">Add Sights</label>
+                    <nb-select placeholder="Select a Sight" required fullWidth>
+                      <nb-option value="{{option.id}}" (click)="addSight(option)" *ngFor="let option of historic_sites">{{option.de.name}}</nb-option>
+                    </nb-select>
+                  </div>
+                  <div  class="files-list" *ngFor="let sight of sightArray;let i= index">
+                    <p class="file-name">{{ sight.de.name  }}</p>
+                    <button class="delete-file" (click)="deleteSight(i)">
+                      <img src="../../../../assets/images/Recycle_Bin_Full.png">
+                    </button>
+                </div>
+                </div>
+              </div>
+            </div>
+            <br>
+            <div class="row">
+              <div class="col-md-12">
+                <h6>Route Map</h6>
                 <div class="form-group">
                   <input type="text" nbInput fullWidth  placeholder="Search Address" 
                   (keydown.enter)="$event.preventDefault()" 
                   autocapitalize="off" autocomplete="off" spellcheck="off" #search>
                 </div>
-                <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
-                  <agm-marker [latitude]="latitude" [longitude]="longitude" [markerDraggable]="true"
-                    (dragEnd)="markerDragEnd($event)"></agm-marker>
+                <agm-map [latitude]="latitude" 
+                  [longitude]="longitude" [zoom]="zoom" (mapClick)="onMapClick($event)"
+                >
+                  <agm-marker               
+                    *ngFor="let m of routePath; let i = index"
+                    (markerClick)="onMarkerClick(i)"
+                    [latitude]="m._lat"
+                    [longitude]="m._long"
+                    [label]="m.label"
+                    [markerDraggable]="m.draggable"
+                  ></agm-marker>
+                  <agm-polyline>
+                    <agm-polyline-point *ngFor="let m of routePath" [latitude]="m._lat" [longitude]="m._long">
+                    </agm-polyline-point>
+                  </agm-polyline>
+                 <agm-marker               
+                    *ngFor="let m of sightArray; let i = index"
+                    [latitude]="m.geolocation._lat"
+                    [longitude]="m.geolocation._long"
+                    [title]="m.de.name"
+                    [iconUrl]="sightMarker()"
+                 ></agm-marker>
                 </agm-map>
               </div>
+            </div>
+            <br>
+            <div class="row">
               <div class="col-md-6">
                 <h6>Images</h6>
                 <div class="uploadfilecontainer" (click)="imageInput.click()">
@@ -92,9 +126,10 @@
                     </button>
                 </div>
               </div>
-
+            </div>
+            <div class="row">
               <div class="col-md-12">
-                <button type="submit" nbButton>Submit</button>
+                <button fullWidth type="submit" nbButton>Submit</button>
               </div>
             </div>
           </form>
