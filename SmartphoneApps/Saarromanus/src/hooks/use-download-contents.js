@@ -2,7 +2,9 @@ import * as sqlite from 'expo-sqlite';
 import * as FileSystem from 'expo-file-system';
 
 export const SIGHT_TABLE = 'sights';
+export const SIGHT_CATEGORIES_TABLE = 'sight_categories';
 export const ROUTE_TABLE = 'routes';
+export const ROUTE_LIST_TABLE = 'route_list';
 
 const DB = sqlite.openDatabase('saarromanus-dev-db', '0.1');
 
@@ -11,6 +13,7 @@ export const createTable = tableName => {
 		tx.executeSql(
 			`CREATE TABLE IF NOT EXISTS ${tableName} (id VARCHAR PRIMARY KEY NOT NULL, object TEXT NOT NULL);`
 		);
+		// console.log('Created table', tableName);
 	});
 };
 
@@ -29,7 +32,27 @@ const insertNewRow = (tableName, id, object) => {
 	});
 };
 
-export function findOneById(tableName, id, setStatus, populate) {
+export const upsertIntoMainList = (tableName, object) => {
+	DB.transaction(tx => {
+		tx.executeSql(
+			`INSERT OR REPLACE INTO ${tableName} (id, object) VALUES (?, ?)`,
+			['1', object],
+			() => {
+				console.log('Successfully Upserted Data Into', tableName);
+			},
+			err => {
+				console.log(`UPSERTION_ERROR: Table Name: ${tableName}`);
+			}
+		);
+	});
+};
+
+export function findOneById(
+	tableName,
+	id,
+	setStatus = () => {},
+	populate = () => {}
+) {
 	try {
 		DB.transaction(tx => {
 			tx.executeSql(
@@ -111,7 +134,6 @@ const mapSightAsync = async sight => {
 };
 
 export const storeSightAsync = async sight => {
-	createTable(SIGHT_TABLE);
 	const localSight = await mapSightAsync(sight);
 	insertNewRow(SIGHT_TABLE, sight.id, JSON.stringify(localSight));
 };

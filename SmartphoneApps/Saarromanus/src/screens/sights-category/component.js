@@ -4,12 +4,66 @@ import { View } from 'react-native';
 import getLocale from '../../hooks/use-current-locale-short';
 import SingleCategory from '../../components/single-category';
 
+import {
+	upsertIntoMainList,
+	SIGHT_CATEGORIES_TABLE,
+	findOneById,
+} from '../../hooks/use-download-contents';
+import isConnected from '../../hooks/use-netinfo';
+import checkForUpdate from '../../sagas/services/get-sight-categories';
+
 import styles from './styles';
 
-const SightsCategoryScreen = ({ sightCategories, getSightCategories }) => {
+const SightsCategoryScreen = ({
+	sightCategories,
+	getSightCategories,
+	populateSightCategories,
+}) => {
+	const [status, setStatus] = useState(null);
+	const [connected, setConnected] = useState(null);
+	isConnected(setConnected);
+
 	useEffect(() => {
-		getSightCategories();
+		findOneById(
+			SIGHT_CATEGORIES_TABLE,
+			'1',
+			setStatus,
+			populateSightCategories
+		);
 	}, []);
+
+	useEffect(() => {
+		if (status === false) {
+			getSightCategories();
+		}
+	}, [status]);
+
+	useEffect(() => {
+		checkUpdate = async () => {
+			const resp = await checkForUpdate().catch(er =>
+				console.log('Server Down')
+			);
+			if (
+				resp &&
+				resp.length &&
+				JSON.stringify(resp) !== JSON.stringify(sightCategories)
+			) {
+				upsertIntoMainList(
+					SIGHT_CATEGORIES_TABLE,
+					JSON.stringify(resp)
+				);
+				populateSightCategories(resp);
+			}
+		};
+		if (status === false && sightCategories.length) {
+			upsertIntoMainList(
+				SIGHT_CATEGORIES_TABLE,
+				JSON.stringify(sightCategories)
+			);
+		} else if (status === true && sightCategories.length && connected) {
+			checkUpdate();
+		}
+	}, [sightCategories, connected]);
 
 	return (
 		<View style={styles.container}>

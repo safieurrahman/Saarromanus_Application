@@ -14,7 +14,7 @@ function* fetchSightCategoriesSaga() {
 			yield put(populateSightCategories(response));
 		}
 	} catch (err) {
-		console.log(err);
+		console.log('connection problem');
 	}
 }
 

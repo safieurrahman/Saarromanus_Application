@@ -14,7 +14,7 @@ import RouteListScreen from './src/screens/route-list';
 
 import store from './src/store/';
 
-import { createTable, SIGHT_TABLE } from './src/hooks/use-download-contents';
+import initOfflineSupport from './src/hooks/use-initialize-offline-support';
 
 const navigator = createStackNavigator(
 	{
@@ -35,7 +35,7 @@ const navigator = createStackNavigator(
 const App = createAppContainer(navigator);
 
 export default function() {
-	createTable(SIGHT_TABLE);
+	initOfflineSupport();
 	return (
 		<Provider store={store}>
 			<App />
