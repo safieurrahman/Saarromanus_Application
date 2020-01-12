@@ -40,6 +40,7 @@ export function findOneById(
 	populate = () => {}
 ) {
 	try {
+		// console.log('table:', tableName, 'id:', id);
 		DB.transaction(tx => {
 			tx.executeSql(
 				`SELECT object FROM ${tableName} WHERE id = ? LIMIT 1`,
@@ -49,8 +50,8 @@ export function findOneById(
 					try {
 						const data = rows._array[0];
 						if (data) {
+							console.log('dateLen:', data.object.length);
 							const result = JSON.parse(data.object);
-							console.log('resul:', data.object.length);
 							setStatus(true);
 							populate(result);
 						} else {
@@ -181,5 +182,32 @@ export const storeSightsByCategoryAsync = async (
 
 export const storeSightAsync = async sight => {
 	const localSight = await mapSightAsync(sight);
-	insertNewRow(SIGHT_TABLE, sight.id, JSON.stringify(localSight));
+	// console.log('localSight', localSight);
+	insertNewRow(SIGHT_TABLE, sight.id + '', JSON.stringify(localSight));
+};
+
+export const storeRouteAsync = async (route, getSight) => {
+	const localSights = await mapSightListAsync(route.sights);
+
+	insertNewRow(
+		ROUTE_TABLE,
+		route.id + '',
+		JSON.stringify({ ...route, sights: localSights })
+	);
+	console.log('stored route details. Now storing sight details');
+	const localSightsPromises = [];
+	route.sights.map(sight => {
+		localSightsPromises.push(
+			(async () => {
+				console.log('Now downlaoding sight:', sight.id);
+				const fullSight = await getSight(sight.id).catch(err =>
+					console.log('Server down')
+				);
+				await storeSightAsync(fullSight);
+				console.log('Stored in DB');
+			})()
+		);
+	});
+	await Promise.all(localSightsPromises);
+	console.log('This route is now also available in offline mode');
 };

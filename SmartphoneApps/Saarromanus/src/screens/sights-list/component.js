@@ -4,7 +4,6 @@ import { ScrollView, Text } from 'react-native';
 import SightsList from '../../components/sights-list';
 
 import {
-	insertNewRow,
 	SIGHTS_BY_CATEGORY_TABLE,
 	findOneById,
 	storeSightsByCategoryAsync,

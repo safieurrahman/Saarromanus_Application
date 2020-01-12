@@ -20,11 +20,17 @@ import styles from './styles';
 
 const SightDetailsScreen = ({ sight, getSight, populateSight, navigation }) => {
 	const [status, setStatus] = useState(null);
+	const [sightId, setSightId] = useState('');
 
 	useEffect(() => {
-		const sightId = navigation.getParam('sightId');
-		findOneById(SIGHT_TABLE, sightId, setStatus, populateSight);
+		setSightId(navigation.getParam('sightId') + '');
 	}, []);
+
+	useEffect(() => {
+		if (sightId) {
+			findOneById(SIGHT_TABLE, sightId, setStatus, populateSight);
+		}
+	}, [sightId]);
 
 	useEffect(() => {
 		// console.log(status);
