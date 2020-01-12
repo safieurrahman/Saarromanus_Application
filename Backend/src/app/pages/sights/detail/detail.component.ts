@@ -55,9 +55,11 @@ export class SightsDetailComponent implements OnInit {
         if(this.objectId !== null) {
           this.objectDoc = this.afs.doc('historic_sites/'+this.objectId);
           this.objectDoc.valueChanges().subscribe(res => {
-            console.log(res.sight_category);
+            console.log("RESULT", res);
             this.longitude = res.geolocation._long;
             this.latitude = res.geolocation._lat;
+            this.audioArray = res.audio_array;
+            this.imagesArray = res.images_array;
             this.sightForm.patchValue({
               'name_de': res.de.name,
               'name_fr': res.fr.name,
@@ -88,7 +90,6 @@ export class SightsDetailComponent implements OnInit {
           }
           this.latitude = place.geometry.location.lat();
           this.longitude = place.geometry.location.lng();
-          console.log(this.latitude, this.longitude);
         });
       });
     });
@@ -107,17 +108,25 @@ export class SightsDetailComponent implements OnInit {
   markerDragEnd($event: MouseEvent) {
     this.latitude = $event['coords']['lat'];
     this.longitude = $event['coords']['lng'];
-    console.log(this.latitude, this.longitude);
   }
 
   public async onSubmit() {
     const images_ref = [];
+    debugger;
     for (let x of this.imagesArray) {
-      images_ref.push(await this.startUpload(x.file, 'images'));
+      if(!!x.file) {
+        images_ref.push(await this.startUpload(x.file, 'images'));
+      } else {
+        images_ref.push(x);
+      }
     }
     const audio_ref = [];
     for (let x of this.audioArray) {
-      audio_ref.push(await this.startUpload(x.file, 'audio'));
+      if(!!x.file) {
+        audio_ref.push(await this.startUpload(x.file, 'audio'));
+      } else {
+        audio_ref.push(x);
+      }
     }
     const result = {
       de: {
