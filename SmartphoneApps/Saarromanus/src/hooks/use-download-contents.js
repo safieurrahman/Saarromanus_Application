@@ -50,7 +50,7 @@ export function findOneById(
 						const data = rows._array[0];
 						if (data) {
 							const result = JSON.parse(data.object);
-							// console.log('resul:', result);
+							console.log('resul:', data.object.length);
 							setStatus(true);
 							populate(result);
 						} else {

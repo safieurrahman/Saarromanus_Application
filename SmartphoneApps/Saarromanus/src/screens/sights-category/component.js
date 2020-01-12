@@ -57,8 +57,10 @@ const SightsCategoryScreen = ({
 				'1',
 				JSON.stringify(sightCategories)
 			);
+			setStatus(null);
 		} else if (status === true && sightCategories.length && connected) {
 			checkUpdate();
+			setStatus(null);
 		}
 	}, [sightCategories, connected]);
 
