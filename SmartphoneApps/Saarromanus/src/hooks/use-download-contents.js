@@ -195,13 +195,25 @@ export const storeSightsByCategoryAsync = async (
 	populateSights(localSights);
 };
 
-export const storeSightAsync = async sight => {
+export const storeSightAsync = async (
+	sight,
+	showLoading = () => {},
+	hideLoading = () => {}
+) => {
+	showLoading();
 	const localSight = await mapSightAsync(sight);
 	// console.log('localSight', localSight);
 	insertNewRow(SIGHT_TABLE, sight.id + '', JSON.stringify(localSight));
+	hideLoading();
 };
 
-export const storeRouteAsync = async (route, getSight) => {
+export const storeRouteAsync = async (
+	route,
+	getSight,
+	showLoading = () => {},
+	hideLoading = () => {}
+) => {
+	showLoading();
 	const localSights = await mapSightListAsync(route.sights);
 
 	insertNewRow(
@@ -224,5 +236,6 @@ export const storeRouteAsync = async (route, getSight) => {
 		);
 	});
 	await Promise.all(localSightsPromises);
+	hideLoading();
 	console.log('This route is now also available in offline mode');
 };

@@ -23,6 +23,8 @@ const RouteViewScreen = ({
 	checkUpdateStatus,
 	getRoute,
 	populateRoute,
+	showLoadingScreen,
+	hideLoadingScreen,
 	navigation,
 }) => {
 	const [status, setStatus] = useState(null);
@@ -51,6 +53,8 @@ const RouteViewScreen = ({
 		if (status === false && connected) {
 			navigation.setParams({
 				status: false,
+				showLoadingScreen,
+				hideLoadingScreen,
 			});
 		}
 	}, [status, connected]);
@@ -114,6 +118,8 @@ RouteViewScreen.navigationOptions = ({ navigation }) => {
 	const routeName = navigation.getParam('routeName', 'Route View');
 	const status = navigation.getParam('status', null);
 	const route = navigation.getParam('route', {});
+	const showLoadingScreen = navigation.getParam('showLoadingScreen');
+	const hideLoadingScreen = navigation.getParam('hideLoadingScreen');
 	return {
 		title: routeName,
 		headerTintColor: '#dddddd',
@@ -121,7 +127,15 @@ RouteViewScreen.navigationOptions = ({ navigation }) => {
 			backgroundColor: 'rgba(0, 128, 128, 1)',
 		},
 		headerRight: status === false && (
-			<TouchableOpacity onPress={() => storeRouteAsync(route, getSight)}>
+			<TouchableOpacity
+				onPress={() =>
+					storeRouteAsync(
+						route,
+						getSight,
+						showLoadingScreen,
+						hideLoadingScreen
+					)
+				}>
 				<MaterialCommunityIcons
 					name="download-multiple"
 					size={30}

@@ -1,4 +1,5 @@
 import React from 'react';
+import { SafeAreaView } from 'react-native';
 
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
@@ -11,6 +12,7 @@ import SightsListScreen from './src/screens/sights-list';
 import SightDetailsScreen from './src/screens/sight-details';
 import RouteViewScreen from './src/screens/route-view';
 import RouteListScreen from './src/screens/route-list';
+import LoadingScreen from './src/screens/loading';
 
 import store from './src/store/';
 
@@ -36,9 +38,13 @@ const App = createAppContainer(navigator);
 
 export default function() {
 	initOfflineSupport();
+
 	return (
 		<Provider store={store}>
-			<App />
+			<SafeAreaView style={{ flex: 1 }}>
+				<App />
+				<LoadingScreen />
+			</SafeAreaView>
 		</Provider>
 	);
 }

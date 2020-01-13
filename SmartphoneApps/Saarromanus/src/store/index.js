@@ -6,7 +6,6 @@ import rootSaga from '../sagas';
 const sagaMiddleware = createSagaMiddleware();
 
 import configReducer from '../reducers/config-reducer';
-import DBReducer from '../reducers/db-reducer';
 import routesReducer from '../reducers/routes-reducer';
 import routeReducer from '../reducers/route-reducer';
 import sightCategoriesReducer from '../reducers/sight-categories-reducer';
@@ -16,7 +15,6 @@ import sightReducer from '../reducers/sight-reducer';
 const store = createStore(
 	combineReducers({
 		config: configReducer,
-		DB: DBReducer,
 		routes: routesReducer,
 		route: routeReducer,
 		sightCategories: sightCategoriesReducer,

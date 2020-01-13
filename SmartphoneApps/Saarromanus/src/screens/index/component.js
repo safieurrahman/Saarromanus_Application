@@ -40,7 +40,7 @@ const IndexScreen = ({
 	}, [language]);
 
 	return (
-		<SafeAreaView style={styles.container}>
+		<View style={styles.container}>
 			<View style={styles.coverContainer}>
 				<ImageBackground
 					source={backgroundCover}
@@ -109,7 +109,7 @@ const IndexScreen = ({
 					</ImageBackground>
 				</TouchableOpacity>
 			</View>
-		</SafeAreaView>
+		</View>
 	);
 };
 
