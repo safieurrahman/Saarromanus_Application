@@ -1,11 +1,12 @@
 import { StyleSheet, Dimensions } from 'react-native';
+import Constants from 'expo-constants';
 
 export default StyleSheet.create({
 	// Main container
 	container: {
-		display: 'flex',
-		width: '100%',
-		height: Math.floor(Dimensions.get('window').height),
+		// display: 'flex',
+		// width: '100%',
+		// height: Math.floor(Dimensions.get('window').height),
 		flex: 1, // TODO: s8karabi : Change it later
 	},
 
