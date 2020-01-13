@@ -12,30 +12,71 @@ import TextBox from '../../components/text-box';
 import getLocale from '../../hooks/use-current-locale-short';
 import {
 	storeSightAsync,
+	mapSightWithoutDownload,
 	SIGHT_TABLE,
 	findOneById,
 } from '../../hooks/use-download-contents';
+import isConnected from '../../hooks/use-netinfo';
+import checkForUpdate from '../../sagas/services/get-sight';
 
 import styles from './styles';
 
 const SightDetailsScreen = ({ sight, getSight, populateSight, navigation }) => {
 	const [status, setStatus] = useState(null);
+	const [sightId, setSightId] = useState('');
+	const [connected, setConnected] = useState(null);
+	isConnected(setConnected);
 
 	useEffect(() => {
-		const sightId = navigation.getParam('sightId');
-		findOneById(SIGHT_TABLE, sightId, setStatus, populateSight);
+		setSightId(navigation.getParam('sightId') + '');
 	}, []);
 
 	useEffect(() => {
-		// console.log(status);
+		if (sightId) {
+			findOneById(SIGHT_TABLE, sightId, setStatus, populateSight);
+		}
+	}, [sightId]);
+
+	useEffect(() => {
+		// console.log('status', status);
 		if (status === false) {
-			const sightId = navigation.getParam('sightId');
 			getSight(sightId);
 		}
-		navigation.setParams({
-			status,
-		});
 	}, [status]);
+
+	useEffect(() => {
+		if (status === false && connected) {
+			navigation.setParams({
+				status: false,
+			});
+		}
+	}, [status, connected]);
+
+	useEffect(() => {
+		checkUpdate = async () => {
+			const resp = await checkForUpdate(sightId).catch(er =>
+				console.log('Oops, Server seems down')
+			);
+			let respMapped = '';
+			if (resp) {
+				respMapped = mapSightWithoutDownload(resp);
+			}
+			if (
+				respMapped &&
+				JSON.stringify(respMapped) !== JSON.stringify(sight)
+			) {
+				// console.log('will update...');
+				await storeSightAsync(resp);
+			}
+		};
+		if (status === true && sight && sight.id && connected) {
+			// console.log('checking for update..');
+			checkUpdate();
+			setStatus(null);
+		} else {
+			// console.log('will not..');
+		}
+	}, [sight, connected]);
 
 	useEffect(() => {
 		navigation.setParams({
@@ -75,14 +116,14 @@ const SightDetailsScreen = ({ sight, getSight, populateSight, navigation }) => {
 
 SightDetailsScreen.navigationOptions = ({ navigation }) => {
 	const sight = navigation.getParam('sight', {});
-	const status = navigation.getParam('status', false);
+	const status = navigation.getParam('status', null);
 	return {
 		title: 'Sight Details',
 		headerTintColor: '#dddddd',
 		headerStyle: {
 			backgroundColor: 'rgba(0, 128, 128, 1)',
 		},
-		headerRight: status !== true && (
+		headerRight: status === false && (
 			<TouchableOpacity onPress={() => storeSightAsync(sight)}>
 				<MaterialCommunityIcons
 					name="download"

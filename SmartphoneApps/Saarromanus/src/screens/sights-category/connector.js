@@ -1,12 +1,15 @@
 import { connect } from 'react-redux';
 
 import c from './component';
-import { getSightCategories } from '../../actions/sights';
+import {
+	getSightCategories,
+	populateSightCategories,
+} from '../../actions/sights';
 
 const mapStateToProps = ({ sightCategories }) => {
 	return { sightCategories };
 };
 
-const mapActoinToProps = { getSightCategories };
+const mapActoinToProps = { getSightCategories, populateSightCategories };
 
 export default connect(mapStateToProps, mapActoinToProps)(c);
