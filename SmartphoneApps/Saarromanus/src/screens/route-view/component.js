@@ -18,7 +18,13 @@ import getSight from '../../sagas/services/get-sight';
 
 import styles from './styles';
 
-const RouteViewScreen = ({ route, getRoute, populateRoute, navigation }) => {
+const RouteViewScreen = ({
+	route,
+	checkUpdateStatus,
+	getRoute,
+	populateRoute,
+	navigation,
+}) => {
 	const [status, setStatus] = useState(null);
 	const [routeId, setRouteId] = useState('');
 	const [connected, setConnected] = useState(null);
@@ -67,12 +73,18 @@ const RouteViewScreen = ({ route, getRoute, populateRoute, navigation }) => {
 				await storeRouteAsync(resp, getSight);
 			}
 		};
-		if (status === true && route && route.id && connected) {
+		if (
+			status === true &&
+			checkUpdateStatus &&
+			route &&
+			route.id &&
+			connected
+		) {
 			// console.log('checking for update..');
 			checkUpdate();
 			setStatus(null);
 		}
-	}, [route, connected]);
+	}, [route, connected, checkUpdateStatus]);
 
 	useEffect(() => {
 		navigation.setParams({

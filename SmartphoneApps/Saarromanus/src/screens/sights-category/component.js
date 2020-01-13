@@ -16,6 +16,7 @@ import styles from './styles';
 
 const SightsCategoryScreen = ({
 	sightCategories,
+	checkUpdateStatus,
 	getSightCategories,
 	populateSightCategories,
 }) => {
@@ -58,11 +59,16 @@ const SightsCategoryScreen = ({
 				JSON.stringify(sightCategories)
 			);
 			setStatus(null);
-		} else if (status === true && sightCategories.length && connected) {
+		} else if (
+			status === true &&
+			checkUpdateStatus &&
+			sightCategories.length &&
+			connected
+		) {
 			checkUpdate();
 			setStatus(null);
 		}
-	}, [sightCategories, connected]);
+	}, [sightCategories, connected, checkUpdateStatus]);
 
 	return (
 		<View style={styles.container}>

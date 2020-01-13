@@ -21,11 +21,17 @@ import gameBackground from '../../../assets/game-background.jpg';
 
 import styles from './styles';
 
-const IndexScreen = ({ language, detectLanguage, navigation }) => {
+const IndexScreen = ({
+	language,
+	detectLanguage,
+	detectCheckUpdate,
+	navigation,
+}) => {
 	const updateTranslation = useUpdateTranslation();
 
 	useEffect(() => {
 		detectLanguage();
+		detectCheckUpdate();
 	}, []);
 
 	useEffect(() => {

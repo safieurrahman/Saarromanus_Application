@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import c from './component';
 import { getRouteList, populateRouteList } from '../../actions/routes';
 
-const mapStateToProps = ({ routes }) => {
-	return { routes };
+const mapStateToProps = ({ config: { checkForUpdate }, routes }) => {
+	return { routes, checkUpdateStatus: checkForUpdate };
 };
 
 const mapActoinToProps = { getRouteList, populateRouteList };

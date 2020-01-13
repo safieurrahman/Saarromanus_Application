@@ -3,7 +3,7 @@
 		{
 			"id": 1,
 			"en": {
-				"name": "Saarland Route Changed"
+				"name": "Saarland Route"
 			},
 			"de": {
 				"name": "Saarland Route DE"
@@ -227,7 +227,7 @@
 	"sights": [
 		{
 			"id": 1,
-			"name": "Römerkastell",
+			"name": "Römerkastell Updated",
 			"coordinate": {
 				"latitude": 49.223798,
 				"longitude": 7.024046
@@ -538,7 +538,7 @@
 		{
 			"id": 1,
 			"en": {
-				"name": "All N"
+				"name": "All"
 			},
 			"de": {
 				"name": "Alles"
@@ -550,7 +550,7 @@
 				{
 					"id": 1,
 					"thumbnail": "https://i.picsum.photos/id/450/600/600.jpg",
-					"name": "Römerkastell",
+					"name": "Römerkastell Updated",
 					"coordinate": {
 						"latitude": 49.223798,
 						"longitude": 7.024046

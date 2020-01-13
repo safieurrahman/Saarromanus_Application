@@ -6,8 +6,8 @@ import {
 	populateSightsByCategory,
 } from '../../actions/sights';
 
-const mapStateToProps = ({ sights }) => {
-	return { sights };
+const mapStateToProps = ({ config: { checkForUpdate }, sights }) => {
+	return { sights, checkUpdateStatus: checkForUpdate };
 };
 
 const mapActoinToProps = { getSightsByCategory, populateSightsByCategory };
