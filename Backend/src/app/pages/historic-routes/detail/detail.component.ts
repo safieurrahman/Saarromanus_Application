@@ -159,7 +159,7 @@ export class HistoricRouteDetailComponent implements OnInit {
       images_array: images_ref,
       audio_array: audio_ref,
       google_map_link: this.historicRouteForm.value.google_map_link,
-      
+
     }
     debugger;
     if(this.objectId == null) { 

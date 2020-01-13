@@ -3,7 +3,7 @@ import { AgmCoreModule,GoogleMapsAPIWrapper } from '@agm/core';
 import { AgmDirectionModule } from 'agm-direction';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { NgxEchartsModule } from 'ngx-echarts';
-import { NbCardModule } from '@nebular/theme';
+import { NbCardModule, NbAlertModule } from '@nebular/theme';
 import { HttpClient, HttpEventType, HttpClientModule } from '@angular/common/http';
 import  {Ng2SmartTableModule} from 'ng2-smart-table';
 import { HistoricRoutesRoutingModule, routedComponents} from './historic-routes-routing.module';
@@ -51,6 +51,7 @@ import { ThemeModule } from '../../@theme/theme.module';
     HttpClientModule,
     Ng2SmartTableModule,
     HistoricRoutesRoutingModule,
+    NbAlertModule,
 
 
   ],
