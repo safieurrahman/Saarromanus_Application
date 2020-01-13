@@ -26,6 +26,8 @@ const SightDetailsScreen = ({
 	checkUpdateStatus,
 	getSight,
 	populateSight,
+	showLoadingScreen,
+	hideLoadingScreen,
 	navigation,
 }) => {
 	const [status, setStatus] = useState(null);
@@ -54,6 +56,8 @@ const SightDetailsScreen = ({
 		if (status === false && connected) {
 			navigation.setParams({
 				status: false,
+				showLoadingScreen,
+				hideLoadingScreen,
 			});
 		}
 	}, [status, connected]);
@@ -128,7 +132,9 @@ const SightDetailsScreen = ({
 
 SightDetailsScreen.navigationOptions = ({ navigation }) => {
 	const sight = navigation.getParam('sight', {});
-	const status = navigation.getParam('status', null);
+	let status = navigation.getParam('status', null);
+	const showLoadingScreen = navigation.getParam('showLoadingScreen');
+	const hideLoadingScreen = navigation.getParam('hideLoadingScreen');
 	return {
 		title: 'Sight Details',
 		headerTintColor: '#dddddd',
@@ -136,7 +142,14 @@ SightDetailsScreen.navigationOptions = ({ navigation }) => {
 			backgroundColor: 'rgba(0, 128, 128, 1)',
 		},
 		headerRight: status === false && (
-			<TouchableOpacity onPress={() => storeSightAsync(sight)}>
+			<TouchableOpacity
+				onPress={() => {
+					storeSightAsync(
+						sight,
+						showLoadingScreen,
+						hideLoadingScreen
+					);
+				}}>
 				<MaterialCommunityIcons
 					name="download"
 					size={30}

@@ -8,13 +8,13 @@ import {
 
 export default (state = config, action) => {
 	if (action.type === CHANGE_LANGUAGE) {
-		return { ...config, language: action.payload };
+		return { ...state, language: action.payload };
 	} else if (action.type === TOGGLE_CHECK_UPDATE) {
-		return { ...config, checkForUpdate: action.payload };
+		return { ...state, checkForUpdate: action.payload };
 	} else if (action.type === SHOW_LOADING_SCREEN) {
-		return { ...config, loading: true };
+		return { ...state, loading: true };
 	} else if (action.type === HIDE_LOADING_SCREEN) {
-		return { ...config, loading: false };
+		return { ...state, loading: false };
 	}
 	return state;
 };
