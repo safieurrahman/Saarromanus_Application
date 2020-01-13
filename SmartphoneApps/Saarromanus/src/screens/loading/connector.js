@@ -2,8 +2,8 @@ import { connect } from 'react-redux';
 
 import c from './component';
 
-const mapStateToProps = ({ config: { language, loading } }) => {
-	return { language, loading };
+const mapStateToProps = ({ config: { loading } }) => {
+	return { loading };
 };
 
 const mapActoinToProps = {};
