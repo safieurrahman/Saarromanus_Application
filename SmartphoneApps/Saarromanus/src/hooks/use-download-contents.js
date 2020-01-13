@@ -121,6 +121,21 @@ const mapSightAsync = async sight => {
 	}
 };
 
+export const mapSightWithoutDownload = sight => {
+	const localPath = 'sight-' + sight.id;
+	const mappedResources = sight.resources.map((resource, ind) => {
+		const pos = resource.url.lastIndexOf('/') + 1;
+		const fileName = resource.url.substring(pos);
+		return {
+			...resource,
+			url:
+				FileSystem.documentDirectory + localPath + '/' + ind + fileName,
+		};
+	});
+	// console.log(mappedResources);
+	return { ...sight, resources: mappedResources };
+};
+
 export const mapSightsWithoutDownload = sightList => {
 	const localPath = 'thumbnails';
 	const mappedSights = sightList.map((sight, ind) => {
