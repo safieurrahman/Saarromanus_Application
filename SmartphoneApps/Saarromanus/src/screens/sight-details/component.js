@@ -35,12 +35,11 @@ const SightDetailsScreen = ({ sight, getSight, populateSight, navigation }) => {
 	useEffect(() => {
 		// console.log(status);
 		if (status === false) {
-			const sightId = navigation.getParam('sightId');
 			getSight(sightId);
+			navigation.setParams({
+				status: false,
+			});
 		}
-		navigation.setParams({
-			status,
-		});
 	}, [status]);
 
 	useEffect(() => {
@@ -81,14 +80,14 @@ const SightDetailsScreen = ({ sight, getSight, populateSight, navigation }) => {
 
 SightDetailsScreen.navigationOptions = ({ navigation }) => {
 	const sight = navigation.getParam('sight', {});
-	const status = navigation.getParam('status', false);
+	const status = navigation.getParam('status', null);
 	return {
 		title: 'Sight Details',
 		headerTintColor: '#dddddd',
 		headerStyle: {
 			backgroundColor: 'rgba(0, 128, 128, 1)',
 		},
-		headerRight: status !== true && (
+		headerRight: status === false && (
 			<TouchableOpacity onPress={() => storeSightAsync(sight)}>
 				<MaterialCommunityIcons
 					name="download"
