@@ -16,6 +16,7 @@ import styles from './styles';
 
 const RouteListScreen = ({
 	routes,
+	checkUpdateStatus,
 	getRouteList,
 	populateRouteList,
 	navigation,
@@ -45,7 +46,7 @@ const RouteListScreen = ({
 				console.log('Server Down')
 			);
 			if (resp && JSON.stringify(resp) !== JSON.stringify(routes)) {
-				console.log('will update...');
+				// console.log('will update...');
 				insertNewRow(ROUTE_LIST_TABLE, '1', JSON.stringify(resp));
 				populateRouteList(resp);
 			}
@@ -53,11 +54,16 @@ const RouteListScreen = ({
 		if (status === false && routes.length) {
 			insertNewRow(ROUTE_LIST_TABLE, '1', JSON.stringify(routes));
 			setStatus(null);
-		} else if (status === true && routes.length && connected) {
+		} else if (
+			status === true &&
+			checkUpdateStatus &&
+			routes.length &&
+			connected
+		) {
 			checkUpdate();
 			setStatus(null);
 		}
-	}, [routes, connected]);
+	}, [routes, connected, checkUpdateStatus]);
 
 	return (
 		<View style={styles.container}>

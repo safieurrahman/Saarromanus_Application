@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import c from './component';
 import { getSight, populateSight } from '../../actions/sights';
 
-const mapStateToProps = ({ sight }) => {
-	return { sight };
+const mapStateToProps = ({ config: { checkForUpdate }, sight }) => {
+	return { sight, checkUpdateStatus: checkForUpdate };
 };
 
 const mapActoinToProps = { getSight, populateSight };

@@ -16,6 +16,7 @@ import styles from './styles';
 
 const SightsListScreen = ({
 	sights,
+	checkUpdateStatus,
 	getSightsByCategory,
 	populateSightsByCategory,
 	navigation,
@@ -74,11 +75,16 @@ const SightsListScreen = ({
 				populateSightsByCategory
 			);
 			setStatus(null);
-		} else if (status === true && sights.length && connected) {
+		} else if (
+			status === true &&
+			checkUpdateStatus &&
+			sights.length &&
+			connected
+		) {
 			checkUpdate();
 			setStatus(null);
 		}
-	}, [sights, connected]);
+	}, [sights, connected, checkUpdateStatus]);
 
 	return (
 		<ScrollView contentContainerStyle={styles.container}>

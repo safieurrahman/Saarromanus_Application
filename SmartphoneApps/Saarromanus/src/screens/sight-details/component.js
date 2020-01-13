@@ -21,7 +21,13 @@ import checkForUpdate from '../../sagas/services/get-sight';
 
 import styles from './styles';
 
-const SightDetailsScreen = ({ sight, getSight, populateSight, navigation }) => {
+const SightDetailsScreen = ({
+	sight,
+	checkUpdateStatus,
+	getSight,
+	populateSight,
+	navigation,
+}) => {
 	const [status, setStatus] = useState(null);
 	const [sightId, setSightId] = useState('');
 	const [connected, setConnected] = useState(null);
@@ -69,14 +75,20 @@ const SightDetailsScreen = ({ sight, getSight, populateSight, navigation }) => {
 				await storeSightAsync(resp);
 			}
 		};
-		if (status === true && sight && sight.id && connected) {
+		if (
+			status === true &&
+			checkUpdateStatus &&
+			sight &&
+			sight.id &&
+			connected
+		) {
 			// console.log('checking for update..');
 			checkUpdate();
 			setStatus(null);
 		} else {
 			// console.log('will not..');
 		}
-	}, [sight, connected]);
+	}, [sight, connected, checkUpdateStatus]);
 
 	useEffect(() => {
 		navigation.setParams({
