@@ -7,12 +7,18 @@ import VerticalSeparator from '../../components/helpers/vertical-separator';
 import LabelIcon from '../../components/helpers/label_with_icon';
 import SelectLanguage from '../../components/select-language';
 import AppGuide from '../../components/app-guide';
+import ToggleBox from '../../components/toggle-box';
 import T from '../../utils/translator';
 import useUpdateTranslation from '../../hooks/use-update-translation';
 
 import styles from './styles';
 
-const SettingsScreen = ({ language, navigation }) => {
+const SettingsScreen = ({
+	language,
+	checkForUpdate,
+	invokeToggleCheckUpdate,
+	navigation,
+}) => {
 	const updateTranslation = useUpdateTranslation();
 
 	useEffect(() => {
@@ -25,6 +31,11 @@ const SettingsScreen = ({ language, navigation }) => {
 			<View style={styles.languageContainer}>
 				<SelectLanguage />
 			</View>
+			<ToggleBox
+				title={"Check For Offline Contents' Update"}
+				value={checkForUpdate}
+				onValueChange={invokeToggleCheckUpdate}
+			/>
 			<AppGuide />
 		</View>
 	);

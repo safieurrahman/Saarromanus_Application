@@ -7,6 +7,8 @@ import { currentRouteSagaWatcher } from './current-route';
 import { fetchSightCategoriesSagaWatcher } from './fetch-sight-categories';
 import { listSightsSagaWatcher } from './list-sights';
 import { currentSightSagaWatcher } from './current-sight';
+import { detectUpdateSagaWatcher } from './detect-update';
+import { storeUpdateSagaWatcher } from './store-update';
 
 export default function* rootSaga() {
 	yield all([
@@ -17,5 +19,7 @@ export default function* rootSaga() {
 		fork(fetchSightCategoriesSagaWatcher),
 		fork(listSightsSagaWatcher),
 		fork(currentSightSagaWatcher),
+		fork(detectUpdateSagaWatcher),
+		fork(storeUpdateSagaWatcher),
 	]);
 }

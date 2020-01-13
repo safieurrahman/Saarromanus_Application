@@ -6,7 +6,7 @@ export default (state = config, action) => {
 	if (action.type === CHANGE_LANGUAGE) {
 		return { ...config, language: action.payload };
 	} else if (action.type === TOGGLE_CHECK_UPDATE) {
-		return { ...config, checForUpdate: action.payload };
+		return { ...config, checkForUpdate: action.payload };
 	}
 	return state;
 };

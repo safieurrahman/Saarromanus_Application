@@ -4,7 +4,7 @@ export const DB = sqlite.openDatabase('test-db', '0.1');
 
 export const config = {
 	language: 'en-US',
-	checForUpdate: false,
+	checForUpdate: true,
 };
 
 export const routes = [];
