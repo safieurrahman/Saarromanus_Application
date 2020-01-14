@@ -10,13 +10,19 @@
                     <div class="col-sm-12">
                       <div class="form-group">
                         <label for="inputFirstName" class="label">Name (Deutsche)</label>
-                        <input type="text" nbInput fullWidth  placeholder="Route Name" formControlName="name_de">
+                        <input type="text" nbInput fullWidth  placeholder="Route Name" formControlName="name_de" [ngClass]="{ 'is-invalid': submitted && f.name_de.errors }">
+                        <div *ngIf="submitted && f.name_de.errors">
+                          <div class="error-message" *ngIf="f.name_de.errors.required">This field is required!</div>
+                      </div>
                       </div>
                     </div>
                     <div class="col-sm-12">
                       <div class="form-group">
                         <label for="inputLastName" class="label">Information (Deutsche)</label>
-                        <textarea rows="5" nbInput fullWidth shape="round"  placeholder="Details for the route" formControlName="information_de"></textarea>
+                        <textarea rows="5" nbInput fullWidth shape="round"  placeholder="Details for the route" formControlName="information_de" [ngClass]="{ 'is-invalid': submitted && f.information_de.errors }"></textarea>
+                        <div *ngIf="submitted && f.information_de.errors">
+                          <div class="error-message" *ngIf="f.information_de.errors.required">This field is required!</div>
+                      </div>
                       </div>
                     </div>
                   </div>
@@ -24,13 +30,19 @@
                     <div class="col-sm-12">
                       <div class="form-group">
                         <label for="inputLastName" class="label">Name (English)</label>
-                        <input type="text" nbInput fullWidth placeholder="Route Name" formControlName="name_en">
+                        <input type="text" nbInput fullWidth placeholder="Route Name" formControlName="name_en" [ngClass]="{ 'is-invalid': submitted && f.name_en.errors }">
+                        <div *ngIf="submitted && f.name_en.errors">
+                          <div class="error-message" *ngIf="f.name_en.errors.required">This field is required!</div>
+                      </div>
                       </div>
                     </div>
                     <div class="col-sm-12">
                       <div class="form-group">
                         <label for="inputLastName" class="label">Information (English)</label>
-                        <textarea rows="5" nbInput fullWidth shape="round"  placeholder="Details for the route" formControlName="information_en"></textarea>
+                        <textarea rows="5" nbInput fullWidth shape="round"  placeholder="Details for the route" formControlName="information_en" [ngClass]="{ 'is-invalid': submitted && f.information_en.errors }"></textarea>
+                        <div *ngIf="submitted && f.information_en.errors">
+                          <div class="error-message" *ngIf="f.information_en.errors.required">This field is required!</div>
+                      </div>
                       </div>
                     </div>
                   </div>
@@ -38,13 +50,19 @@
                     <div class="col-sm-12">
                       <div class="form-group">
                         <label for="inputEmail" class="label">Name (Francais)</label>
-                        <input type="text" nbInput fullWidth placeholder="Route Name" formControlName="name_fr">
+                        <input type="text" nbInput fullWidth placeholder="Route Name" formControlName="name_fr" [ngClass]="{ 'is-invalid': submitted && f.name_fr.errors }">
+                        <div *ngIf="submitted && f.name_fr.errors">
+                          <div class="error-message" *ngIf="f.name_fr.errors.required">This field is required!</div>
+                      </div>
                       </div>
                     </div>
                     <div class="col-sm-12">
                       <div class="form-group">
                         <label for="inputLastName" class="label">Information (Francais)</label>
-                        <textarea rows="5" nbInput fullWidth shape="round"  placeholder="Details for the route" formControlName="information_fr"></textarea>
+                        <textarea rows="5" nbInput fullWidth shape="round"  placeholder="Details for the route" formControlName="information_fr" [ngClass]="{ 'is-invalid': submitted && f.information_fr.errors }"></textarea>
+                        <div *ngIf="submitted && f.information_fr.errors">
+                          <div class="error-message" *ngIf="f.information_fr.errors.required">This field is required!</div>
+                      </div>
                       </div>
                     </div>
                   </div>
@@ -53,10 +71,11 @@
                 <div class="col-md-12">
                   <div class="form-group">
                     <label for="sight_category" class="label">Add Sights</label>
-                    <nb-select placeholder="Select a Sight" required fullWidth>
+                    <nb-select placeholder="Select a Sight" required fullWidth >
                       <nb-option value="{{option.id}}" (click)="addSight(option)" *ngFor="let option of historic_sites">{{option.de.name}}</nb-option>
                     </nb-select>
                   </div>
+                  
                   <div  class="files-list" *ngFor="let sight of sightArray;let i= index">
                     <p class="file-name">{{ sight.de.name  }}</p>
                     <button class="delete-file" (click)="deleteSight(i)">
@@ -68,7 +87,10 @@
                 <div class="col-sm-12">
                   <div class="form-group">
                     <label for="inputEmail" class="label">Google Map Link</label>
-                    <input type="text" nbInput fullWidth placeholder="Google Map Link" formControlName="google_map_link">
+                    <input type="text" nbInput fullWidth placeholder="Google Map Link" formControlName="google_map_link" [ngClass]="{ 'is-invalid': submitted && f.google_map_link.errors }">
+                    <div *ngIf="submitted && f.google_map_link.errors">
+                      <div class="error-message" *ngIf="f.google_map_link.errors.required">This field is required!</div>
+                  </div>
                   </div>
                 </div>
 

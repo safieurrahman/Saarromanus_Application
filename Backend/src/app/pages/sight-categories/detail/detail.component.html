@@ -10,7 +10,10 @@
               <div class="col-sm-6">
                 <div class="form-group">
                   <label for="inputFirstName" class="label">Name (Deutsche)</label>
-                  <input type="text" nbInput fullWidth  placeholder="Category Name (Deutsche)" formControlName="name_de">
+                  <input type="text" nbInput fullWidth  placeholder="Category Name (Deutsche)" formControlName="name_de" [ngClass]="{ 'is-invalid': submitted && f.name_de.errors }" />
+                  <div *ngIf="submitted && f.name_de.errors">
+                      <div class="error-message" *ngIf="f.name_de.errors.required">This field is required!</div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -18,7 +21,10 @@
               <div class="col-sm-6">
                 <div class="form-group">
                   <label for="inputLastName" class="label">Name (English)</label>
-                  <input type="text" nbInput fullWidth placeholder="Category Name (English)" formControlName="name_en">
+                  <input type="text" nbInput fullWidth placeholder="Category Name (English)" formControlName="name_en" [ngClass]="{ 'is-invalid': submitted && f.name_en.errors }" />
+                  <div *ngIf="submitted && f.name_en.errors">
+                      <div class="error-message" *ngIf="f.name_en.errors.required">This field is required!</div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -26,7 +32,10 @@
               <div class="col-sm-6">
                 <div class="form-group">
                   <label for="inputEmail" class="label">Name (Francais)</label>
-                  <input type="text" nbInput fullWidth placeholder="Category Name (Francais)" formControlName="name_fr">
+                  <input type="text" nbInput fullWidth placeholder="Category Name (Francais)" formControlName="name_fr" [ngClass]="{ 'is-invalid': submitted && f.name_fr.errors }" />
+                  <div *ngIf="submitted && f.name_fr.errors">
+                      <div class="error-message" *ngIf="f.name_fr.errors.required">This field is required!</div>
+                  </div>
                 </div>
               </div>
             </div>

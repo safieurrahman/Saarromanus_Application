@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormControl, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { Router, Route, ActivatedRoute } from '@angular/router';
 
@@ -19,8 +19,11 @@ export class SightCategoriesDetailComponent {
     name_fr: new FormControl(''),
     name_en: new FormControl('')
   });
-  
-  constructor(private afs: AngularFirestore, private router: Router, private route: ActivatedRoute) {
+
+  submitted = false;
+
+  constructor(private afs: AngularFirestore, private router: Router, private route: ActivatedRoute, private formBuilder: FormBuilder) {
+    
     route.params.subscribe(params => {
       this.objectId = params.id == null ? null : params.id;
       if(this.objectId !== null) {
@@ -34,14 +37,31 @@ export class SightCategoriesDetailComponent {
         });
       }
     });
-
-
-
   }
+
+
+  ngOnInit() {
+    this.sightCategoryForm = this.formBuilder.group({
+      name_de: ['', Validators.required],
+      name_fr: ['', Validators.required],
+      name_en: ['', Validators.required],
+    });
+}
+
+// convenience getter for easy access to form fields
+get f() { return this.sightCategoryForm.controls; }
 
 
 
   public onSubmit() {
+
+    this.submitted = true;
+
+    // stop here if form is invalid
+    if (this.sightCategoryForm.invalid) {
+        return;
+    }
+
     const result = {
       de: {
         name : this.sightCategoryForm.value.name_de

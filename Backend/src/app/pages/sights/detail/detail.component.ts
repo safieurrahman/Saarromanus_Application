@@ -1,5 +1,5 @@
 import { Component, OnInit, NgZone, ViewChild, ElementRef, } from '@angular/core';
-import { FormGroup, FormControl, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { AngularFireStorage } from 'angularfire2/storage';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -26,6 +26,7 @@ export class SightsDetailComponent implements OnInit {
   prev_audioArray: any = [];
   imagesArray: any = [];
   audioArray: any = [];
+  submitted = false;
 
   @ViewChild('search', {static:true})
   public searchElementRef: ElementRef;
@@ -44,7 +45,8 @@ export class SightsDetailComponent implements OnInit {
   constructor( private afs: AngularFirestore, 
       private route: ActivatedRoute, private router: Router,
       private mapsAPILoader: MapsAPILoader, private ngZone: NgZone,
-      private afStorage: AngularFireStorage
+      private afStorage: AngularFireStorage,
+      private formBuilder: FormBuilder
     ) {
       // this.sight_categories = {};
       this.afs.collection('sight_categories').valueChanges({idField: 'id'}).subscribe(res => {
@@ -94,6 +96,16 @@ export class SightsDetailComponent implements OnInit {
         });
       });
     });
+
+    this.sightForm = this.formBuilder.group({
+      name_de: ['', Validators.required],
+      name_fr: ['', Validators.required],
+      name_en: ['', Validators.required],
+      information_de: ['', Validators.required],
+      information_fr: ['', Validators.required],
+      information_en: ['', Validators.required],
+      sight_category: ['', Validators.required]
+    });
   }
 
   private setCurrentLocation() {
@@ -132,9 +144,22 @@ export class SightsDetailComponent implements OnInit {
     return ref_array;
   }
 
+    
+    // convenience getter for easy access to form fields
+    get f() { return this.sightForm.controls; }
+
+
   public async onSubmit() {
     const images_ref = await this.handleFiles(this.prev_imagesArray, this.imagesArray, 'images');
     const audio_ref = await this.handleFiles(this.prev_audioArray, this.audioArray, 'audio');
+
+    this.submitted = true;
+
+    // stop here if form is invalid
+    if (this.sightForm.invalid) {
+        return;
+    }
+
     const result = {
       de: {
         name : this.sightForm.value.name_de,
