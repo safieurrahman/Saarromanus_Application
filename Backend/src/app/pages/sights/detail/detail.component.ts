@@ -104,7 +104,7 @@ export class SightsDetailComponent implements OnInit {
       information_de: ['', Validators.required],
       information_fr: ['', Validators.required],
       information_en: ['', Validators.required],
-      sight_category: new FormControl()
+      sight_category: ['', Validators.required],
 
     });
   }

@@ -10,9 +10,14 @@
                     <div class="col-md-12">
                       <div class="form-group">
                         <label for="sight_category" class="label">Sight Category</label>
-                        <nb-select placeholder="Select a category" required fullWidth formControlName="sight_category">
+                        <nb-select placeholder="Select a category" required fullWidth formControlName="sight_category" [ngClass]="{ 'is-invalid': submitted && f.sight_category.errors }">
                           <nb-option value="{{option.id}}" *ngFor="let option of sight_categories">{{option.de.name}}</nb-option>
                         </nb-select>
+
+                        <div *ngIf="submitted && f.sight_category.errors">
+                          <div class="error-message" *ngIf="f.sight_category.errors.required">This field is required!</div>
+                      </div>
+
                       </div>
                     </div>
                     <div class="col-sm-12">
