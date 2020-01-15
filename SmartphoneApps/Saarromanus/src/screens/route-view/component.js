@@ -5,6 +5,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import SightsList from '../../components/sights-list';
 import RouteMap from '../../components/route-map';
 import VerticalSeparator from '../../components/helpers/vertical-separator';
+import getLocale from '../../hooks/use-current-locale-short';
 
 import {
 	ROUTE_TABLE,
@@ -12,6 +13,7 @@ import {
 	storeRouteAsync,
 	mapSightsWithoutDownload,
 } from '../../hooks/use-download-contents';
+import { isEqual } from '../../hooks/use-is-equal';
 import isConnected from '../../hooks/use-netinfo';
 import checkForUpdate from '../../sagas/services/get-current-route';
 import getSight from '../../sagas/services/get-sight';
@@ -35,6 +37,9 @@ const RouteViewScreen = ({
 
 	useEffect(() => {
 		setRouteId(navigation.getParam('routeId') + '');
+		return () => {
+			populateRoute({});
+		};
 	}, []);
 
 	useEffect(() => {
@@ -66,22 +71,22 @@ const RouteViewScreen = ({
 			const resp = await checkForUpdate(routeId).catch(er =>
 				console.log('Oops, Server seems down')
 			);
-			let respMapped = '';
-			if (resp) {
-				respMapped = mapSightsWithoutDownload(resp.sights);
+			let respMapped = [];
+			if (resp && resp.success && resp.payload && resp.payload.sights) {
+				respMapped = mapSightsWithoutDownload(resp.payload.sights);
 			}
 			if (
 				respMapped &&
-				JSON.stringify({ ...resp, sights: respMapped }) !==
-					JSON.stringify(route)
+				!isEqual({ ...resp.payload, sights: respMapped }, route)
 			) {
 				// console.log('will update...');
+				await storeRouteAsync(resp.payload, getSight);
 				showAlert({
 					title: 'Found New Update!',
 					message: 'The data has been updated',
 				});
-				await storeRouteAsync(resp, getSight);
 			}
+			// console.log('will not...');
 		};
 		if (
 			status === true &&
@@ -113,7 +118,7 @@ const RouteViewScreen = ({
 					/>
 					<Text style={styles.sightHeading}>Sights</Text>
 					<VerticalSeparator />
-					<SightsList sights={route.sights} />
+					<SightsList locale={getLocale()} sights={route.sights} />
 				</ScrollView>
 			)}
 		</View>

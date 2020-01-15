@@ -50,12 +50,12 @@ export function findOneById(
 					try {
 						const data = rows._array[0];
 						if (data) {
-							console.log('dateLen:', data.object.length);
+							console.log('Date Size:', data.object.length * 4);
 							const result = JSON.parse(data.object);
 							setStatus(true);
 							populate(result);
 						} else {
-							console.log('no data..');
+							console.log('No offline data..');
 							setStatus(false);
 						}
 					} catch (error) {
@@ -77,7 +77,7 @@ const downloadFileAsync = async (uri, localPath, fileName) => {
 	)
 		.then(({ uri }) => uri)
 		.catch(error => {
-			console.error(error);
+			console.error('file downlaod issue');
 		});
 	return fileUri;
 };
@@ -93,7 +93,7 @@ const mapSightAsync = async sight => {
 	try {
 		await createLocalFolderAsync(localPath);
 	} catch (error) {
-		console.log('Could not create folder, probably already exists.');
+		console.log('.');
 	}
 	try {
 		const mappedResourcesPromises = [];
@@ -113,9 +113,7 @@ const mapSightAsync = async sight => {
 		const newSight = { ...sight, resources: mappedResources };
 		return newSight;
 	} catch (error) {
-		console.log(
-			"Could not download the resources. This sight is probably already downloaded.\nIf that's not the case, remove Saarromanus App cache and the try to download again."
-		);
+		console.log('...');
 	}
 };
 
@@ -157,7 +155,7 @@ const mapSightListAsync = async sightList => {
 	try {
 		await createLocalFolderAsync(localPath);
 	} catch (error) {
-		console.log('Could not create folder, probably already exists.');
+		console.log('.');
 	}
 	try {
 		const mappedSightListPromises = [];
@@ -180,9 +178,7 @@ const mapSightListAsync = async sightList => {
 		const mappedSightList = await Promise.all(mappedSightListPromises);
 		return mappedSightList;
 	} catch (error) {
-		console.log(
-			"Could not download the resources. This sight is probably already downloaded.\nIf that's not the case, remove Saarromanus App cache and the try to download again."
-		);
+		console.log('...');
 	}
 };
 
