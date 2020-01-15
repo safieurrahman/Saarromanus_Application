@@ -1,7 +1,8 @@
 import axios from 'axios';
 
 export default axios.create({
-	baseURL: 'http://a1715a14.ngrok.io',
+	baseURL:
+		'https://us-central1-saarromanus-519b6.cloudfunctions.net/webApi/api/v1',
 	// timeout: 1000,
 	// headers: {'X-Custom-Header': 'foobar'},
 });
