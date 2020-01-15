@@ -9,6 +9,7 @@ import {
 	SIGHT_CATEGORIES_TABLE,
 	findOneById,
 } from '../../hooks/use-download-contents';
+import { isEqual } from '../../hooks/use-is-equal';
 import isConnected from '../../hooks/use-netinfo';
 import checkForUpdate from '../../sagas/services/get-sight-categories';
 
@@ -47,8 +48,9 @@ const SightsCategoryScreen = ({
 			if (
 				resp &&
 				resp.success &&
-				JSON.stringify(resp.payload) !== JSON.stringify(sightCategories)
+				!isEqual(resp.payload, sightCategories)
 			) {
+				// console.log('will update..');
 				insertNewRow(
 					SIGHT_CATEGORIES_TABLE,
 					'1',
