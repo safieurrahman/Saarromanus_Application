@@ -18,7 +18,13 @@ function* detectLanguageSaga() {
 		yield put(hideLoadingScreen());
 	} catch (err) {
 		yield hideLoadingScreen();
-		console.log(err);
+		yield put(
+			showAlert({
+				title: 'Something Went Wrong!',
+				message: 'Sorry, could not read your language preference',
+			})
+		);
+		// console.log(err);
 	}
 }
 

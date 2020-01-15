@@ -4,6 +4,8 @@ import {
 	TOGGLE_CHECK_UPDATE,
 	SHOW_LOADING_SCREEN,
 	HIDE_LOADING_SCREEN,
+	SHOW_ALERT,
+	HIDE_ALERT,
 } from '../actions/app-config';
 
 export default (state = config, action) => {
@@ -15,6 +17,24 @@ export default (state = config, action) => {
 		return { ...state, loading: true };
 	} else if (action.type === HIDE_LOADING_SCREEN) {
 		return { ...state, loading: false };
+	} else if (action.type === SHOW_ALERT) {
+		return {
+			...state,
+			alert: {
+				show: true,
+				title: action.payload.title,
+				message: action.payload.message,
+			},
+		};
+	} else if (action.type === HIDE_ALERT) {
+		return {
+			...state,
+			alert: {
+				show: false,
+				title: '',
+				message: '',
+			},
+		};
 	}
 	return state;
 };

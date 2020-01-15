@@ -6,6 +6,7 @@ export const config = {
 	language: 'en-US',
 	checForUpdate: true,
 	loading: false,
+	alert: { show: false, title: '', message: '' },
 };
 
 export const routes = [];

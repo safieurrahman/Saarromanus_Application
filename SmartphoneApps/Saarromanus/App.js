@@ -13,6 +13,7 @@ import SightDetailsScreen from './src/screens/sight-details';
 import RouteViewScreen from './src/screens/route-view';
 import RouteListScreen from './src/screens/route-list';
 import LoadingScreen from './src/screens/loading';
+import AlertScreen from './src/screens/alert';
 
 import store from './src/store/';
 
@@ -44,6 +45,7 @@ export default function() {
 			<SafeAreaView style={{ flex: 1 }}>
 				<App />
 				<LoadingScreen />
+				<AlertScreen />
 			</SafeAreaView>
 		</Provider>
 	);
