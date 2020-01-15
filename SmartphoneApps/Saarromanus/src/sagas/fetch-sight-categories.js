@@ -21,7 +21,7 @@ function* fetchSightCategoriesSaga() {
 			} else {
 				yield put(
 					showAlert({
-						title: 'No Data Found',
+						title: 'No Data Found!',
 						message:
 							'Could not find any sight categories in the database',
 					})
@@ -30,7 +30,7 @@ function* fetchSightCategoriesSaga() {
 		} else {
 			yield put(
 				showAlert({
-					title: 'Error',
+					title: 'Server Error!',
 					message:
 						'Something has gone wrong in the server. Try again later.',
 				})

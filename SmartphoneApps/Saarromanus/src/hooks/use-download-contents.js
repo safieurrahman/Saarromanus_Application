@@ -70,12 +70,10 @@ export function findOneById(
 	}
 }
 
-const downloadFileAsync = async (uri, localPath, ind) => {
-	const pos = uri.lastIndexOf('/') + 1;
-	const fileName = uri.substring(pos);
+const downloadFileAsync = async (uri, localPath, fileName) => {
 	const fileUri = await FileSystem.downloadAsync(
 		uri,
-		FileSystem.documentDirectory + localPath + '/' + ind + fileName
+		FileSystem.documentDirectory + localPath + '/' + fileName
 	)
 		.then(({ uri }) => uri)
 		.catch(error => {
@@ -165,8 +163,12 @@ const mapSightListAsync = async sightList => {
 					const localUri = await downloadFileAsync(
 						sight.thumbnail,
 						localPath,
-						ind
-					).catch(err => console.log('something went wrong.'));
+						sight.resourceName
+					).catch(err =>
+						console.log(
+							'something went wrong while download the file'
+						)
+					);
 					return { ...sight, thumbnail: localUri };
 				})()
 			);

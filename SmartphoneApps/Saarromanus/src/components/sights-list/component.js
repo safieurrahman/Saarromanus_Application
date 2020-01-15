@@ -5,7 +5,7 @@ import SingleSight from '../single-sight';
 
 import styles from './styles';
 
-const SighstList = ({ sights }) => {
+const SighstList = ({ locale, sights }) => {
 	return (
 		<View style={styles.container}>
 			<FlatList
@@ -15,7 +15,7 @@ const SighstList = ({ sights }) => {
 					return (
 						<SingleSight
 							id={item.id}
-							name={item.name}
+							name={item[locale].name}
 							description={'item.en.description'}
 							thumbnail={item.thumbnail}
 						/>

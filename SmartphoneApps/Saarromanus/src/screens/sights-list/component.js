@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { ScrollView, Text } from 'react-native';
 
 import SightsList from '../../components/sights-list';
+import getLocale from '../../hooks/use-current-locale-short';
 
 import {
 	SIGHTS_BY_CATEGORY_TABLE,
@@ -53,8 +54,8 @@ const SightsListScreen = ({
 				console.log('Oops, Server seems down')
 			);
 			let respMapped = '';
-			if (resp) {
-				respMapped = mapSightsWithoutDownload(resp.sights);
+			if (resp && resp.success && resp.payload) {
+				respMapped = mapSightsWithoutDownload(resp.payload);
 			}
 			if (
 				respMapped &&
@@ -88,7 +89,9 @@ const SightsListScreen = ({
 
 	return (
 		<ScrollView contentContainerStyle={styles.container}>
-			{sights.length ? <SightsList sights={sights} /> : null}
+			{sights.length ? (
+				<SightsList locale={getLocale()} sights={sights} />
+			) : null}
 		</ScrollView>
 	);
 };
