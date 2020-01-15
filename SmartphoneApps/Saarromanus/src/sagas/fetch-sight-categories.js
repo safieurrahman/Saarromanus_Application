@@ -30,9 +30,9 @@ function* fetchSightCategoriesSaga() {
 		} else {
 			yield put(
 				showAlert({
-					title: 'Server Error!',
+					title: 'Somethings Is Wrong!',
 					message:
-						'Something has gone wrong in the server. Try again later.',
+						"It's either you or us. If it is our fault, we are probably fixing it right now.",
 				})
 			);
 		}
