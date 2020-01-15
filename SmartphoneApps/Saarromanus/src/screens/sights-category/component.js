@@ -46,10 +46,15 @@ const SightsCategoryScreen = ({
 			);
 			if (
 				resp &&
-				JSON.stringify(resp) !== JSON.stringify(sightCategories)
+				resp.success &&
+				JSON.stringify(resp.payload) !== JSON.stringify(sightCategories)
 			) {
-				insertNewRow(SIGHT_CATEGORIES_TABLE, '1', JSON.stringify(resp));
-				populateSightCategories(resp);
+				insertNewRow(
+					SIGHT_CATEGORIES_TABLE,
+					'1',
+					JSON.stringify(resp.payload)
+				);
+				populateSightCategories(resp.payload);
 			}
 		};
 		if (status === false && sightCategories.length) {
