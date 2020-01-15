@@ -16,7 +16,7 @@ export default StyleSheet.create({
 		width: '90%',
 	},
 	headingText: {
-		fontSize: 30,
+		fontSize: 22,
 		fontWeight: 'bold',
 	},
 	detailsText: {

@@ -9,6 +9,7 @@ import {
 	ROUTE_LIST_TABLE,
 	findOneById,
 } from '../../hooks/use-download-contents';
+import { isEqual } from '../../hooks/use-is-equal';
 import isConnected from '../../hooks/use-netinfo';
 import checkForUpdate from '../../sagas/services/get-route-list';
 
@@ -45,10 +46,19 @@ const RouteListScreen = ({
 			const resp = await checkForUpdate().catch(er =>
 				console.log('Server Down')
 			);
-			if (resp && JSON.stringify(resp) !== JSON.stringify(routes)) {
+			if (
+				resp &&
+				resp.success &&
+				resp.payload &&
+				!isEqual(resp.payload, routes)
+			) {
 				// console.log('will update...');
-				insertNewRow(ROUTE_LIST_TABLE, '1', JSON.stringify(resp));
-				populateRouteList(resp);
+				insertNewRow(
+					ROUTE_LIST_TABLE,
+					'1',
+					JSON.stringify(resp.payload)
+				);
+				populateRouteList(resp.payload);
 			}
 		};
 		if (status === false && routes.length) {

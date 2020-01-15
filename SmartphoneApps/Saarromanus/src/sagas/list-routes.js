@@ -12,14 +12,23 @@ function* listRoutesSaga() {
 	try {
 		yield put(showLoadingScreen());
 		const response = yield call(getRouteList);
-		// if(response.status) {
-		if (response) {
-			yield put(populateRouteList(response));
+		if (response && response.success) {
+			if (response.payload && response.payload.length) {
+				yield put(populateRouteList(response.payload));
+			} else {
+				yield put(
+					showAlert({
+						title: 'No Data Found',
+						message: 'Could not find any routes in the database',
+					})
+				);
+			}
 		} else {
 			yield put(
 				showAlert({
-					title: 'No Data Found',
-					message: 'Could not find any routes in the database',
+					title: 'Somethings Is Wrong!',
+					message:
+						"It's either you or us. If it is our fault, we are probably fixing it right now.",
 				})
 			);
 		}

@@ -9,6 +9,7 @@ import {
 	SIGHT_CATEGORIES_TABLE,
 	findOneById,
 } from '../../hooks/use-download-contents';
+import { isEqual } from '../../hooks/use-is-equal';
 import isConnected from '../../hooks/use-netinfo';
 import checkForUpdate from '../../sagas/services/get-sight-categories';
 
@@ -46,10 +47,16 @@ const SightsCategoryScreen = ({
 			);
 			if (
 				resp &&
-				JSON.stringify(resp) !== JSON.stringify(sightCategories)
+				resp.success &&
+				!isEqual(resp.payload, sightCategories)
 			) {
-				insertNewRow(SIGHT_CATEGORIES_TABLE, '1', JSON.stringify(resp));
-				populateSightCategories(resp);
+				// console.log('will update..');
+				insertNewRow(
+					SIGHT_CATEGORIES_TABLE,
+					'1',
+					JSON.stringify(resp.payload)
+				);
+				populateSightCategories(resp.payload);
 			}
 		};
 		if (status === false && sightCategories.length) {

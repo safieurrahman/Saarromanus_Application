@@ -14,15 +14,25 @@ function* currentRouteSaga({ payload }) {
 	try {
 		yield put(showLoadingScreen());
 		const response = yield call(getCurrentRoute, payload);
-		// if(response.status) {
-		if (response) {
-			yield put(populateRoute(response));
+		// console.log(response);
+		if (response && response.success) {
+			if (response.payload && response.payload.id) {
+				yield put(populateRoute(response.payload));
+			} else {
+				yield put(
+					showAlert({
+						title: 'No Data Found',
+						message:
+							'Could not find the selected route in the database',
+					})
+				);
+			}
 		} else {
 			yield put(
 				showAlert({
-					title: 'No Data Found',
+					title: 'Somethings Is Wrong!',
 					message:
-						'Could not find the selected route in the database',
+						"It's either you or us. If it is our fault, we are probably fixing it right now.",
 				})
 			);
 		}

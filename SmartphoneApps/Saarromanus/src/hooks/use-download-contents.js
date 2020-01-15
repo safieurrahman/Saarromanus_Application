@@ -50,12 +50,12 @@ export function findOneById(
 					try {
 						const data = rows._array[0];
 						if (data) {
-							console.log('dateLen:', data.object.length);
+							console.log('Date Size:', data.object.length * 4);
 							const result = JSON.parse(data.object);
 							setStatus(true);
 							populate(result);
 						} else {
-							console.log('no data..');
+							console.log('No offline data..');
 							setStatus(false);
 						}
 					} catch (error) {
@@ -70,16 +70,14 @@ export function findOneById(
 	}
 }
 
-const downloadFileAsync = async (uri, localPath, ind) => {
-	const pos = uri.lastIndexOf('/') + 1;
-	const fileName = uri.substring(pos);
+const downloadFileAsync = async (uri, localPath, fileName) => {
 	const fileUri = await FileSystem.downloadAsync(
 		uri,
-		FileSystem.documentDirectory + localPath + '/' + ind + fileName
+		FileSystem.documentDirectory + localPath + '/' + fileName
 	)
 		.then(({ uri }) => uri)
 		.catch(error => {
-			console.error(error);
+			console.error('file downlaod issue');
 		});
 	return fileUri;
 };
@@ -95,7 +93,7 @@ const mapSightAsync = async sight => {
 	try {
 		await createLocalFolderAsync(localPath);
 	} catch (error) {
-		console.log('Could not create folder, probably already exists.');
+		console.log('.');
 	}
 	try {
 		const mappedResourcesPromises = [];
@@ -105,7 +103,7 @@ const mapSightAsync = async sight => {
 					const localUri = await downloadFileAsync(
 						resource.url,
 						localPath,
-						ind
+						resource.title
 					).catch(err => console.log('something went wrong.'));
 					return { ...resource, url: localUri };
 				})()
@@ -115,21 +113,21 @@ const mapSightAsync = async sight => {
 		const newSight = { ...sight, resources: mappedResources };
 		return newSight;
 	} catch (error) {
-		console.log(
-			"Could not download the resources. This sight is probably already downloaded.\nIf that's not the case, remove Saarromanus App cache and the try to download again."
-		);
+		console.log('...');
 	}
 };
 
 export const mapSightWithoutDownload = sight => {
 	const localPath = 'sight-' + sight.id;
 	const mappedResources = sight.resources.map((resource, ind) => {
-		const pos = resource.url.lastIndexOf('/') + 1;
-		const fileName = resource.url.substring(pos);
+		const fileName = resource.title;
 		return {
 			...resource,
 			url:
-				FileSystem.documentDirectory + localPath + '/' + ind + fileName,
+				FileSystem.documentDirectory +
+				localPath +
+				'/' +
+				encodeURIComponent(fileName),
 		};
 	});
 	// console.log(mappedResources);
@@ -139,12 +137,14 @@ export const mapSightWithoutDownload = sight => {
 export const mapSightsWithoutDownload = sightList => {
 	const localPath = 'thumbnails';
 	const mappedSights = sightList.map((sight, ind) => {
-		const pos = sight.thumbnail.lastIndexOf('/') + 1;
-		const fileName = sight.thumbnail.substring(pos);
+		const fileName = sight.resourceName;
 		return {
 			...sight,
 			thumbnail:
-				FileSystem.documentDirectory + localPath + '/' + ind + fileName,
+				FileSystem.documentDirectory +
+				localPath +
+				'/' +
+				encodeURIComponent(fileName),
 		};
 	});
 	return mappedSights;
@@ -155,7 +155,7 @@ const mapSightListAsync = async sightList => {
 	try {
 		await createLocalFolderAsync(localPath);
 	} catch (error) {
-		console.log('Could not create folder, probably already exists.');
+		console.log('.');
 	}
 	try {
 		const mappedSightListPromises = [];
@@ -165,8 +165,12 @@ const mapSightListAsync = async sightList => {
 					const localUri = await downloadFileAsync(
 						sight.thumbnail,
 						localPath,
-						ind
-					).catch(err => console.log('something went wrong.'));
+						sight.resourceName
+					).catch(err =>
+						console.log(
+							'something went wrong while download the file'
+						)
+					);
 					return { ...sight, thumbnail: localUri };
 				})()
 			);
@@ -174,9 +178,7 @@ const mapSightListAsync = async sightList => {
 		const mappedSightList = await Promise.all(mappedSightListPromises);
 		return mappedSightList;
 	} catch (error) {
-		console.log(
-			"Could not download the resources. This sight is probably already downloaded.\nIf that's not the case, remove Saarromanus App cache and the try to download again."
-		);
+		console.log('...');
 	}
 };
 
