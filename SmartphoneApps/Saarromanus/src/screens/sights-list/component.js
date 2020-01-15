@@ -10,6 +10,7 @@ import {
 	storeSightsByCategoryAsync,
 	mapSightsWithoutDownload,
 } from '../../hooks/use-download-contents';
+import { isEqual } from '../../hooks/use-is-equal';
 import isConnected from '../../hooks/use-netinfo';
 import checkForUpdate from '../../sagas/services/get-sights';
 
@@ -57,16 +58,15 @@ const SightsListScreen = ({
 			if (resp && resp.success && resp.payload) {
 				respMapped = mapSightsWithoutDownload(resp.payload);
 			}
-			if (
-				respMapped &&
-				JSON.stringify(respMapped) !== JSON.stringify(sights)
-			) {
+			if (respMapped && !isEqual(respMapped, sights)) {
 				// console.log('will update...');
 				await storeSightsByCategoryAsync(
 					categoryId,
 					resp.payload,
 					populateSightsByCategory
 				);
+			} else {
+				// console.log('will not...');
 			}
 		};
 		if (status === false && sights.length) {
