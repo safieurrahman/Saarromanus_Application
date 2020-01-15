@@ -28,6 +28,7 @@ const SightDetailsScreen = ({
 	populateSight,
 	showLoadingScreen,
 	hideLoadingScreen,
+	showAlert,
 	navigation,
 }) => {
 	const [status, setStatus] = useState(null);
@@ -56,8 +57,10 @@ const SightDetailsScreen = ({
 		if (status === false && connected) {
 			navigation.setParams({
 				status: false,
+				setStatus,
 				showLoadingScreen,
 				hideLoadingScreen,
+				showAlert,
 			});
 		}
 	}, [status, connected]);
@@ -76,6 +79,10 @@ const SightDetailsScreen = ({
 				JSON.stringify(respMapped) !== JSON.stringify(sight)
 			) {
 				// console.log('will update...');
+				showAlert({
+					title: 'Found New Update!',
+					message: 'The data has been updated',
+				});
 				await storeSightAsync(resp);
 			}
 		};
@@ -135,21 +142,27 @@ SightDetailsScreen.navigationOptions = ({ navigation }) => {
 	let status = navigation.getParam('status', null);
 	const showLoadingScreen = navigation.getParam('showLoadingScreen');
 	const hideLoadingScreen = navigation.getParam('hideLoadingScreen');
+	const showAlert = navigation.getParam('showAlert');
 	return {
 		title: 'Sight Details',
 		headerTintColor: '#dddddd',
 		headerStyle: {
 			backgroundColor: 'rgba(0, 128, 128, 1)',
 		},
-		headerRight: status === false && (
+		headerRight: status === false && sight.id && (
 			<TouchableOpacity
-				onPress={() => {
-					storeSightAsync(
-						sight,
-						showLoadingScreen,
-						hideLoadingScreen
-					);
-				}}>
+				onPress={() =>
+					storeSightAsync(sight, showLoadingScreen, () => {
+						hideLoadingScreen();
+						showAlert({
+							title: 'Download Complete',
+							message:
+								'No Internet? No Problem!\n\nSight: ' +
+								sight.name +
+								' has been successfully downloaded to your device',
+						});
+					})
+				}>
 				<MaterialCommunityIcons
 					name="download"
 					size={30}

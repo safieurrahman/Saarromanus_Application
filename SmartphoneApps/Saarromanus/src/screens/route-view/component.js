@@ -25,6 +25,7 @@ const RouteViewScreen = ({
 	populateRoute,
 	showLoadingScreen,
 	hideLoadingScreen,
+	showAlert,
 	navigation,
 }) => {
 	const [status, setStatus] = useState(null);
@@ -55,6 +56,7 @@ const RouteViewScreen = ({
 				status: false,
 				showLoadingScreen,
 				hideLoadingScreen,
+				showAlert,
 			});
 		}
 	}, [status, connected]);
@@ -74,6 +76,10 @@ const RouteViewScreen = ({
 					JSON.stringify(route)
 			) {
 				// console.log('will update...');
+				showAlert({
+					title: 'Found New Update!',
+					message: 'The data has been updated',
+				});
 				await storeRouteAsync(resp, getSight);
 			}
 		};
@@ -120,21 +126,27 @@ RouteViewScreen.navigationOptions = ({ navigation }) => {
 	const route = navigation.getParam('route', {});
 	const showLoadingScreen = navigation.getParam('showLoadingScreen');
 	const hideLoadingScreen = navigation.getParam('hideLoadingScreen');
+	const showAlert = navigation.getParam('showAlert');
+
 	return {
 		title: routeName,
 		headerTintColor: '#dddddd',
 		headerStyle: {
 			backgroundColor: 'rgba(0, 128, 128, 1)',
 		},
-		headerRight: status === false && (
+		headerRight: status === false && route.id && (
 			<TouchableOpacity
 				onPress={() =>
-					storeRouteAsync(
-						route,
-						getSight,
-						showLoadingScreen,
-						hideLoadingScreen
-					)
+					storeRouteAsync(route, getSight, showLoadingScreen, () => {
+						hideLoadingScreen();
+						showAlert({
+							title: 'Download Complete',
+							message:
+								'No Internet? No Problem!\n\nRoute: ' +
+								route.en.name +
+								' has been successfully downloaded to your device',
+						});
+					})
 				}>
 				<MaterialCommunityIcons
 					name="download-multiple"

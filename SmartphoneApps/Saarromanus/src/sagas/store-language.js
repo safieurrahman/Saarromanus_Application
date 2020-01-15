@@ -1,6 +1,7 @@
 import { takeEvery, put, call } from 'redux-saga/effects';
 
 import { STORE_LANGUAGE, changeLanguage } from '../actions/language';
+import { showAlert } from '../actions/app-config';
 import setStorageLanguage from './services/set-storage-language';
 
 function* storeLanguageSaga({ payload }) {
@@ -8,7 +9,13 @@ function* storeLanguageSaga({ payload }) {
 		yield call(setStorageLanguage, payload);
 		yield put(changeLanguage(payload));
 	} catch (err) {
-		console.log(err);
+		yield put(
+			showAlert({
+				title: 'Something Went Wrong!',
+				message: 'Sorry, could not store your preference',
+			})
+		);
+		// console.log(err);
 	}
 }
 

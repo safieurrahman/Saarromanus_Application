@@ -5,20 +5,39 @@ import {
 	populateSightsByCategory,
 } from '../actions/sights';
 import getSights from './services/get-sights';
-import { showLoadingScreen, hideLoadingScreen } from '../actions/app-config';
+import {
+	showLoadingScreen,
+	hideLoadingScreen,
+	showAlert,
+} from '../actions/app-config';
 
 function* listSightsSaga({ payload }) {
 	try {
 		yield put(showLoadingScreen());
 		const response = yield call(getSights, payload);
 		// if(response.status) {
-		if (response) {
+		if (response && response.sights) {
 			yield put(populateSightsByCategory(response.sights));
+		} else {
+			yield put(
+				showAlert({
+					title: 'No Data Found',
+					message:
+						'Could not find any sights for this category in the database',
+				})
+			);
 		}
 		yield put(hideLoadingScreen());
 	} catch (err) {
 		yield put(hideLoadingScreen());
-		console.log(err);
+		yield put(
+			showAlert({
+				title: 'Network Request Failed!',
+				message:
+					'Unable to load data from the server. Please connect to the internet and try again if you are not connected already.',
+			})
+		);
+		// console.log('error form here', err);
 	}
 }
 

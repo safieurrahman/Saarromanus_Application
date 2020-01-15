@@ -6,6 +6,7 @@ import {
 	toggleCheckUpdate,
 	showLoadingScreen,
 	hideLoadingScreen,
+	showAlert,
 } from '../actions/app-config';
 import getStorageUpdate from './services/get-storage-update';
 
@@ -21,7 +22,13 @@ function* detectUpdateSaga() {
 		yield put(hideLoadingScreen());
 	} catch (err) {
 		yield put(hideLoadingScreen());
-		console.log(err);
+		yield put(
+			showAlert({
+				title: 'Something Went Wrong!',
+				message: 'Sorry, could not read your update preference',
+			})
+		);
+		// console.log(err);
 	}
 }
 
