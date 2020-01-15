@@ -15,6 +15,7 @@ export default StyleSheet.create({
 		backgroundColor: '#fff',
 	},
 	text: {
-		fontSize: 25,
+		fontSize: 20,
+		flexBasis: '80%',
 	},
 });

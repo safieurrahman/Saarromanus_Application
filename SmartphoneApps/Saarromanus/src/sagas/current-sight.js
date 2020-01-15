@@ -12,15 +12,25 @@ function* currentSightSaga({ payload }) {
 	try {
 		yield put(showLoadingScreen());
 		const response = yield call(getSight, payload);
-		// if(response.status) {
-		if (response) {
-			yield put(populateSight(response));
+		// console.log(response);
+		if (response && response.success) {
+			if (response.payload && response.payload.id) {
+				yield put(populateSight(response.payload));
+			} else {
+				yield put(
+					showAlert({
+						title: 'No Data Found',
+						message:
+							'Could not find the selected sight in the database',
+					})
+				);
+			}
 		} else {
 			yield put(
 				showAlert({
-					title: 'No Data Found',
+					title: 'Somethings Is Wrong!',
 					message:
-						'Could not find the selected sight in the database',
+						"It's either you or us. If it is our fault, we are probably fixing it right now.",
 				})
 			);
 		}

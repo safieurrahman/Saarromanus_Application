@@ -8,7 +8,9 @@ import styles from './styles';
 const SingleAudio = ({ audio, index, status, onPlay }) => {
 	return (
 		<View style={styles.container}>
-			<Text style={styles.text}>{audio.title}</Text>
+			<Text style={styles.text} ellipsizeMode={'tail'} numberOfLines={1}>
+				{audio.title}
+			</Text>
 			<MaterialIcons
 				name={
 					status.isPlaying && status.currentIndex === index

@@ -12,7 +12,12 @@ const TextBox = ({ heading, text }) => {
 		<View style={styles.container}>
 			{heading && (
 				<View style={styles.headingContainer}>
-					<Text style={styles.headingText}>{heading}</Text>
+					<Text
+						style={styles.headingText}
+						ellipsizeMode={'tail'}
+						numberOfLines={1}>
+						{heading}
+					</Text>
 					<VerticalSeparator marginVertical={5} />
 				</View>
 			)}

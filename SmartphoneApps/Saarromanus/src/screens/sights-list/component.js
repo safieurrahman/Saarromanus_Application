@@ -53,7 +53,7 @@ const SightsListScreen = ({
 			const resp = await checkForUpdate(categoryId).catch(er =>
 				console.log('Oops, Server seems down')
 			);
-			let respMapped = '';
+			let respMapped = [];
 			if (resp && resp.success && resp.payload) {
 				respMapped = mapSightsWithoutDownload(resp.payload);
 			}
@@ -64,7 +64,7 @@ const SightsListScreen = ({
 				// console.log('will update...');
 				await storeSightsByCategoryAsync(
 					categoryId,
-					resp.sights,
+					resp.payload,
 					populateSightsByCategory
 				);
 			}

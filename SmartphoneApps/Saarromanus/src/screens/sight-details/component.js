@@ -17,6 +17,7 @@ import {
 	findOneById,
 } from '../../hooks/use-download-contents';
 import isConnected from '../../hooks/use-netinfo';
+import { isEqual } from '../../hooks/use-is-equal';
 import checkForUpdate from '../../sagas/services/get-sight';
 
 import styles from './styles';
@@ -70,21 +71,21 @@ const SightDetailsScreen = ({
 			const resp = await checkForUpdate(sightId).catch(er =>
 				console.log('Oops, Server seems down')
 			);
-			let respMapped = '';
-			if (resp) {
-				respMapped = mapSightWithoutDownload(resp);
+			let respMapped = {};
+			if (resp && resp.success && resp.payload) {
+				respMapped = mapSightWithoutDownload(resp.payload);
 			}
-			if (
-				respMapped &&
-				JSON.stringify(respMapped) !== JSON.stringify(sight)
-			) {
+			if (respMapped && !isEqual(respMapped, sight)) {
 				// console.log('will update...');
+				await storeSightAsync(resp.payload);
 				showAlert({
 					title: 'Found New Update!',
 					message: 'The data has been updated',
 				});
-				await storeSightAsync(resp);
 			}
+			// else {
+			// 	console.log('sight: will not');
+			// }
 		};
 		if (
 			status === true &&
@@ -96,8 +97,6 @@ const SightDetailsScreen = ({
 			// console.log('checking for update..');
 			checkUpdate();
 			setStatus(null);
-		} else {
-			// console.log('will not..');
 		}
 	}, [sight, connected, checkUpdateStatus]);
 
@@ -129,8 +128,8 @@ const SightDetailsScreen = ({
 			<VerticalSeparator marginVertical={5} />
 			{sight[getLocale()] && (
 				<TextBox
-					heading={`More About ${sight.name}`}
-					text={sight[getLocale()].description}
+					heading={`More About ${sight[getLocale()].name}`}
+					text={sight[getLocale()].information}
 				/>
 			)}
 		</ScrollView>
@@ -155,10 +154,10 @@ SightDetailsScreen.navigationOptions = ({ navigation }) => {
 					storeSightAsync(sight, showLoadingScreen, () => {
 						hideLoadingScreen();
 						showAlert({
-							title: 'Download Complete',
+							title: 'Download Complete!',
 							message:
 								'No Internet? No Problem!\n\nSight: ' +
-								sight.name +
+								sight[getLocale()].name +
 								' has been successfully downloaded to your device',
 						});
 					})

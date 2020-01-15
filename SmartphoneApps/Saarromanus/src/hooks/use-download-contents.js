@@ -103,7 +103,7 @@ const mapSightAsync = async sight => {
 					const localUri = await downloadFileAsync(
 						resource.url,
 						localPath,
-						ind
+						resource.title
 					).catch(err => console.log('something went wrong.'));
 					return { ...resource, url: localUri };
 				})()
@@ -122,12 +122,14 @@ const mapSightAsync = async sight => {
 export const mapSightWithoutDownload = sight => {
 	const localPath = 'sight-' + sight.id;
 	const mappedResources = sight.resources.map((resource, ind) => {
-		const pos = resource.url.lastIndexOf('/') + 1;
-		const fileName = resource.url.substring(pos);
+		const fileName = resource.title;
 		return {
 			...resource,
 			url:
-				FileSystem.documentDirectory + localPath + '/' + ind + fileName,
+				FileSystem.documentDirectory +
+				localPath +
+				'/' +
+				encodeURIComponent(fileName),
 		};
 	});
 	// console.log(mappedResources);
@@ -137,12 +139,14 @@ export const mapSightWithoutDownload = sight => {
 export const mapSightsWithoutDownload = sightList => {
 	const localPath = 'thumbnails';
 	const mappedSights = sightList.map((sight, ind) => {
-		const pos = sight.thumbnail.lastIndexOf('/') + 1;
-		const fileName = sight.thumbnail.substring(pos);
+		const fileName = sight.resourceName;
 		return {
 			...sight,
 			thumbnail:
-				FileSystem.documentDirectory + localPath + '/' + ind + fileName,
+				FileSystem.documentDirectory +
+				localPath +
+				'/' +
+				encodeURIComponent(fileName),
 		};
 	});
 	return mappedSights;
