@@ -120,7 +120,7 @@ const IndexScreen = ({
 
 IndexScreen.navigationOptions = ({ navigation }) => {
 	return {
-		title: 'Saarromanus/alpha-v-0.0.4',
+		title: 'Saarromanus/alpha-v-0.0.5',
 		headerTintColor: '#dddddd',
 		headerStyle: {
 			backgroundColor: 'rgba(0, 128, 128, 1)',
