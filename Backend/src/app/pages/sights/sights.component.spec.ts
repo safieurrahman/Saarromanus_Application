@@ -1,22 +1,21 @@
 import { TestBed, async } from '@angular/core/testing';
-import { AppComponent } from './app.component';
+import { SightsComponent } from './sights.component';
 import { RouterTestingModule } from '@angular/router/testing';
 
-describe('AppComponent', () => {
+describe('SightsComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
         imports: [    
             RouterTestingModule,
-            
           ],
          declarations: [
-        AppComponent
+        SightsComponent
       ],
     }).compileComponents();
   }));
 
-  it('Should create the main Saaromanus Application', async(() => {
-    const fixture = TestBed.createComponent(AppComponent);
+  it('Should render the Sight Module', async(() => {
+    const fixture = TestBed.createComponent(SightsComponent);
     const app = fixture.debugElement.componentInstance;
     expect(app).toBeTruthy();
   }));
