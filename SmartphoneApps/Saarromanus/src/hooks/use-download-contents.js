@@ -223,21 +223,21 @@ export const storeRouteAsync = async (
 		route.id + '',
 		JSON.stringify({ ...route, sights: localSights })
 	);
-	console.log('stored route details. Now storing sight details');
+	// console.log('stored route details. Now storing sight details');
 	const localSightsPromises = [];
 	route.sights.map(sight => {
 		localSightsPromises.push(
 			(async () => {
-				console.log('Now downlaoding sight:', sight.id);
+				// console.log('Now downlaoding sight:', sight.id, sight.en.name);
 				const fullSight = await getSight(sight.id).catch(err =>
 					console.log('Server down')
 				);
-				await storeSightAsync(fullSight);
-				console.log('Stored in DB');
+				await storeSightAsync(fullSight.payload);
+				// console.log('Stored in DB');
 			})()
 		);
 	});
 	await Promise.all(localSightsPromises);
 	hideLoading();
-	console.log('This route is now also available in offline mode');
+	// console.log('This route is now also available in offline mode');
 };
