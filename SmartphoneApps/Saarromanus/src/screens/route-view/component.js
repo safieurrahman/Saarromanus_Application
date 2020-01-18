@@ -114,7 +114,7 @@ const RouteViewScreen = ({
 					<RouteMap
 						routePath={route.routePath}
 						sights={route.sights}
-						googleMapURL={route.googleMapURL}
+						googleMapURL={route.googleMapLink}
 					/>
 					<Text style={styles.sightHeading}>Sights</Text>
 					<VerticalSeparator />
