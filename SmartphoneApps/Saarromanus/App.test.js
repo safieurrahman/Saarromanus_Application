@@ -1,10 +1,7 @@
-import 'react-native';
 import React from 'react';
 
-// import toJson from 'enzyme-to-json';
 import { shallow } from 'enzyme';
-
-import './setupTests';
+import renderer from 'react-test-renderer';
 
 import App from './App';
 
