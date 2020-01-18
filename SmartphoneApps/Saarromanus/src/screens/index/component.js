@@ -40,6 +40,7 @@ const IndexScreen = ({
 	return (
 		<View style={styles.container}>
 			<ImageBackground
+				data-test-id="coverPhoto"
 				source={backgroundCover}
 				style={styles.logoContainer}
 				imageStyle={{
@@ -49,8 +50,11 @@ const IndexScreen = ({
 				<Image source={logo} style={styles.logo} />
 			</ImageBackground>
 
-			<View style={styles.mainOptionsContainer}>
+			<View
+				style={styles.mainOptionsContainer}
+				data-test-id="mainOptionsContainer">
 				<TouchableOpacity
+					data-test-id="routesButton"
 					style={styles.singleOptionContainer}
 					activeOpacity={0.5}
 					onPress={() => navigation.navigate('RouteList')}>
@@ -71,6 +75,7 @@ const IndexScreen = ({
 					</ImageBackground>
 				</TouchableOpacity>
 				<TouchableOpacity
+					data-test-id="sightsButton"
 					style={styles.singleOptionContainer}
 					activeOpacity={0.5}
 					onPress={() => navigation.navigate('Sights')}>
@@ -91,11 +96,12 @@ const IndexScreen = ({
 					</ImageBackground>
 				</TouchableOpacity>
 				<TouchableOpacity
+					data-test-id="gameButton"
 					style={styles.singleOptionContainer}
 					activeOpacity={0.5}
-					onPress={() =>
-						// navigation.navigate('foobar')
-						console.log('Loading game screen....')
+					onPress={
+						() => navigation.navigate('')
+						// console.log('Loading game screen....')
 					}>
 					<ImageBackground
 						source={gameBackground}
