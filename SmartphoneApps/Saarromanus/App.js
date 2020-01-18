@@ -43,9 +43,9 @@ export default function() {
 	return (
 		<Provider store={store}>
 			<SafeAreaView style={{ flex: 1 }}>
-				<App />
-				<LoadingScreen />
-				<AlertScreen />
+				<App data-test="App" />
+				<LoadingScreen data-test="LoadingScreen" />
+				<AlertScreen data-test="AlertScreen" />
 			</SafeAreaView>
 		</Provider>
 	);
