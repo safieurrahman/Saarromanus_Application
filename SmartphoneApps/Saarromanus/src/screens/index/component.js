@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import {
-	SafeAreaView,
 	View,
 	Text,
 	Image,
@@ -9,7 +8,6 @@ import {
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
-import VerticalSeparator from '../../components/helpers/vertical-separator';
 import T from '../../utils/translator';
 import useUpdateTranslation from '../../hooks/use-update-translation';
 
@@ -41,22 +39,22 @@ const IndexScreen = ({
 
 	return (
 		<View style={styles.container}>
-			<View style={styles.coverContainer}>
-				<ImageBackground
-					source={backgroundCover}
-					style={styles.logoContainer}
-					imageStyle={{
-						opacity: 0.6,
-						backgroundColor: 'teal',
-					}}>
-					<Image source={logo} style={styles.logo} />
-				</ImageBackground>
-			</View>
+			<ImageBackground
+				data-test-id="coverPhoto"
+				source={backgroundCover}
+				style={styles.logoContainer}
+				imageStyle={{
+					opacity: 0.6,
+					backgroundColor: 'teal',
+				}}>
+				<Image source={logo} style={styles.logo} />
+			</ImageBackground>
 
-			<VerticalSeparator />
-
-			<View style={styles.mainOptionsContainer}>
+			<View
+				style={styles.mainOptionsContainer}
+				data-test-id="mainOptionsContainer">
 				<TouchableOpacity
+					data-test-id="routesButton"
 					style={styles.singleOptionContainer}
 					activeOpacity={0.5}
 					onPress={() => navigation.navigate('RouteList')}>
@@ -68,11 +66,16 @@ const IndexScreen = ({
 							opacity: 0.5,
 							backgroundColor: '#020204',
 						}}>
-						<Text style={styles.optionLabel}>{T.t('routes')}</Text>
+						<Text
+							numberOfLines={1}
+							ellipsizeMode={'tail'}
+							style={styles.optionLabel}>
+							{T.t('routes')}
+						</Text>
 					</ImageBackground>
 				</TouchableOpacity>
-				<VerticalSeparator />
 				<TouchableOpacity
+					data-test-id="sightsButton"
 					style={styles.singleOptionContainer}
 					activeOpacity={0.5}
 					onPress={() => navigation.navigate('Sights')}>
@@ -84,18 +87,21 @@ const IndexScreen = ({
 							opacity: 0.5,
 							backgroundColor: 'green',
 						}}>
-						<Text numberOfLines={1} style={styles.optionLabel}>
+						<Text
+							numberOfLines={1}
+							ellipsizeMode={'tail'}
+							style={styles.optionLabel}>
 							{T.t('sights')}
 						</Text>
 					</ImageBackground>
 				</TouchableOpacity>
-				<VerticalSeparator />
 				<TouchableOpacity
+					data-test-id="gameButton"
 					style={styles.singleOptionContainer}
 					activeOpacity={0.5}
-					onPress={() =>
-						// navigation.navigate('foobar')
-						console.log('Loading game screen...')
+					onPress={
+						() => navigation.navigate('')
+						// console.log('Loading game screen....')
 					}>
 					<ImageBackground
 						source={gameBackground}
@@ -105,7 +111,12 @@ const IndexScreen = ({
 							opacity: 0.5,
 							backgroundColor: 'purple',
 						}}>
-						<Text style={styles.optionLabel}>{T.t('game')}</Text>
+						<Text
+							numberOfLines={1}
+							ellipsizeMode={'tail'}
+							style={styles.optionLabel}>
+							{T.t('game')}
+						</Text>
 					</ImageBackground>
 				</TouchableOpacity>
 			</View>
@@ -115,7 +126,7 @@ const IndexScreen = ({
 
 IndexScreen.navigationOptions = ({ navigation }) => {
 	return {
-		title: 'Saarromanus',
+		title: 'Saarromanus/alpha-v-0.0.5',
 		headerTintColor: '#dddddd',
 		headerStyle: {
 			backgroundColor: 'rgba(0, 128, 128, 1)',

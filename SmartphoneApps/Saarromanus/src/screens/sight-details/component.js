@@ -38,7 +38,10 @@ const SightDetailsScreen = ({
 	isConnected(setConnected);
 
 	useEffect(() => {
-		setSightId(navigation.getParam('sightId') + '');
+		setSightId(navigation.getParam('sightId'));
+		return () => {
+			populateSight({});
+		};
 	}, []);
 
 	useEffect(() => {
