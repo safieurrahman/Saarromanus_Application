@@ -95,3 +95,9 @@ beforeAll(() => {
 	).dive();
 	component = wrapper.dive();
 });
+
+describe('<SightDetailsScreen />', () => {
+	it('renders properly', () => {
+		expect(wrapper).toMatchSnapshot();
+	});
+});
