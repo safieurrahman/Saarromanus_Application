@@ -8,9 +8,7 @@ import {
 	showAlert,
 } from '../actions/app-config';
 
-import { NavigationActions } from 'react-navigation';
-
-function* currentRouteSaga({ payload }) {
+export function* currentRouteSaga({ payload }) {
 	try {
 		yield put(showLoadingScreen());
 		const response = yield call(getCurrentRoute, payload);

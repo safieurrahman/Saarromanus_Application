@@ -8,7 +8,7 @@ import {
 	showAlert,
 } from '../actions/app-config';
 
-function* currentSightSaga({ payload }) {
+export function* currentSightSaga({ payload }) {
 	try {
 		yield put(showLoadingScreen());
 		const response = yield call(getSight, payload);

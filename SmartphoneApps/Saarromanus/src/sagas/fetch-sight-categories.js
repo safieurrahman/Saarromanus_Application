@@ -11,7 +11,7 @@ import {
 	showAlert,
 } from '../actions/app-config';
 
-function* fetchSightCategoriesSaga() {
+export function* fetchSightCategoriesSaga() {
 	try {
 		yield put(showLoadingScreen());
 		const response = yield call(getSightCategories);
