@@ -1,2 +1,2 @@
-import c from './connector';
+import c from './component';
 export default c;

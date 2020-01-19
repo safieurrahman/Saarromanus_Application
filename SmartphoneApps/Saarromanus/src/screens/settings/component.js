@@ -15,6 +15,7 @@ import styles from './styles';
 
 const SettingsScreen = ({
 	language,
+	storeLanguage,
 	checkForUpdate,
 	invokeToggleCheckUpdate,
 	navigation,
@@ -29,14 +30,17 @@ const SettingsScreen = ({
 	return (
 		<View style={styles.container}>
 			<View style={styles.languageContainer}>
-				<SelectLanguage />
+				<SelectLanguage
+					language={language}
+					storeLanguage={storeLanguage}
+				/>
 			</View>
 			<ToggleBox
 				title={"Check For Offline Contents' Update"}
 				value={checkForUpdate}
 				onValueChange={invokeToggleCheckUpdate}
 			/>
-			<AppGuide />
+			<AppGuide language={language} />
 		</View>
 	);
 };

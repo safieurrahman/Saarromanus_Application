@@ -108,9 +108,11 @@ const RouteViewScreen = ({
 	}, [route]);
 
 	return (
-		<View style={{ flex: 1 }}>
+		<View style={{ flex: 1 }} data-test-id="mainComponent">
 			{route.id && (
-				<ScrollView contentContainerStyle={styles.container}>
+				<ScrollView
+					contentContainerStyle={styles.container}
+					data-test-id="scrollViewcomponent">
 					<RouteMap
 						routePath={route.routePath}
 						sights={route.sights}

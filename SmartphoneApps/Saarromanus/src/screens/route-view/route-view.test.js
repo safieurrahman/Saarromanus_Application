@@ -4,6 +4,7 @@ import { shallow } from 'enzyme';
 import configureStore from 'redux-mock-store';
 
 import RouteViewScreen from './index';
+import SightsList from '../../components/sights-list';
 
 const mockStore = configureStore();
 
@@ -94,7 +95,7 @@ let wrapper;
 let store;
 let component;
 
-beforeEach(() => {
+beforeAll(() => {
 	store = mockStore(initialState);
 	wrapper = shallow(
 		<RouteViewScreen store={store} navigation={navigation} />
@@ -105,5 +106,33 @@ beforeEach(() => {
 describe('<RouteViewScreen />', () => {
 	it('renders properly', () => {
 		expect(wrapper).toMatchSnapshot();
+	});
+
+	it('has one main <View /> component', () => {
+		expect(component.find(`[data-test-id='mainComponent']`).length).toBe(1);
+	});
+
+	it('should contain a custom component called <RouteMap /> with navigation', () => {
+		expect(component.find(`withNavigation(RouteMap)`).length).toBe(1);
+	});
+
+	it('should contain a custom component called <SightsList />', () => {
+		expect(component.find(SightsList).length).toBe(1);
+	});
+
+	describe('<ScrollView />', () => {
+		it('is renedered', () => {
+			expect(
+				component.find(`[data-test-id='scrollViewcomponent']`).length
+			).toBe(1);
+		});
+
+		it('has four child components', () => {
+			expect(
+				component
+					.find(`[data-test-id='scrollViewcomponent']`)
+					.children().length
+			).toBe(4);
+		});
 	});
 });
