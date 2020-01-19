@@ -118,7 +118,7 @@ describe('current-route-saga', () => {
 	});
 
 	describe('SUCCESS', () => {
-		it('should dispatch a populate routes event', () => {
+		it('should dispatch a populate route event', () => {
 			expect(dispatchedActions[1]).toEqual(populateRoute(mockedRoute));
 		});
 	});
