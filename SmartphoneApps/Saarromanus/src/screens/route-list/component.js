@@ -75,10 +75,13 @@ const RouteListScreen = ({
 		}
 	}, [routes, connected, checkUpdateStatus]);
 	return (
-		<View style={styles.container}>
+		<View style={styles.container} data-test-id="mainContainer">
 			{routes.map((route, ind) => {
 				return (
-					<View key={route.id} style={styles.container}>
+					<View
+						key={route.id}
+						style={styles.container}
+						data-test-id="listItem">
 						<TouchableOpacity
 							style={styles.textContainer}
 							onPress={() =>
