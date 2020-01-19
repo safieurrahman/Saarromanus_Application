@@ -16,7 +16,7 @@ import checkForUpdate from '../../sagas/services/get-route-list';
 import styles from './styles';
 
 const RouteListScreen = ({
-	routes,
+	routes = [],
 	checkUpdateStatus,
 	getRouteList,
 	populateRouteList,
@@ -74,12 +74,14 @@ const RouteListScreen = ({
 			setStatus(null);
 		}
 	}, [routes, connected, checkUpdateStatus]);
-
 	return (
-		<View style={styles.container}>
+		<View style={styles.container} data-test-id="mainComponent">
 			{routes.map((route, ind) => {
 				return (
-					<View key={route.id} style={styles.container}>
+					<View
+						key={route.id}
+						style={styles.container}
+						data-test-id="listItem">
 						<TouchableOpacity
 							style={styles.textContainer}
 							onPress={() =>
