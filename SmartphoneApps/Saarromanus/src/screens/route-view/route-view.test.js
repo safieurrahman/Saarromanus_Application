@@ -89,3 +89,15 @@ const initialState = {
 		googleMapLink: 'https://maps.google.com',
 	},
 };
+
+let wrapper;
+let store;
+let component;
+
+beforeEach(() => {
+	store = mockStore(initialState);
+	wrapper = shallow(
+		<RouteViewScreen store={store} navigation={navigation} />
+	).dive();
+	component = wrapper.dive();
+});
