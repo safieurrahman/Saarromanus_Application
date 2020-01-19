@@ -110,7 +110,9 @@ const SightDetailsScreen = ({
 	}, [sight]);
 
 	return (
-		<ScrollView contentContainerStyle={styles.container}>
+		<ScrollView
+			contentContainerStyle={styles.container}
+			data-test-id="scrollViewMainContainer">
 			<View>
 				{sight.resources && (
 					<ImageGallery
