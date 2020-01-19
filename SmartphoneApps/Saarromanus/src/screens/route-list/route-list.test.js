@@ -64,4 +64,8 @@ describe('<RouteListScreen />', () => {
 	it('renders properly', () => {
 		expect(wrapper).toMatchSnapshot();
 	});
+
+	it('has 1 main <View /> Component', () => {
+		expect(component.find(`[data-test-id='mainComponent']`).length).toBe(1);
+	});
 });

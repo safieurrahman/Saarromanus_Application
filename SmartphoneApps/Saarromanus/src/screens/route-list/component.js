@@ -75,7 +75,7 @@ const RouteListScreen = ({
 		}
 	}, [routes, connected, checkUpdateStatus]);
 	return (
-		<View style={styles.container} data-test-id="mainContainer">
+		<View style={styles.container} data-test-id="mainComponent">
 			{routes.map((route, ind) => {
 				return (
 					<View
