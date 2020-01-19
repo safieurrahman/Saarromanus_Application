@@ -16,7 +16,7 @@ import checkForUpdate from '../../sagas/services/get-route-list';
 import styles from './styles';
 
 const RouteListScreen = ({
-	routes,
+	routes = [],
 	checkUpdateStatus,
 	getRouteList,
 	populateRouteList,
@@ -74,7 +74,6 @@ const RouteListScreen = ({
 			setStatus(null);
 		}
 	}, [routes, connected, checkUpdateStatus]);
-
 	return (
 		<View style={styles.container}>
 			{routes.map((route, ind) => {

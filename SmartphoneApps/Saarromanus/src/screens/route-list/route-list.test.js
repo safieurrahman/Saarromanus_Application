@@ -3,7 +3,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import configureStore from 'redux-mock-store';
 
-import RouteListScreen from './component';
+import RouteListScreen from './index';
 
 const mockStore = configureStore();
 
@@ -13,6 +13,7 @@ const navigation = {
 };
 
 const initialState = {
+	config: { checkForUpdate: false },
 	routes: [
 		{
 			id: 'KBaeZFpmqRafsXhcsq3V',
@@ -57,4 +58,10 @@ beforeEach(() => {
 		<RouteListScreen store={store} navigation={navigation} />
 	).dive();
 	component = wrapper.dive();
+});
+
+describe('<RouteListScreen />', () => {
+	it('renders properly', () => {
+		expect(wrapper).toMatchSnapshot();
+	});
 });
