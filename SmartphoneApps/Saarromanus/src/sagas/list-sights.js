@@ -11,7 +11,7 @@ import {
 	showAlert,
 } from '../actions/app-config';
 
-function* listSightsSaga({ payload }) {
+export function* listSightsSaga({ payload }) {
 	try {
 		yield put(showLoadingScreen());
 		const response = yield call(getSights, payload);
