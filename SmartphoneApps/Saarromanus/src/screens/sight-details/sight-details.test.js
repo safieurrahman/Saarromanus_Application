@@ -83,3 +83,15 @@ const initialState = {
 		],
 	},
 };
+
+let wrapper;
+let store;
+let component;
+
+beforeAll(() => {
+	store = mockStore(initialState);
+	wrapper = shallow(
+		<SightDetailsScreen store={store} navigation={navigation} />
+	).dive();
+	component = wrapper.dive();
+});
