@@ -101,3 +101,9 @@ beforeEach(() => {
 	).dive();
 	component = wrapper.dive();
 });
+
+describe('<RouteViewScreen />', () => {
+	it('renders properly', () => {
+		expect(wrapper).toMatchSnapshot();
+	});
+});
