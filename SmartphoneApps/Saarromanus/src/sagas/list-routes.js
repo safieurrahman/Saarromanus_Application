@@ -8,7 +8,7 @@ import {
 	showAlert,
 } from '../actions/app-config';
 
-function* listRoutesSaga() {
+export function* listRoutesSaga() {
 	try {
 		yield put(showLoadingScreen());
 		const response = yield call(getRouteList);
