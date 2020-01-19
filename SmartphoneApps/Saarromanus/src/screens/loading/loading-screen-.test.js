@@ -29,10 +29,42 @@ describe('<LoadingScreen />', () => {
 
 		it('should not render', () => {
 			expect(wrapper).toMatchSnapshot('loading:false');
+			expect(wrapper.dive().children().length).toBeFalsy();
 		});
 
 		it('should not mount any <View /> component', () => {
 			expect(wrapper.find('View').length).toBe(0);
+		});
+	});
+	describe('When Loading', () => {
+		let wrapper;
+		let store;
+		let component;
+
+		beforeAll(() => {
+			store = mockStore(initialLoadingState);
+			wrapper = shallow(<LoadingScreen store={store} />).dive();
+			component = wrapper.dive();
+		});
+
+		it('should render properly', () => {
+			expect(wrapper).toMatchSnapshot('loading:true');
+		});
+
+		it('should mount <View /> component', () => {
+			expect(component.find('View').length).toBe(1);
+		});
+
+		it('should render two <Image /> components', () => {
+			expect(component.find('Image').length).toBe(2);
+		});
+
+		it('should render a <ActivityIndicator /> component', () => {
+			expect(component.find('ActivityIndicator').length).toBe(1);
+		});
+
+		it('should have three inner components', () => {
+			expect(component.find('View').children().length).toBe(3);
 		});
 	});
 });
