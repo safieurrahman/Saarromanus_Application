@@ -4,6 +4,9 @@ import { shallow } from 'enzyme';
 import configureStore from 'redux-mock-store';
 
 import SightDetailsScreen from './index';
+import ImageGallery from '../../components/image-gallery';
+import AudioPlayer from '../../components/audio-player';
+import TextBox from '../../components/text-box';
 
 const mockStore = configureStore();
 
@@ -99,5 +102,33 @@ beforeAll(() => {
 describe('<SightDetailsScreen />', () => {
 	it('renders properly', () => {
 		expect(wrapper).toMatchSnapshot();
+	});
+
+	it('has one main <ScrollView /> component', () => {
+		expect(
+			component.find(`[data-test-id='scrollViewMainContainer']`).length
+		).toBe(1);
+	});
+
+	describe('<ScrollView />', () => {
+		it('has one custom component called <ImageGallery />', () => {
+			expect(component.find(ImageGallery).length).toBe(1);
+		});
+
+		it('has one custom component called <AudioPlayer />', () => {
+			expect(component.find(AudioPlayer).length).toBe(1);
+		});
+
+		it('has one custom component called <TextBox />', () => {
+			expect(component.find(TextBox).length).toBe(1);
+		});
+
+		it('has five child components', () => {
+			expect(
+				component
+					.find(`[data-test-id='scrollViewMainContainer']`)
+					.children().length
+			).toBe(5);
+		});
 	});
 });
