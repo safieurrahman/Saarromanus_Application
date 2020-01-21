@@ -61,7 +61,7 @@ describe('<SightsListScreen />', () => {
 		it('should be an array of sights', () => {
 			expect(Array.isArray(wrapper.props().sights)).toBe(true);
 		});
-		it('length should be equal to the number of sights categories received from the store', () => {
+		it('length should be equal to the number of sights passed via the store', () => {
 			expect(wrapper.props().sights.length).toBe(
 				initialState.sights.length
 			);
