@@ -28,7 +28,7 @@ const SettingsScreen = ({
 	}, [language]);
 
 	return (
-		<View style={styles.container}>
+		<View style={styles.container} data-test-id="mainContainer">
 			<View style={styles.languageContainer}>
 				<SelectLanguage
 					language={language}
