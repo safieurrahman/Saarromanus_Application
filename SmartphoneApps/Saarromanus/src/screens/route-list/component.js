@@ -18,7 +18,6 @@ import styles from './styles';
 
 const RouteListScreen = ({
 	routes = [],
-	language,
 	checkUpdateStatus,
 	getRouteList,
 	populateRouteList,
@@ -28,10 +27,6 @@ const RouteListScreen = ({
 	const [status, setStatus] = useState(null);
 	const [connected, setConnected] = useState(null);
 	isConnected(setConnected);
-
-	useEffect(() => {
-		navigation.setParams({ title: T.t('routes') });
-	}, [language]);
 
 	useEffect(() => {
 		setRouteLen(routes.length - 1);
@@ -112,7 +107,7 @@ const RouteListScreen = ({
 
 RouteListScreen.navigationOptions = ({ navigation }) => {
 	return {
-		title: navigation.getParam('title', 'Routes'),
+		title: T.t('routes'),
 		headerTintColor: '#dddddd',
 		headerStyle: {
 			backgroundColor: 'rgba(0, 128, 128, 1)',
