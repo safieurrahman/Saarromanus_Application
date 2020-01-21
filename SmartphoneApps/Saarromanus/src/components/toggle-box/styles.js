@@ -10,6 +10,7 @@ export default StyleSheet.create({
 		marginVertical: 20,
 	},
 	titleText: {
+		flexBasis: '80%',
 		fontSize: 15,
 		fontWeight: 'bold',
 	},

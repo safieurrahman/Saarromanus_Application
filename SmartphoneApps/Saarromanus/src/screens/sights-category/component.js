@@ -3,6 +3,7 @@ import { View } from 'react-native';
 
 import getLocale from '../../hooks/use-current-locale-short';
 import SingleCategory from '../../components/single-category';
+import T from '../../utils/translator';
 
 import {
 	insertNewRow,
@@ -95,7 +96,7 @@ const SightsCategoryScreen = ({
 
 SightsCategoryScreen.navigationOptions = ({ navigation }) => {
 	return {
-		title: 'Sight Categories',
+		title: T.t('sightCategories'),
 		headerTintColor: '#dddddd',
 		headerStyle: {
 			backgroundColor: 'rgba(0, 128, 128, 1)',

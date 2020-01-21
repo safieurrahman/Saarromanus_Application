@@ -6,6 +6,7 @@ import SightsList from '../../components/sights-list';
 import RouteMap from '../../components/route-map';
 import VerticalSeparator from '../../components/helpers/vertical-separator';
 import getLocale from '../../hooks/use-current-locale-short';
+import T from '../../utils/translator';
 
 import {
 	ROUTE_TABLE,
@@ -118,7 +119,7 @@ const RouteViewScreen = ({
 						sights={route.sights}
 						googleMapURL={route.googleMapLink}
 					/>
-					<Text style={styles.sightHeading}>Sights</Text>
+					<Text style={styles.sightHeading}>{T.t('sights')}</Text>
 					<VerticalSeparator />
 					<SightsList locale={getLocale()} sights={route.sights} />
 				</ScrollView>

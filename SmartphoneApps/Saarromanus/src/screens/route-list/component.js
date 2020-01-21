@@ -3,6 +3,7 @@ import { View, Text, TouchableOpacity } from 'react-native';
 
 import VerticalSeparator from '../../components/helpers/vertical-separator';
 import getLocale from '../../hooks/use-current-locale-short';
+import T from '../../utils/translator';
 
 import {
 	insertNewRow,
@@ -106,7 +107,7 @@ const RouteListScreen = ({
 
 RouteListScreen.navigationOptions = ({ navigation }) => {
 	return {
-		title: 'Routes',
+		title: T.t('routes'),
 		headerTintColor: '#dddddd',
 		headerStyle: {
 			backgroundColor: 'rgba(0, 128, 128, 1)',

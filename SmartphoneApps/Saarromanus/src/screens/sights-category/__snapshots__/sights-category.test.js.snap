@@ -1,0 +1,76 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<SightsCategoryScreen /> renders properly 1`] = `
+<SightsCategoryScreen
+  checkUpdateStatus={false}
+  getSightCategories={[Function]}
+  navigation={
+    Object {
+      "navigate": [MockFunction],
+    }
+  }
+  populateSightCategories={[Function]}
+  sightCategories={
+    Array [
+      Object {
+        "de": Object {
+          "name": "Alle",
+        },
+        "en": Object {
+          "name": "All",
+        },
+        "fr": Object {
+          "name": "Toutes",
+        },
+        "id": "all",
+      },
+      Object {
+        "de": Object {
+          "name": "Settlements",
+        },
+        "en": Object {
+          "name": "Siedlungen",
+        },
+        "fr": Object {
+          "name": "Règlements",
+        },
+        "id": "2DEZplgST07PTogH9JWX",
+      },
+      Object {
+        "de": Object {
+          "name": "Römische Villen",
+        },
+        "en": Object {
+          "name": "Roman Villas",
+        },
+        "fr": Object {
+          "name": "Villas romaines",
+        },
+        "id": "JbyYyCCSm9ZT2yKGhjTC",
+      },
+      Object {
+        "de": Object {
+          "name": "Heiligtümer",
+        },
+        "en": Object {
+          "name": "Sanctuaries",
+        },
+        "fr": Object {
+          "name": "Sanctuaires",
+        },
+        "id": "qXG2ZqlHWLQiDLYea1qn",
+      },
+    ]
+  }
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+/>
+`;

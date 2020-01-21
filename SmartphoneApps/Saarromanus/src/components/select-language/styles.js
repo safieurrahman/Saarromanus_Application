@@ -4,7 +4,6 @@ export default StyleSheet.create({
 	card: {
 		display: 'flex',
 		height: '100%',
-		height: '100%',
 		marginVertical: 0,
 		paddingVertical: 0,
 	},
@@ -13,7 +12,7 @@ export default StyleSheet.create({
 		alignItems: 'center',
 		justifyContent: 'center',
 		width: '100%',
-		height: '82%',
+		height: '80%',
 		marginVertical: 0,
 		paddingVertical: 0,
 	},

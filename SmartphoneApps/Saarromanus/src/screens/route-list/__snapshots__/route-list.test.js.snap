@@ -1,0 +1,58 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<RouteListScreen /> renders properly 1`] = `
+<RouteListScreen
+  checkUpdateStatus={false}
+  getRouteList={[Function]}
+  navigation={
+    Object {
+      "navigate": [MockFunction],
+    }
+  }
+  populateRouteList={[Function]}
+  routes={
+    Array [
+      Object {
+        "de": Object {
+          "information": "Info..",
+          "name": "Dillingen Route",
+        },
+        "en": Object {
+          "information": "Info..",
+          "name": "Dillingen Route",
+        },
+        "fr": Object {
+          "information": "Info..",
+          "name": "Delingen Route",
+        },
+        "id": "KBaeZFpmqRafsXhcsq3V",
+      },
+      Object {
+        "de": Object {
+          "information": "Informationen",
+          "name": "Saarland Route",
+        },
+        "en": Object {
+          "information": "Information",
+          "name": "Saarland Route",
+        },
+        "fr": Object {
+          "information": "Informations",
+          "name": "Route de la Sarre",
+        },
+        "id": "lzOL126R7Em8FDO0jlHH",
+      },
+    ]
+  }
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+/>
+`;
