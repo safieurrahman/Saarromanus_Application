@@ -88,7 +88,9 @@ const SightsListScreen = ({
 	}, [sights, connected, checkUpdateStatus]);
 
 	return (
-		<ScrollView contentContainerStyle={styles.container}>
+		<ScrollView
+			contentContainerStyle={styles.container}
+			data-test-id="mainContainer">
 			{sights.length ? (
 				<SightsList locale={getLocale()} sights={sights} />
 			) : null}

@@ -47,3 +47,24 @@ beforeAll(() => {
 	).dive();
 	component = wrapper.dive();
 });
+
+describe('<SightsListScreen />', () => {
+	it('renders properly', () => {
+		expect(wrapper).toMatchSnapshot();
+	});
+
+	it('has one main <ScrollView /> component', () => {
+		expect(component.find(`[data-test-id='mainContainer']`).length).toBe(1);
+	});
+
+	describe('Sights List', () => {
+		it('should be an array of sights', () => {
+			expect(Array.isArray(wrapper.props().sights)).toBe(true);
+		});
+		it('length should be equal to the number of sights categories received from the store', () => {
+			expect(wrapper.props().sights.length).toBe(
+				initialState.sights.length
+			);
+		});
+	});
+});
