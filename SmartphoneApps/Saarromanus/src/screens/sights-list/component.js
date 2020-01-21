@@ -3,6 +3,7 @@ import { ScrollView, Text } from 'react-native';
 
 import SightsList from '../../components/sights-list';
 import getLocale from '../../hooks/use-current-locale-short';
+import T from '../../utils/translator';
 
 import {
 	SIGHTS_BY_CATEGORY_TABLE,
@@ -30,6 +31,9 @@ const SightsListScreen = ({
 
 	useEffect(() => {
 		setCategoryId(navigation.getParam('categoryId') + '');
+		return () => {
+			populateSightsByCategory([]);
+		};
 	}, []);
 
 	useEffect(() => {
@@ -100,8 +104,9 @@ const SightsListScreen = ({
 
 SightsListScreen.navigationOptions = ({ navigation }) => {
 	const title = navigation.getParam('categoryName', '');
+	const translatedPart = T.t('sightsList');
 	return {
-		title: title ? 'Sights List - ' + title : 'Sights List',
+		title: title ? title : translatedPart,
 		headerTintColor: '#dddddd',
 		headerStyle: {
 			backgroundColor: 'rgba(0, 128, 128, 1)',

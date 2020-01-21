@@ -10,7 +10,9 @@ import styles from './styles';
 const ToggleBox = ({ title, value, onValueChange }) => {
 	return (
 		<View style={styles.container}>
-			<Text style={styles.titleText}>{title}</Text>
+			<Text style={styles.titleText} numberOfLines={1}>
+				{title}
+			</Text>
 			<Switch value={value} onValueChange={onValueChange} />
 		</View>
 	);

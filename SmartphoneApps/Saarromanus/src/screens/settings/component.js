@@ -36,7 +36,7 @@ const SettingsScreen = ({
 				/>
 			</View>
 			<ToggleBox
-				title={"Check For Offline Contents' Update"}
+				title={T.t('checkOfflineContentsUpdate')}
 				value={checkForUpdate}
 				onValueChange={invokeToggleCheckUpdate}
 			/>

@@ -70,7 +70,7 @@ const IndexScreen = ({
 							numberOfLines={1}
 							ellipsizeMode={'tail'}
 							style={styles.optionLabel}>
-							{T.t('routes')}
+							{T.t('routes').toLocaleUpperCase()}
 						</Text>
 					</ImageBackground>
 				</TouchableOpacity>
@@ -91,7 +91,7 @@ const IndexScreen = ({
 							numberOfLines={1}
 							ellipsizeMode={'tail'}
 							style={styles.optionLabel}>
-							{T.t('sights')}
+							{T.t('sights').toLocaleUpperCase()}
 						</Text>
 					</ImageBackground>
 				</TouchableOpacity>
@@ -115,7 +115,7 @@ const IndexScreen = ({
 							numberOfLines={1}
 							ellipsizeMode={'tail'}
 							style={styles.optionLabel}>
-							{T.t('game')}
+							{T.t('game').toLocaleUpperCase()}
 						</Text>
 					</ImageBackground>
 				</TouchableOpacity>
