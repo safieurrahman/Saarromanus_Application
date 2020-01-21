@@ -30,7 +30,6 @@ const RouteListScreen = ({
 	isConnected(setConnected);
 
 	useEffect(() => {
-		// updateTranslation();
 		navigation.setParams({ title: T.t('routes') });
 	}, [language]);
 

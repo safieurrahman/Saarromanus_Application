@@ -4,9 +4,9 @@ const en = {
 	'fr-FR': 'French',
 
 	// Index Screen
-	routes: 'ROUTES',
-	sights: 'SIGHTS',
-	game: 'GAME',
+	routes: 'Routes',
+	sights: 'Sights',
+	game: 'Game',
 
 	// Settings Screen
 	settings: 'Settings',

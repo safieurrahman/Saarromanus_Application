@@ -4,9 +4,9 @@ const de = {
 	'fr-FR': 'Französisch',
 
 	// Index Screen
-	routes: 'ROUTEN',
-	sights: 'SEHENSWÜRDIGKEITEN',
-	game: 'SPIEL',
+	routes: 'Routen',
+	sights: 'Sehenswürdigkeiten',
+	game: 'Spiel',
 
 	// Settings Screen
 	settings: 'Einstellungen',
