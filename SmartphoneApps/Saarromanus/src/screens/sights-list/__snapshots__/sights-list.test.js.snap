@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<SightsListScreen /> renders properly 1`] = `
+<SightsListScreen
+  checkUpdateStatus={false}
+  getSightsByCategory={[Function]}
+  navigation={
+    Object {
+      "navigate": [MockFunction],
+    }
+  }
+  populateSightsByCategory={[Function]}
+  sights={
+    Array [
+      Object {
+        "de": Object {
+          "information": "Die Anbetung der Sonne ist ein Kult",
+          "name": "Mithraskapelle am Halberg",
+        },
+        "en": Object {
+          "information": "The worship of the sun...",
+          "name": "Mithra chapel on Halberg",
+        },
+        "fr": Object {
+          "information": "L'adoration du soleil est un culte",
+          "name": "Chapelle de Mithras à Halberg",
+        },
+        "id": "AK1AIRDavlLPkNjV1VDt",
+        "resourceName": "front_large.jpg",
+        "sight_category": "qXG2ZqlHWLQiDLYea1qn",
+        "thumbnail": "https://firebasestorage.googleapis.com/v0/b",
+      },
+    ]
+  }
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+/>
+`;
