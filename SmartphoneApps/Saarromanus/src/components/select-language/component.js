@@ -10,7 +10,7 @@ import styles from './styles';
 
 const SelectLanguage = ({ language, storeLanguage }) => {
 	const getLanguageOptions = () => {
-		const SUPPORTED_LANGUAGES = ['en-US', 'de-DE']; // TODO:KAZI: Get it from the env file ???
+		const SUPPORTED_LANGUAGES = ['en-US', 'de-DE', 'fr-FR']; // TODO:KAZI: Get it from the env file ???
 		const options = [];
 		SUPPORTED_LANGUAGES.forEach(lang => {
 			options.push(
