@@ -31,6 +31,9 @@ const SightsListScreen = ({
 
 	useEffect(() => {
 		setCategoryId(navigation.getParam('categoryId') + '');
+		return () => {
+			populateSightsByCategory([]);
+		};
 	}, []);
 
 	useEffect(() => {
@@ -103,7 +106,7 @@ SightsListScreen.navigationOptions = ({ navigation }) => {
 	const title = navigation.getParam('categoryName', '');
 	const translatedPart = T.t('sightsList');
 	return {
-		title: title ? translatedPart + ' - ' + title : translatedPart,
+		title: title ? title : translatedPart,
 		headerTintColor: '#dddddd',
 		headerStyle: {
 			backgroundColor: 'rgba(0, 128, 128, 1)',

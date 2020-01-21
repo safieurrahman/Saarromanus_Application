@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { ScrollView, Text, View, TouchableOpacity } from 'react-native';
-import { Audio } from 'expo-av';
+import { ScrollView, View, TouchableOpacity } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 import VerticalSeparator from '../../components/helpers/vertical-separator';
@@ -10,6 +9,8 @@ import AudioPlayer from '../../components/audio-player';
 import TextBox from '../../components/text-box';
 
 import getLocale from '../../hooks/use-current-locale-short';
+import T from '../../utils/translator';
+
 import {
 	storeSightAsync,
 	mapSightWithoutDownload,
@@ -133,7 +134,7 @@ const SightDetailsScreen = ({
 			<VerticalSeparator marginVertical={5} />
 			{sight[getLocale()] && (
 				<TextBox
-					heading={`More About ${sight[getLocale()].name}`}
+					heading={`${T.t('moreAbout')} ${sight[getLocale()].name}`}
 					text={sight[getLocale()].information}
 				/>
 			)}
@@ -148,7 +149,7 @@ SightDetailsScreen.navigationOptions = ({ navigation }) => {
 	const hideLoadingScreen = navigation.getParam('hideLoadingScreen');
 	const showAlert = navigation.getParam('showAlert');
 	return {
-		title: 'Sight Details',
+		title: T.t('sightDetails'),
 		headerTintColor: '#dddddd',
 		headerStyle: {
 			backgroundColor: 'rgba(0, 128, 128, 1)',
