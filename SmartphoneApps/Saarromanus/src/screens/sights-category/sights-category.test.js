@@ -70,10 +70,43 @@ let wrapper;
 let store;
 let component;
 
-beforeEach(() => {
+beforeAll(() => {
 	store = mockStore(initialState);
 	wrapper = shallow(
 		<SightsCategoryScreen store={store} navigation={navigation} />
 	).dive();
 	component = wrapper.dive();
+});
+
+describe('<SightsCategoryScreen />', () => {
+	it('renders properly', () => {
+		expect(wrapper).toMatchSnapshot();
+	});
+
+	it('has one main <View /> component', () => {
+		expect(component.find('View').length).toBe(1);
+	});
+
+	describe('Category List', () => {
+		it('should be an array of categories', () => {
+			expect(Array.isArray(wrapper.props().sightCategories)).toBe(true);
+		});
+		it('length should be equal to the number of sights categories received from the store', () => {
+			expect(wrapper.props().sightCategories.length).toBe(
+				initialState.sightCategories.length
+			);
+		});
+		describe('Single Category', () => {
+			it('should contain the component: <SingleCategory />', () => {
+				expect(
+					component.find('withNavigation(SingleCategory)').length
+				).not.toBe(0);
+			});
+			it('length should equal to the number of categories', () => {
+				expect(
+					component.find('withNavigation(SingleCategory)').length
+				).toBe(initialState.sightCategories.length);
+			});
+		});
+	});
 });
