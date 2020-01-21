@@ -4,7 +4,7 @@ import configureStore from 'redux-mock-store';
 import { listSightsSaga } from '../list-sights';
 import { populateSightsByCategory } from '../../actions/sights';
 jest.mock('../services/get-sights');
-import getRouteList from '../services/get-sights';
+import getSights from '../services/get-sights';
 import {
 	showLoadingScreen,
 	hideLoadingScreen,
@@ -56,3 +56,61 @@ const mockedSights = [
 		sight_category: '2DEZplgST07PTogH9JWX',
 	},
 ];
+
+let mockedResponse;
+let fakeStore;
+
+beforeAll(() => {
+	mockedResponse = { payload: mockedSights, success: true };
+});
+
+describe('list-sights-saga', () => {
+	let dispatchedActions;
+
+	beforeAll(async () => {
+		getSights.mockImplementation(() => Promise.resolve(mockedResponse));
+		fakeStore = configureStore()({});
+		await runSaga(fakeStore, listSightsSaga, '2DEZplgST07PTogH9JWX').done;
+		dispatchedActions = fakeStore.getActions();
+	});
+
+	it('should dispatch the show loading screen event before making any request', () => {
+		expect(dispatchedActions[0]).toEqual(showLoadingScreen());
+	});
+
+	it('should make a GET request to /sight_categories/2DEZplgST07PTogH9JWX end point', () => {
+		expect(getSights.mock.calls.length).toBe(1);
+	});
+
+	it('should dispatch the hide loading screen event irrespective of the response', () => {
+		expect(dispatchedActions[2]).toEqual(hideLoadingScreen());
+	});
+
+	describe('RESPONSE->SUCCESS', () => {
+		it('should dispatch a populate sights by category event', () => {
+			expect(dispatchedActions[1]).toEqual(
+				populateSightsByCategory(mockedSights)
+			);
+		});
+	});
+
+	describe('RESPONSE->ERROR', () => {
+		let failedDispatchedActions = [];
+		beforeAll(async () => {
+			getSights.mockImplementation(() => Promise.reject(''));
+			const failedStore = configureStore()({});
+			await runSaga(failedStore, listSightsSaga, '2DEZplgST07PTogH9JWX')
+				.done;
+			failedDispatchedActions = failedStore.getActions();
+		});
+		it('should show network request failed related error', () => {
+			expect(failedDispatchedActions[2]).toEqual(
+				showAlert({
+					title: 'Network Request Failed!',
+					message:
+						'Unable to load data from the server. Please connect to the internet and try again if you are not connected already.',
+				})
+			);
+		});
+	});
+});
