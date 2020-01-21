@@ -65,3 +65,15 @@ const initialState = {
 		},
 	],
 };
+
+let wrapper;
+let store;
+let component;
+
+beforeEach(() => {
+	store = mockStore(initialState);
+	wrapper = shallow(
+		<SightsCategoryScreen store={store} navigation={navigation} />
+	).dive();
+	component = wrapper.dive();
+});
