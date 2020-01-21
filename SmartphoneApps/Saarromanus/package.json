@@ -6,8 +6,8 @@
 		"ios": "expo start --ios",
 		"web": "expo start --web",
 		"eject": "expo eject",
-		"test": "jest --watch --coverage=false",
-		"testFinal": "jest --coverage=false",
+		"test": "jest --coverage",
+		"testFinal": "jest -u --watchAll=false",
 		"testus": "jest -u --coverage=false"
 	},
 	"dependencies": {
@@ -57,7 +57,8 @@
 		"setupFiles": [
 			"./setupTests.js"
 		],
-		"collectCoverage": false,
+		"collectCoverage": true,
+		"coverageReporters": ["json", "html"],
 		"reporters": [
 			"default",
 			[
@@ -79,7 +80,7 @@
 			]
 		],
 		"collectCoverageFrom": [
-			"**/src*.{js,jsx}",
+			"**/*.{js,jsx}",
 			"!**/coverage/**",
 			"!**/node_modules/**",
 			"!**/babel.config.js",

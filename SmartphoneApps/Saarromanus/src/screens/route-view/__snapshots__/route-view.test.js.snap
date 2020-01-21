@@ -1,0 +1,101 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<RouteViewScreen /> renders properly 1`] = `
+<RouteViewScreen
+  checkUpdateStatus={false}
+  getRoute={[Function]}
+  hideLoadingScreen={[Function]}
+  navigation={
+    Object {
+      "navigate": [MockFunction],
+    }
+  }
+  populateRoute={[Function]}
+  route={
+    Object {
+      "de": Object {
+        "information": "Uds",
+        "name": "Uds",
+      },
+      "en": Object {
+        "information": "Uds",
+        "name": "Uds",
+      },
+      "fr": Object {
+        "information": "Uds",
+        "name": "Uds",
+      },
+      "googleMapLink": "https://maps.google.com",
+      "id": "VHQol7Dz3FEkOujzHEhi",
+      "routePath": Array [
+        Object {
+          "latitude": 49.2550333908854,
+          "longitude": 7.040948867797852,
+        },
+        Object {
+          "latitude": 49.24736639760812,
+          "longitude": 7.041757315435802,
+        },
+      ],
+      "sights": Array [
+        Object {
+          "coordinate": Object {
+            "latitude": 49.25725020830364,
+            "longitude": 7.040768301574644,
+          },
+          "de": Object {
+            "information": "UdS",
+            "name": "UdS",
+          },
+          "en": Object {
+            "information": "UdS",
+            "name": "UdS",
+          },
+          "fr": Object {
+            "information": "UdS",
+            "name": "UdS",
+          },
+          "id": "jL691v4sJDMt8eq3sDg6",
+          "resourceName": "1579079373743_Saarland Uni.jpg",
+          "thumbnail": "https://firebasestorage.googleapis.com/v0/b/saarromanus-519b6.appspot.com/o/images%2F1579079373743_Saarland%20Uni.jpg?alt=media&token=32dca814-9c54-44e5-861b-c8bb440090a7",
+        },
+        Object {
+          "coordinate": Object {
+            "latitude": 49.2533339,
+            "longitude": 7.0415635000000005,
+          },
+          "de": Object {
+            "information": "Der Schwarzenbergturm ist ein Aussichtsturm, der zwischen 1930 und 1931 erbaut wurde. Der Stahlbetonturm mit quadratischem Querschnitt befindet sich am Schwarzenberg in Saarbrücken. 2012 wurden erhebliche Baumängel festgestellt und der Turm für rund 250.000 Euro saniert. Es ist seit Oktober 2013 wieder geöffnet und nach der Renovierung der Fassade und der Treppe wieder für die Öffentlichkeit zugänglich.",
+            "name": "Schwarzenbergturm",
+          },
+          "en": Object {
+            "information": "The Schwarzenberg ...
+
+",
+            "name": "Schwarzenberg Tower",
+          },
+          "fr": Object {
+            "information": "La tour Schwarzenberg est une tour de guet construite entre 1930 et 1931. La tour en béton armé de section carrée est située sur le Schwarzenberg à Sarrebruck. Des défauts de construction importants ont été identifiés en 2012 et la tour a été rénovée pour environ 250 000 euros. Il est à nouveau ouvert depuis octobre 2013 et est à nouveau accessible au public après rénovation de la façade et de l'escalier.",
+            "name": "Tour Schwarzenberg",
+          },
+          "id": "Y4JifOOIObOYN0aNzrUh",
+          "resourceName": "1579035955622_x1000_y563_9f32be_10.jpg",
+          "thumbnail": "https://firebasestorage.googleapis.com/v0/b/saarromanus-519b6.appspot.com/o/images%2F1579035955622_x1000_y563_9f32be_10.jpg?alt=media&token=a268d17b-f85b-4630-94d4-d0195ada6edb",
+        },
+      ],
+    }
+  }
+  showAlert={[Function]}
+  showLoadingScreen={[Function]}
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+/>
+`;

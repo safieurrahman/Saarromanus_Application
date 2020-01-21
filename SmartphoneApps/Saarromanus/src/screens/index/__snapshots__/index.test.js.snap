@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<IndexScreen /> renders properly 1`] = `
+<IndexScreen
+  detectCheckUpdate={[Function]}
+  detectLanguage={[Function]}
+  language="en-US"
+  navigation={
+    Object {
+      "navigate": [MockFunction],
+    }
+  }
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+/>
+`;
