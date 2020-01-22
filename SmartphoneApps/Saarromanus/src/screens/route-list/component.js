@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { ScrollView, View, Text, TouchableOpacity } from 'react-native';
 
 import VerticalSeparator from '../../components/helpers/vertical-separator';
 import getLocale from '../../hooks/use-current-locale-short';
@@ -76,7 +76,9 @@ const RouteListScreen = ({
 		}
 	}, [routes, connected, checkUpdateStatus]);
 	return (
-		<View style={styles.container} data-test-id="mainComponent">
+		<ScrollView
+			contentContainerStyle={styles.container}
+			data-test-id="mainComponent">
 			{routes.map((route, ind) => {
 				return (
 					<View
@@ -101,7 +103,31 @@ const RouteListScreen = ({
 					</View>
 				);
 			})}
-		</View>
+			{routes.map((route, ind) => {
+				return (
+					<View
+						key={route.id}
+						style={styles.container}
+						data-test-id="listItem">
+						<TouchableOpacity
+							style={styles.textContainer}
+							onPress={() =>
+								navigation.navigate('RouteView', {
+									routeId: route.id,
+									routeName: route[getLocale()].name,
+								})
+							}>
+							<Text style={styles.headingText}>
+								{route[getLocale()].name}
+							</Text>
+						</TouchableOpacity>
+						{ind !== routeLen && (
+							<VerticalSeparator style={styles.separator} />
+						)}
+					</View>
+				);
+			})}
+		</ScrollView>
 	);
 };
 

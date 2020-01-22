@@ -6,6 +6,7 @@ export default StyleSheet.create({
 		alignItems: 'center',
 		justifyContent: 'flex-start',
 		width: '100%',
+		flexGrow: 1,
 	},
 	textContainer: {
 		display: 'flex',
