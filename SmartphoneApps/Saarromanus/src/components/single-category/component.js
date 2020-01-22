@@ -20,11 +20,8 @@ const SingleCategory = ({ id, iconName, categoryName, navigation }) => {
 			<View style={styles.iconContainer}>
 				<MaterialIcons name={iconName} size={60} />
 			</View>
-			<View>
+			<View style={styles.headingContainer}>
 				<Text style={styles.headingText}>{categoryName}</Text>
-				{/* <View> */}
-				<Text>Category Details</Text>
-				{/* </View> */}
 			</View>
 		</TouchableOpacity>
 	);
