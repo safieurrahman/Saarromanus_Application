@@ -16,7 +16,7 @@ export default StyleSheet.create({
 		textAlign: 'center',
 	},
 	headingText: {
-		fontSize: 30,
+		fontSize: 35,
 		fontWeight: 'bold',
 	},
 	separator: {
