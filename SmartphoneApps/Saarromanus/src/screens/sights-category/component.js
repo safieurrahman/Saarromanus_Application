@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View } from 'react-native';
+import { View, ScrollView } from 'react-native';
 
 import getLocale from '../../hooks/use-current-locale-short';
 import SingleCategory from '../../components/single-category';
@@ -79,17 +79,19 @@ const SightsCategoryScreen = ({
 	}, [sightCategories, connected, checkUpdateStatus]);
 
 	return (
-		<View style={styles.container}>
-			{sightCategories.map(category => {
-				return (
-					<SingleCategory
-						key={category.id + ''}
-						id={category.id}
-						iconName="crop-original"
-						categoryName={category[getLocale()].name}
-					/>
-				);
-			})}
+		<View style={{ flex: 1 }}>
+			<ScrollView contentContainerStyle={styles.container}>
+				{sightCategories.map(category => {
+					return (
+						<SingleCategory
+							key={category.id + ''}
+							id={category.id}
+							iconName="crop-original"
+							categoryName={category[getLocale()].name}
+						/>
+					);
+				})}
+			</ScrollView>
 		</View>
 	);
 };

@@ -58,7 +58,10 @@
 			"./setupTests.js"
 		],
 		"collectCoverage": true,
-		"coverageReporters": ["json", "html"],
+		"coverageReporters": [
+			"json",
+			"html"
+		],
 		"reporters": [
 			"default",
 			[
