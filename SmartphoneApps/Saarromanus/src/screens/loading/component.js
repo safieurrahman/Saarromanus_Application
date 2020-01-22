@@ -9,7 +9,8 @@ const LoadingScreen = ({ loading }) => {
 			<View style={styles.container}>
 				<Image
 					source={require('../../../assets/loader.gif')}
-					style={{ width: 300, height: 300 }}
+					style={{ width: 150, height: 150 }}
+					resizeMode="contain"
 				/>
 				<Image
 					source={require('../../../assets/loading.gif')}

@@ -26,7 +26,7 @@ export default StyleSheet.create({
 		flexBasis: '70%',
 	},
 	headingText: {
-		fontSize: 20,
+		fontSize: 25,
 		fontWeight: 'bold',
 	},
 });

@@ -1,6 +1,12 @@
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
+	view: {
+		display: 'flex',
+		width: '100%',
+		flexBasis: '40%',
+		flex: 1,
+	},
 	card: {
 		display: 'flex',
 		height: '100%',
@@ -18,6 +24,7 @@ export default StyleSheet.create({
 	},
 	optionsContainer: {
 		width: '100%',
+		marginBottom: 1,
 		flex: 1,
 	},
 });
