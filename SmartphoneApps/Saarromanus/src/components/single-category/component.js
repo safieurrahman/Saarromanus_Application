@@ -21,7 +21,9 @@ const SingleCategory = ({ id, iconName, categoryName, navigation }) => {
 				<MaterialIcons name={iconName} size={60} />
 			</View>
 			<View style={styles.headingContainer}>
-				<Text style={styles.headingText}>{categoryName}</Text>
+				<Text style={styles.headingText} numberOfLines={1}>
+					{categoryName}
+				</Text>
 			</View>
 		</TouchableOpacity>
 	);

@@ -5,7 +5,7 @@ export default StyleSheet.create({
 		display: 'flex',
 		alignItems: 'flex-start',
 		flexDirection: 'row',
-		// justifyContent: '',
+		justifyContent: 'center',
 		width: '100%',
 		paddingVertical: 25,
 		paddingHorizontal: 15,
@@ -18,12 +18,13 @@ export default StyleSheet.create({
 	},
 	headingContainer: {
 		display: 'flex',
-		alignItems: 'center',
+		alignItems: 'flex-start',
 		justifyContent: 'center',
-		// height: '100%',
+		flex: 1,
+		marginTop: 10,
 	},
 	headingText: {
-		fontSize: 40,
+		fontSize: 30,
 		fontWeight: 'bold',
 	},
 });
