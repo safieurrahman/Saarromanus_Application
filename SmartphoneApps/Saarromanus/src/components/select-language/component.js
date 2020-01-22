@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { View, Text, TouchableOpacity, Button } from 'react-native';
+import React from 'react';
+import { View, TouchableOpacity } from 'react-native';
 import { Card } from 'react-native-elements';
 import { Entypo, MaterialIcons } from '@expo/vector-icons';
 
@@ -28,7 +28,7 @@ const SelectLanguage = ({ language, storeLanguage }) => {
 								/>
 							}
 							label={T.t(lang)}
-							backgroundColor="#007BFF"
+							backgroundColor="#a9a9a9"
 							absoluteIconPosition="left"
 							flexible
 						/>
@@ -42,7 +42,7 @@ const SelectLanguage = ({ language, storeLanguage }) => {
 						style={styles.optionsContainer}>
 						<LabelIcon
 							label={T.t(lang)}
-							backgroundColor="#6C757D"
+							backgroundColor="#008080bb"
 							flexible
 						/>
 					</TouchableOpacity>
@@ -53,21 +53,29 @@ const SelectLanguage = ({ language, storeLanguage }) => {
 	};
 
 	return (
-		<Card
-			containerStyle={styles.card}
-			title={
-				<LabelIcon
-					iconEl={
-						<Entypo name="language" size={30} color={'#000000'} />
-					}
-					label={T.t('changeLanguage')}
-					labelFontSize={25}
-					labelFontWeight="bold"
-					separator
-				/>
-			}>
-			<View style={styles.contentContainer}>{getLanguageOptions()}</View>
-		</Card>
+		<View style={styles.view}>
+			<Card
+				containerStyle={styles.card}
+				title={
+					<LabelIcon
+						iconEl={
+							<Entypo
+								name="language"
+								size={30}
+								color={'#000000'}
+							/>
+						}
+						label={T.t('changeLanguage')}
+						labelFontSize={25}
+						labelFontWeight="bold"
+						separator
+					/>
+				}>
+				<View style={styles.contentContainer}>
+					{getLanguageOptions()}
+				</View>
+			</Card>
+		</View>
 	);
 };
 
