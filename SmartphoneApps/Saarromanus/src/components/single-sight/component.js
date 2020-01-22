@@ -23,7 +23,7 @@ const SingleSight = ({ id, name, description, thumbnail, navigation }) => {
 				<Text numberOfLines={1} style={styles.headingText}>
 					{name}
 				</Text>
-				<Text>{description}</Text>
+				{/* <Text>{description}</Text> */}
 			</View>
 		</TouchableOpacity>
 	);
