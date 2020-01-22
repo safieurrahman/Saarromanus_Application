@@ -51,6 +51,7 @@ import { StatsProgressBarService } from './mock/stats-progress-bar.service';
 import { VisitorsAnalyticsService } from './mock/visitors-analytics.service';
 import { SecurityCamerasService } from './mock/security-cameras.service';
 import { MockDataModule } from './mock/mock-data.module';
+import { environment } from '../../environments/environment';
 
 const socialLinks = [
   {
@@ -109,7 +110,7 @@ export const NB_CORE_PROVIDERS = [
         name: 'email',
         baseEndpoint: 'https://identitytoolkit.googleapis.com/v1/',
         login: {
-          endpoint: 'accounts:signInWithPassword?key=AIzaSyBIJOEcstXk1Sz3mGWhye-9DpEqvXaqW5E',
+          endpoint: 'accounts:signInWithPassword?key='+environment.firebase.apiKey,
           method: 'post'
         },
         token: {
