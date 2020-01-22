@@ -83,7 +83,7 @@ const RouteListScreen = ({
 				return (
 					<View
 						key={route.id}
-						style={styles.container}
+						style={styles.innerContainer}
 						data-test-id="listItem">
 						<TouchableOpacity
 							style={styles.textContainer}
@@ -93,31 +93,7 @@ const RouteListScreen = ({
 									routeName: route[getLocale()].name,
 								})
 							}>
-							<Text style={styles.headingText}>
-								{route[getLocale()].name}
-							</Text>
-						</TouchableOpacity>
-						{ind !== routeLen && (
-							<VerticalSeparator style={styles.separator} />
-						)}
-					</View>
-				);
-			})}
-			{routes.map((route, ind) => {
-				return (
-					<View
-						key={route.id}
-						style={styles.container}
-						data-test-id="listItem">
-						<TouchableOpacity
-							style={styles.textContainer}
-							onPress={() =>
-								navigation.navigate('RouteView', {
-									routeId: route.id,
-									routeName: route[getLocale()].name,
-								})
-							}>
-							<Text style={styles.headingText}>
+							<Text style={styles.headingText} numberOfLines={1}>
 								{route[getLocale()].name}
 							</Text>
 						</TouchableOpacity>

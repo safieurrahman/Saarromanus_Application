@@ -8,10 +8,16 @@ export default StyleSheet.create({
 		width: '100%',
 		flexGrow: 1,
 	},
-	textContainer: {
+	innerContainer: {
 		display: 'flex',
 		alignItems: 'center',
 		justifyContent: 'center',
+		width: '100%',
+	},
+	textContainer: {
+		display: 'flex',
+		alignItems: 'center',
+		justifyContent: 'flex-start',
 		width: '100%',
 		padding: 20,
 		textAlign: 'center',
