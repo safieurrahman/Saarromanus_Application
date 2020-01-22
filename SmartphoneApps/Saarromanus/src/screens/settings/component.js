@@ -1,10 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, TouchableOpacity, Button } from 'react-native';
-import { Card } from 'react-native-elements';
-import { Entypo, AntDesign } from '@expo/vector-icons';
+import { View, ScrollView } from 'react-native';
 
-import VerticalSeparator from '../../components/helpers/vertical-separator';
-import LabelIcon from '../../components/helpers/label_with_icon';
 import SelectLanguage from '../../components/select-language';
 import AppGuide from '../../components/app-guide';
 import ToggleBox from '../../components/toggle-box';
@@ -28,20 +24,21 @@ const SettingsScreen = ({
 	}, [language]);
 
 	return (
-		<View style={styles.container} data-test-id="mainContainer">
-			<View style={styles.languageContainer}>
-				<SelectLanguage
-					language={language}
-					storeLanguage={storeLanguage}
-				/>
-			</View>
+		<ScrollView
+			contentContainerStyle={styles.container}
+			data-test-id="mainContainer">
+			<SelectLanguage
+				language={language}
+				storeLanguage={storeLanguage}
+				style={{ height: '45%' }}
+			/>
 			<ToggleBox
 				title={T.t('checkOfflineContentsUpdate')}
 				value={checkForUpdate}
 				onValueChange={invokeToggleCheckUpdate}
 			/>
 			<AppGuide language={language} />
-		</View>
+		</ScrollView>
 	);
 };
 
