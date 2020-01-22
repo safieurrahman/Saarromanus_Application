@@ -77,7 +77,7 @@ const downloadFileAsync = async (uri, localPath, fileName) => {
 	)
 		.then(({ uri }) => uri)
 		.catch(error => {
-			console.error('file downlaod issue');
+			console.error('file downlaod issue', fileName);
 		});
 	return fileUri;
 };

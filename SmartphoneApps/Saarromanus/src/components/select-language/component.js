@@ -54,27 +54,18 @@ const SelectLanguage = ({ language, storeLanguage }) => {
 
 	return (
 		<View style={styles.view}>
-			<Card
-				containerStyle={styles.card}
-				title={
-					<LabelIcon
-						iconEl={
-							<Entypo
-								name="language"
-								size={30}
-								color={'#000000'}
-							/>
-						}
-						label={T.t('changeLanguage')}
-						labelFontSize={25}
-						labelFontWeight="bold"
-						separator
-					/>
-				}>
-				<View style={styles.contentContainer}>
-					{getLanguageOptions()}
-				</View>
-			</Card>
+			<View>
+				<LabelIcon
+					iconEl={
+						<Entypo name="language" size={30} color={'#000000'} />
+					}
+					label={T.t('changeLanguage')}
+					labelFontSize={25}
+					labelFontWeight="bold"
+					separator
+				/>
+			</View>
+			<View style={styles.contentContainer}>{getLanguageOptions()}</View>
 		</View>
 	);
 };
