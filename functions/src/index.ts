@@ -54,8 +54,8 @@ app.get('/routes/:id', async (request, response) => {
                     fr: sdata.fr,
                     de: sdata.de,
                     id: srec.id,
-                    thumbnail: sdata.images_array.length == 0 ? null : sdata.images_array[0].dowloadURL,
-                    resourceName: sdata.images_array.length == 0 ? null : sdata.images_array[0].path,
+                    thumbnail: sdata.images_array.length === 0 ? null : sdata.images_array[0].dowloadURL,
+                    resourceName: sdata.images_array.length === 0 ? null : sdata.images_array[0].path,
                     coordinate: {
                         latitude: sdata.geolocation._lat,
                         longitude: sdata.geolocation._long
@@ -194,6 +194,19 @@ app.get('/sight_categories/:id', async (request, response) => {
 
         response.status(200).json({payload: payload, success: true});
     } catch (err) {
+        response.status(500).json({payload: err.message, success: false});
+    }
+});
+
+app.get('/instruction_manual', async(request, response) => {
+    try {
+        const querySnapshot = await db.collection('instruction_manual').get();
+        let data: any = {};
+        querySnapshot.forEach(element => {
+            data = element.data()
+        });
+        response.status(200).json({payload: data, success: true });
+    } catch(err) {
         response.status(500).json({payload: err.message, success: false});
     }
 });
