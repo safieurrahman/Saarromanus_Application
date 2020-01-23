@@ -8,10 +8,7 @@ import getLocale from '../../hooks/use-current-locale-short';
 
 import styles from './styles';
 
-const AppUseInstructionScreen = ({
-	getAppUseInstruction,
-	instruction = 'text',
-}) => {
+const AppUseInstructionScreen = ({ getAppUseInstruction, instruction }) => {
 	// const updateTranslation = useUpdateTranslation();
 
 	useEffect(() => {
@@ -22,20 +19,27 @@ const AppUseInstructionScreen = ({
 		<ScrollView
 			contentContainerStyle={styles.container}
 			data-test-id="mainContainer">
-			<View style={styles.view}>
-				<View
-					style={{ alignItems: 'center', justifyContent: 'center' }}>
-					<LabelIcon
-						label={T.t('welcome')}
-						labelFontSize={25}
-						labelFontWeight="bold"
-						separator
-					/>
+			{instruction && instruction.en && (
+				<View style={styles.view}>
+					<View
+						style={{
+							alignItems: 'center',
+							justifyContent: 'center',
+						}}>
+						<LabelIcon
+							label={T.t('welcome')}
+							labelFontSize={25}
+							labelFontWeight="bold"
+							separator
+						/>
+					</View>
+					<View>
+						<Text style={styles.label}>
+							{instruction[getLocale()].content}
+						</Text>
+					</View>
 				</View>
-				<View>
-					<Text style={styles.label}>{instruction}</Text>
-				</View>
-			</View>
+			)}
 		</ScrollView>
 	);
 };

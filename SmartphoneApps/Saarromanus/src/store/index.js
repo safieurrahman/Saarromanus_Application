@@ -11,6 +11,7 @@ import routeReducer from '../reducers/route-reducer';
 import sightCategoriesReducer from '../reducers/sight-categories-reducer';
 import sightsReducer from '../reducers/sights-reducer';
 import sightReducer from '../reducers/sight-reducer';
+import appUseInstructionReducer from '../reducers/app-use-instruction-reducer';
 
 const store = createStore(
 	combineReducers({
@@ -20,6 +21,7 @@ const store = createStore(
 		sightCategories: sightCategoriesReducer,
 		sights: sightsReducer,
 		sight: sightReducer,
+		instruction: appUseInstructionReducer,
 	}),
 	applyMiddleware(sagaMiddleware)
 );

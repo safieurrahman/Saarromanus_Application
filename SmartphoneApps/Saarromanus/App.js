@@ -32,7 +32,7 @@ const navigator = createStackNavigator(
 		AppUseInstruction: AppUseInstructionScreen,
 	},
 	{
-		initialRouteName: 'AppUseInstruction',
+		initialRouteName: 'Index',
 		headerLayoutPreset: 'center',
 	}
 );
