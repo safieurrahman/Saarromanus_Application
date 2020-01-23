@@ -30,7 +30,7 @@ const SettingsScreen = ({
 			<SelectLanguage
 				language={language}
 				storeLanguage={storeLanguage}
-				style={{ height: '45%' }}
+				// style={{ height: '45%' }}
 			/>
 			<ToggleBox
 				title={T.t('checkOfflineContentsUpdate')}

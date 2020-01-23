@@ -25,7 +25,7 @@ export default ({
 				justifyContent: 'center',
 				alignItems: 'center',
 				backgroundColor,
-				width: '100%',
+				width: '98%',
 				flex: flexible ? 1 : 0,
 			}}>
 			<View
@@ -47,7 +47,12 @@ export default ({
 					</Text>
 				</SpaceLeft>
 			</View>
-			{separator && <VerticalSeparator marginVertical={5} />}
+			{separator && (
+				<VerticalSeparator
+					marginVertical={5}
+					style={{ width: '90%' }}
+				/>
+			)}
 		</View>
 	);
 };
