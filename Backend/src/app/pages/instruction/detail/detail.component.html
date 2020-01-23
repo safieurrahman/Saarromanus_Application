@@ -1,0 +1,50 @@
+  
+  <div class="row">
+  
+    <div class="col-md-12">  
+      <nb-card>
+        <nb-card-header>Instruction Manual</nb-card-header>
+        <nb-card-body>
+          <form [formGroup]="instructionForm" (ngSubmit)="onSubmit()">
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <label for="inputFirstName" class="label">Content (Deutsche)</label>
+                  <textarea nbInput fullWidth  placeholder="Content (Deutsche)" formControlName="content_de" [ngClass]="{ 'is-invalid': submitted && f.content_de.errors }" rows='8'></textarea>
+                  <div *ngIf="submitted && f.content_de.errors">
+                      <div class="error-message" *ngIf="f.content_de.errors.required">This field is required!</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <label for="inputLastName" class="label">Content (English)</label>
+                  <textarea nbInput fullWidth placeholder="Content (English)" formControlName="content_en" [ngClass]="{ 'is-invalid': submitted && f.content_en.errors }" rows='8'></textarea>
+                  <div *ngIf="submitted && f.content_en.errors">
+                      <div class="error-message" *ngIf="f.content_en.errors.required">This field is required!</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <label for="inputEmail" class="label">Content (Francais)</label>
+                  <textarea nbInput fullWidth placeholder="Content (Francais)" formControlName="content_fr" [ngClass]="{ 'is-invalid': submitted && f.content_fr.errors }" rows='8'></textarea>
+                  <div *ngIf="submitted && f.content_fr.errors">
+                      <div class="error-message" *ngIf="f.content_fr.errors.required">This field is required!</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <br>
+
+            <button fullWidth type="submit" nbButton>Submit</button>
+          </form>
+        </nb-card-body>
+      </nb-card> 
+    </div>
+  </div>

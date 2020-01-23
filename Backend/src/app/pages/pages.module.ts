@@ -8,6 +8,7 @@ import { MiscellaneousModule } from './miscellaneous/miscellaneous.module';
 import { SightsModule } from './sights/sights.module';
 import { HistoricRoutesModule } from './historic-routes/historic-routes.module';
 import { SightCategoriesModule } from './sight-categories/sight-categories.module';
+import { InstructionModule } from './instruction/instruction.module';
 
 @NgModule({
   imports: [
@@ -18,6 +19,7 @@ import { SightCategoriesModule } from './sight-categories/sight-categories.modul
     SightCategoriesModule,
     SightsModule,
     HistoricRoutesModule,
+    InstructionModule,
   ],
   declarations: [
     PagesComponent,

@@ -17,6 +17,6 @@ export const environment = {
     projectId: "saarromanus",
     storageBucket: "saarromanus.appspot.com",
     messagingSenderId: "856575539561",
-    appId: "1:856575539561:web:dc1573eddbdabd40daa5f8"
+    appId: "1:856575539561:web:dc1573eddbdabd40daa5f8",  
   }
 };

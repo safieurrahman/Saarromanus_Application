@@ -38,7 +38,4 @@ export const routedComponents = [
     SightsComponent,
     SightsViewComponent,
     SightsDetailComponent
-    // SightCreateComponent,
-    // MapComponent,
-    // SearchComponent
 ];

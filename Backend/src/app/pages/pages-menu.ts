@@ -44,4 +44,9 @@ export const MENU_ITEMS: NbMenuItem[] = [
       },
     ],
   },
+  {
+    title: 'Instruction Manual',
+    icon: 'file-text-outline',
+    link: '/pages/instruction',
+  }
 ];
