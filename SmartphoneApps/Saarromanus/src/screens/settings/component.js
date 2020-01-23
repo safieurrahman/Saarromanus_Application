@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, ScrollView } from 'react-native';
+import { View, ScrollView, Button } from 'react-native';
 
 import SelectLanguage from '../../components/select-language';
 import AppGuide from '../../components/app-guide';
@@ -27,17 +27,19 @@ const SettingsScreen = ({
 		<ScrollView
 			contentContainerStyle={styles.container}
 			data-test-id="mainContainer">
-			<SelectLanguage
-				language={language}
-				storeLanguage={storeLanguage}
-				style={{ height: '45%' }}
-			/>
+			<SelectLanguage language={language} storeLanguage={storeLanguage} />
 			<ToggleBox
 				title={T.t('checkOfflineContentsUpdate')}
 				value={checkForUpdate}
 				onValueChange={invokeToggleCheckUpdate}
 			/>
-			<AppGuide language={language} />
+			<Button
+				title={T.t('userGuildeline')}
+				onPress={() => {
+					navigation.navigate('AppUseInstruction');
+				}}
+				style={styles.button}
+			/>
 		</ScrollView>
 	);
 };

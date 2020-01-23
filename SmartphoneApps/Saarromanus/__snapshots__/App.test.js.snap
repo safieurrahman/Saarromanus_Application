@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App.js renders correctly 1`] = `
+<Provider
+  store={
+    Object {
+      "dispatch": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+      Symbol(observable): [Function],
+    }
+  }
+>
+  <SafeAreaView
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <NavigationContainer
+      data-test="App"
+      theme="light"
+    />
+    <Connect(LoadingScreen)
+      data-test="LoadingScreen"
+    />
+    <Connect(AlertScreen)
+      data-test="AlertScreen"
+    />
+  </SafeAreaView>
+</Provider>
+`;

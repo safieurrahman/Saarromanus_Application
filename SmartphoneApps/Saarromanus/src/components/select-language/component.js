@@ -28,7 +28,7 @@ const SelectLanguage = ({ language, storeLanguage }) => {
 								/>
 							}
 							label={T.t(lang)}
-							backgroundColor="#a9a9a9"
+							backgroundColor="#008080bb"
 							absoluteIconPosition="left"
 							flexible
 						/>
@@ -42,7 +42,7 @@ const SelectLanguage = ({ language, storeLanguage }) => {
 						style={styles.optionsContainer}>
 						<LabelIcon
 							label={T.t(lang)}
-							backgroundColor="#008080bb"
+							backgroundColor="#a9a9a9"
 							flexible
 						/>
 					</TouchableOpacity>
@@ -54,7 +54,7 @@ const SelectLanguage = ({ language, storeLanguage }) => {
 
 	return (
 		<View style={styles.view}>
-			<View>
+			<View style={{ alignItems: 'center', justifyContent: 'center' }}>
 				<LabelIcon
 					iconEl={
 						<Entypo name="language" size={30} color={'#000000'} />

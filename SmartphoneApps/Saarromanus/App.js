@@ -14,6 +14,7 @@ import RouteViewScreen from './src/screens/route-view';
 import RouteListScreen from './src/screens/route-list';
 import LoadingScreen from './src/screens/loading';
 import AlertScreen from './src/screens/alert';
+import AppUseInstructionScreen from './src/screens/app-use-instruction';
 
 import store from './src/store/';
 
@@ -28,6 +29,7 @@ const navigator = createStackNavigator(
 		SightDetails: SightDetailsScreen,
 		RouteView: RouteViewScreen,
 		RouteList: RouteListScreen,
+		AppUseInstruction: AppUseInstructionScreen,
 	},
 	{
 		initialRouteName: 'Index',

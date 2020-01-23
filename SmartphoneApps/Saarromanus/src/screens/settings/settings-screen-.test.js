@@ -6,7 +6,6 @@ import configureStore from 'redux-mock-store';
 import SettingsScreen from './index';
 import SelectLanguage from '../../components/select-language';
 import ToggleBox from '../../components/toggle-box';
-import AppGuide from '../../components/app-guide';
 
 const mockStore = configureStore();
 
@@ -41,8 +40,8 @@ describe('<SettingsScreen />', () => {
 		expect(component.find(ToggleBox).length).toBe(1);
 	});
 
-	it('should render a <AppGuide /> component', () => {
-		expect(component.find(AppGuide).length).toBe(1);
+	it('should render a <Button /> component', () => {
+		expect(component.find('Button').length).toBe(1);
 	});
 
 	describe('Root <View /> component', () => {
