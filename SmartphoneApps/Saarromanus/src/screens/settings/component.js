@@ -33,7 +33,6 @@ const SettingsScreen = ({
 				value={checkForUpdate}
 				onValueChange={invokeToggleCheckUpdate}
 			/>
-			<AppGuide language={language} />
 		</ScrollView>
 	);
 };
