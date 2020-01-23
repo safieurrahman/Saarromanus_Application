@@ -8,7 +8,7 @@ import T from '../../utils/translator';
 
 import styles from './styles';
 
-const AppGuide = ({ language }) => {
+const AppGuide = ({ text }) => {
 	return (
 		<Card
 			title={
@@ -28,7 +28,7 @@ const AppGuide = ({ language }) => {
 				/>
 			}>
 			<View>
-				<Text style={styles.label}>{T.t('loremText')}</Text>
+				<Text style={styles.label}>{text}</Text>
 			</View>
 		</Card>
 	);

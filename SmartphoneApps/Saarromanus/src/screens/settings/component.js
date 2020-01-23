@@ -27,11 +27,7 @@ const SettingsScreen = ({
 		<ScrollView
 			contentContainerStyle={styles.container}
 			data-test-id="mainContainer">
-			<SelectLanguage
-				language={language}
-				storeLanguage={storeLanguage}
-				// style={{ height: '45%' }}
-			/>
+			<SelectLanguage language={language} storeLanguage={storeLanguage} />
 			<ToggleBox
 				title={T.t('checkOfflineContentsUpdate')}
 				value={checkForUpdate}
