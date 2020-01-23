@@ -109,7 +109,7 @@
                   2. Else, please enter the address of the nearest place you would like to plan a route.<br>
                   3. Tap on the desired location to add a marking point.<br>
                   4. To remove a point, tap on it again.<br>
-                  5. Continue tapping to add marking points to make a route.<br>
+                  5. Continue tapping to add marking points to make a route. (Mark atleast two points)<br>
                   6. Complete route will show up on map.<br>
               
                 </nb-alert>
@@ -172,6 +172,13 @@
                 </div>
               </div>
             </div>
+            
+            <nb-alert _ngcontent-hup-c9="" status="danger" _nghost-hup-c11="" ng-reflect-status="danger" class="status-danger" *ngIf="submitted && (f.name_de.errors || f.information_de.errors || f.name_en.errors || f.information_en.errors || f.name_fr.errors|| f.information_fr.errors|| f.google_map_link.errors)">
+            
+              <strong _ngcontent-hup-c9="">Oh snap!</strong> Required fields are missing. Please scroll above to see more Information. 
+          
+            </nb-alert>
+                    
             
             <div class="row">
               <div class="col-md-12">

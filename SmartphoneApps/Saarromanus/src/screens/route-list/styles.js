@@ -6,17 +6,24 @@ export default StyleSheet.create({
 		alignItems: 'center',
 		justifyContent: 'flex-start',
 		width: '100%',
+		flexGrow: 1,
+	},
+	innerContainer: {
+		display: 'flex',
+		alignItems: 'center',
+		justifyContent: 'center',
+		width: '100%',
 	},
 	textContainer: {
 		display: 'flex',
 		alignItems: 'center',
-		justifyContent: 'center',
+		justifyContent: 'flex-start',
 		width: '100%',
 		padding: 20,
 		textAlign: 'center',
 	},
 	headingText: {
-		fontSize: 30,
+		fontSize: 35,
 		fontWeight: 'bold',
 	},
 	separator: {
