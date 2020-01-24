@@ -30,8 +30,9 @@ const ImageGallery = ({ images, language }) => {
 				</TouchableOpacity>
 			))}
 			<Modal
-				animationType="fade"
+				animationType="slide"
 				transparent={false}
+				presentationStyle={'overFullScreen'}
 				visible={displayImage}
 				onRequestClose={() => setDisplayImage(false)}>
 				<View style={styles.modal}>

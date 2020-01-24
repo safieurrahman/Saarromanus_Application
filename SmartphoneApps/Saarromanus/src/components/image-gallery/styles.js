@@ -45,7 +45,9 @@ export default StyleSheet.create({
 		display: 'flex',
 		alignItems: 'center',
 		justifyContent: 'center',
-		flexBasis: '100%',
+		// flexBasis: '100%',
+		flex: 1,
+		backgroundColor: '#000',
 	},
 	imageFull: {
 		width: '100%',
