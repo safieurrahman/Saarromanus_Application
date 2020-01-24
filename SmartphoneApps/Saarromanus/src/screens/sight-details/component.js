@@ -86,6 +86,7 @@ const SightDetailsScreen = ({
 					title: 'Found New Update!',
 					message: 'The data has been updated',
 				});
+				findOneById(SIGHT_TABLE, sightId, () => {}, populateSight);
 			}
 			// else {
 			// 	console.log('sight: will not');
