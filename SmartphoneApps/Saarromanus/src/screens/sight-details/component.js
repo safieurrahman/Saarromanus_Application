@@ -121,6 +121,7 @@ const SightDetailsScreen = ({
 						images={sight.resources.filter(
 							item => item.type.indexOf('image') !== -1
 						)}
+						language={getLocale()}
 					/>
 				)}
 			</View>

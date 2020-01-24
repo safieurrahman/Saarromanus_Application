@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { View, Image, TouchableOpacity, Modal } from 'react-native';
+import { View, Image, TouchableOpacity, Modal, Text } from 'react-native';
 
 import styles from './styles';
 
-const ImageGallery = ({ images }) => {
+const ImageGallery = ({ images, language }) => {
 	const [currentImage, setCurrentImage] = useState(null);
 
 	const [displayImage, setDisplayImage] = useState(false);
@@ -23,6 +23,9 @@ const ImageGallery = ({ images }) => {
 							source={{ uri: image.url }}
 							resizeMode="cover"
 						/>
+						<Text style={styles.caption}>
+							{image[language].description}
+						</Text>
 					</View>
 				</TouchableOpacity>
 			))}
