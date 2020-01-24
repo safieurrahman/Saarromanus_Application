@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { View, ScrollView, Button } from 'react-native';
+import React, { useEffect } from 'react';
+import { ScrollView, Button } from 'react-native';
 
 import SelectLanguage from '../../components/select-language';
-import AppGuide from '../../components/app-guide';
 import ToggleBox from '../../components/toggle-box';
 import T from '../../utils/translator';
 import useUpdateTranslation from '../../hooks/use-update-translation';
