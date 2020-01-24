@@ -140,11 +140,12 @@ export const mapSightsWithoutDownload = sightList => {
 		const fileName = sight.resourceName;
 		return {
 			...sight,
-			thumbnail:
-				FileSystem.documentDirectory +
-				localPath +
-				'/' +
-				encodeURIComponent(fileName),
+			thumbnail: fileName
+				? FileSystem.documentDirectory +
+				  localPath +
+				  '/' +
+				  encodeURIComponent(fileName)
+				: null,
 		};
 	});
 	return mappedSights;
@@ -162,15 +163,17 @@ const mapSightListAsync = async sightList => {
 		sightList.map(async (sight, ind) => {
 			mappedSightListPromises.push(
 				(async () => {
-					const localUri = await downloadFileAsync(
-						sight.thumbnail,
-						localPath,
-						sight.resourceName
-					).catch(err =>
-						console.log(
-							'something went wrong while download the file'
-						)
-					);
+					const localUri = sight.resourceName
+						? await downloadFileAsync(
+								sight.thumbnail,
+								localPath,
+								sight.resourceName
+						  ).catch(err =>
+								console.log(
+									'something went wrong while download the file'
+								)
+						  )
+						: null;
 					return { ...sight, thumbnail: localUri };
 				})()
 			);
