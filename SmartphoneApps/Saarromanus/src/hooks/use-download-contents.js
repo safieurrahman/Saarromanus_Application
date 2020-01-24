@@ -103,7 +103,7 @@ const mapSightAsync = async sight => {
 					const localUri = await downloadFileAsync(
 						resource.url,
 						localPath,
-						resource.title
+						resource.title || resource.resourceName
 					).catch(err => console.log('something went wrong.'));
 					return { ...resource, url: localUri };
 				})()
@@ -120,7 +120,7 @@ const mapSightAsync = async sight => {
 export const mapSightWithoutDownload = sight => {
 	const localPath = 'sight-' + sight.id;
 	const mappedResources = sight.resources.map((resource, ind) => {
-		const fileName = resource.title;
+		const fileName = resource.title || resource.resourceName;
 		return {
 			...resource,
 			url:
