@@ -84,6 +84,11 @@
 		],
 		"collectCoverageFrom": [
 			"**/*.{js,jsx}",
+			"!**/src/apis/**",
+			"!**/src/store/**",
+			"!**/src/reducers/**",
+			"!**/src/sagas/services/**",
+			"!**/src/components/helpers/**/**",
 			"!**/coverage/**",
 			"!**/node_modules/**",
 			"!**/babel.config.js",

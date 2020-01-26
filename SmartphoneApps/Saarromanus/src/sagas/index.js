@@ -9,6 +9,7 @@ import { listSightsSagaWatcher } from './list-sights';
 import { currentSightSagaWatcher } from './current-sight';
 import { detectUpdateSagaWatcher } from './detect-update';
 import { storeUpdateSagaWatcher } from './store-update';
+import { appUseInstructionSagaWatcher } from './fetch-app-use-instruction';
 
 export default function* rootSaga() {
 	yield all([
@@ -21,5 +22,6 @@ export default function* rootSaga() {
 		fork(currentSightSagaWatcher),
 		fork(detectUpdateSagaWatcher),
 		fork(storeUpdateSagaWatcher),
+		fork(appUseInstructionSagaWatcher),
 	]);
 }

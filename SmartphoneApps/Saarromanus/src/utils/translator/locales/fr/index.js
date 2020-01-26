@@ -14,6 +14,9 @@ const fr = {
 	checkOfflineContentsUpdate: 'Vérifier la mise à jour du contenu hors ligne',
 	userGuildeline: "Guide d'utilisation",
 
+	// App Guide Screen
+	welcome: 'Bienvenue à Saarromanus!',
+
 	// Routes Screen
 
 	// Sight Categoris

@@ -10,4 +10,7 @@ export default StyleSheet.create({
 		flexGrow: 1,
 		paddingVertical: 5,
 	},
+	button: {
+		padding: 20,
+	},
 });

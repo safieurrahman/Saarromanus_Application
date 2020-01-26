@@ -9,6 +9,12 @@ export const config = {
 	alert: { show: false, title: '', message: '' },
 };
 
+export const instruction = {
+	de: { content: '' },
+	en: { content: '' },
+	fr: { content: '' },
+};
+
 export const routes = [];
 export const route = {};
 

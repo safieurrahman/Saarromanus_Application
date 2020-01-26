@@ -103,7 +103,7 @@ const mapSightAsync = async sight => {
 					const localUri = await downloadFileAsync(
 						resource.url,
 						localPath,
-						resource.title
+						resource.title || resource.resourceName
 					).catch(err => console.log('something went wrong.'));
 					return { ...resource, url: localUri };
 				})()
@@ -120,7 +120,7 @@ const mapSightAsync = async sight => {
 export const mapSightWithoutDownload = sight => {
 	const localPath = 'sight-' + sight.id;
 	const mappedResources = sight.resources.map((resource, ind) => {
-		const fileName = resource.title;
+		const fileName = resource.title || resource.resourceName;
 		return {
 			...resource,
 			url:
@@ -140,11 +140,12 @@ export const mapSightsWithoutDownload = sightList => {
 		const fileName = sight.resourceName;
 		return {
 			...sight,
-			thumbnail:
-				FileSystem.documentDirectory +
-				localPath +
-				'/' +
-				encodeURIComponent(fileName),
+			thumbnail: fileName
+				? FileSystem.documentDirectory +
+				  localPath +
+				  '/' +
+				  encodeURIComponent(fileName)
+				: null,
 		};
 	});
 	return mappedSights;
@@ -162,15 +163,17 @@ const mapSightListAsync = async sightList => {
 		sightList.map(async (sight, ind) => {
 			mappedSightListPromises.push(
 				(async () => {
-					const localUri = await downloadFileAsync(
-						sight.thumbnail,
-						localPath,
-						sight.resourceName
-					).catch(err =>
-						console.log(
-							'something went wrong while download the file'
-						)
-					);
+					const localUri = sight.resourceName
+						? await downloadFileAsync(
+								sight.thumbnail,
+								localPath,
+								sight.resourceName
+						  ).catch(err =>
+								console.log(
+									'something went wrong while download the file'
+								)
+						  )
+						: null;
 					return { ...sight, thumbnail: localUri };
 				})()
 			);

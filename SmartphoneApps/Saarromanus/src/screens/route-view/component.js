@@ -86,6 +86,7 @@ const RouteViewScreen = ({
 					title: 'Found New Update!',
 					message: 'The data has been updated',
 				});
+				findOneById(ROUTE_TABLE, routeId, () => {}, populateRoute);
 			}
 			// console.log('will not...');
 		};

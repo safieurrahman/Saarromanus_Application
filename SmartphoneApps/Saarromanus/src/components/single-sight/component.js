@@ -13,17 +13,20 @@ const SingleSight = ({ id, name, description, thumbnail, navigation }) => {
 			}>
 			<View style={styles.imageContainer}>
 				<Image
-					source={{
-						uri: thumbnail,
-					}}
+					source={
+						thumbnail
+							? {
+									uri: thumbnail,
+							  }
+							: require('../../../assets/no-image.png')
+					}
 					style={styles.image}
 				/>
 			</View>
 			<View style={styles.textGroup}>
 				<Text numberOfLines={1} style={styles.headingText}>
-					{name}
+					{name || 'No data'}
 				</Text>
-				{/* <Text>{description}</Text> */}
 			</View>
 		</TouchableOpacity>
 	);

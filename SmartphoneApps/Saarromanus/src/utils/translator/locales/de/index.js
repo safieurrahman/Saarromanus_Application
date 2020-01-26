@@ -15,6 +15,9 @@ const de = {
 	checkOfflineContentsUpdate:
 		'Überprüfen Sie, ob das Update für Offline-Inhalte verfügbar ist',
 
+	// App Guide Screen
+	welcome: 'Willkommen bei Saarromanus!',
+
 	// Routes Screen
 
 	// Sight Categoris
