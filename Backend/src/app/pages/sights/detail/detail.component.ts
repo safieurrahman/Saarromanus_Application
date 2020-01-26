@@ -162,9 +162,12 @@ export class SightsDetailComponent implements OnInit {
 
 
   public async onSubmit() {
+    this.submitted = true;
+
     if (this.sightForm.invalid) {
       return;
     }
+
     const images_ref = await this.handleFiles(this.prev_imagesArray, this.imagesArray, 'images');
     const audio_ref = await this.handleFiles(this.prev_audioArray, this.audioArray, 'audio');
     const image_detail_refs = images_ref.map((x, i) => {
@@ -185,7 +188,6 @@ export class SightsDetailComponent implements OnInit {
       };
     });
 
-    this.submitted = true;
 
     // stop here if form is invalid
     const result = {
