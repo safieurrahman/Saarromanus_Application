@@ -28,7 +28,7 @@ import { SightsRoutingModule, routedComponents } from './sights-routing.module';
   imports: [
     ThemeModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyC3kgSsbThsJOJedcdKCXutocl6Y49Poh0',
+      apiKey: '',
       libraries: ['places','geometry','drawing'],
     }),
     AgmDirectionModule,     // agm-direction
