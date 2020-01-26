@@ -46,8 +46,6 @@ export class HistoricRouteDetailComponent implements OnInit {
 
   });
 
-
-
   constructor( private afs: AngularFirestore, 
       private route: ActivatedRoute, private router: Router,
       private mapsAPILoader: MapsAPILoader, private ngZone: NgZone,
@@ -147,22 +145,21 @@ export class HistoricRouteDetailComponent implements OnInit {
     return ref_array;
   }  
 
-  
-    // convenience getter for easy access to form fields
-    get f() { return this.historicRouteForm.controls; }
-
-
+  // convenience getter for easy access to form fields
+  get f() { return this.historicRouteForm.controls; }
 
   public async onSubmit() {
+    this.submitted = true;
+
+
+    // stop here if form is invalid
+    if (this.historicRouteForm.invalid || this.routePath.length <= 0) {
+        return;
+    }
+
     const images_ref = await this.handleFiles(this.prev_imagesArray, this.imagesArray, 'images');
     const audio_ref = await this.handleFiles(this.prev_audioArray, this.audioArray, 'audio');
 
-    this.submitted = true;
-
-    // stop here if form is invalid
-    if (this.historicRouteForm.invalid) {
-        return;
-    }
 
     const result = {
       de: {
@@ -275,4 +272,5 @@ export class HistoricRouteDetailComponent implements OnInit {
       this.routePath.splice(index, 1);
     }
   }
+
 }

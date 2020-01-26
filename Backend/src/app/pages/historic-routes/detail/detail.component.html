@@ -145,33 +145,6 @@
                 </agm-map>
               </div>
             </div>
-            <br>
-            <div class="row">
-              <div class="col-md-6">
-                <h6>Images</h6>
-                <div class="uploadfilecontainer" (click)="imageInput.click()">
-                  <input hidden type="file" #imageInput accept="images/*" (change)="uploadFile($event.target.files, 'images')">
-                </div>
-                <div  class="files-list" *ngFor="let file of imagesArray;let i= index">
-                    <img src="{{file.src || file.downloadURL}}" class="preview-image">
-                    <button class="delete-file" (click)="deleteAttachment(i, 'images')">
-                      <img src="../../../../assets/images/Recycle_Bin_Full.png">
-                    </button>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <h6>Audio Files</h6>
-                <div class="uploadfilecontainer" (click)="audioInput.click()">
-                  <input hidden type="file" #audioInput (change)="uploadFile($event.target.files, 'audio')">
-                </div>
-                <div  class="files-list" *ngFor="let file of audioArray;let i= index">
-                    <p class="file-name">{{ file.name || file.path.split('/')[1] }}</p>
-                    <button class="delete-file" (click)="deleteAttachment(i, 'audio')">
-                      <img src="../../../../assets/images/Recycle_Bin_Full.png">
-                    </button>
-                </div>
-              </div>
-            </div>
             
             <nb-alert _ngcontent-hup-c9="" status="danger" _nghost-hup-c11="" ng-reflect-status="danger" class="status-danger" *ngIf="submitted && (f.name_de.errors || f.information_de.errors || f.name_en.errors || f.information_en.errors || f.name_fr.errors|| f.information_fr.errors|| f.google_map_link.errors)">
             
