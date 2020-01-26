@@ -1,5 +1,5 @@
 import { Component, OnInit, NgZone, ViewChild, ElementRef, } from '@angular/core';
-import { FormBuilder, FormGroup, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl, ReactiveFormsModule, Validators, FormArray } from '@angular/forms';
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { AngularFireStorage } from 'angularfire2/storage';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -32,14 +32,14 @@ export class SightsDetailComponent implements OnInit {
   public searchElementRef: ElementRef;
   
   sightForm = new FormGroup({
-    name_de: new FormControl(''),
-    name_fr: new FormControl(''),
-    name_en: new FormControl(''),
-    information_de: new FormControl(''),
-    information_fr: new FormControl(''),
-    information_en: new FormControl(''),
-    sight_category: new FormControl('')
-
+    name_de: new FormControl('', Validators.required),
+    name_fr: new FormControl('', Validators.required),
+    name_en: new FormControl('', Validators.required),
+    information_de: new FormControl('', Validators.required),
+    information_fr: new FormControl('', Validators.required),
+    information_en: new FormControl('', Validators.required),
+    sight_category: new FormControl('', Validators.required),
+    images_details:  new FormArray([])
   });
 
   constructor( private afs: AngularFirestore, 
@@ -61,7 +61,7 @@ export class SightsDetailComponent implements OnInit {
             this.latitude = res.geolocation._lat;
             this.audioArray = res.audio_array;
             this.imagesArray = res.images_array;
-            this.prev_imagesArray = [...res.images_array];
+            this.prev_imagesArray = res.images_array.map(x => ({downloadURL: x.downloadURL, path: x.path}));
             this.prev_audioArray = [...res.audio_array];
             this.sightForm.patchValue({
               'name_de': res.de.name,
@@ -70,7 +70,25 @@ export class SightsDetailComponent implements OnInit {
               'information_de': res.de.information,
               'information_fr': res.fr.information,
               'information_en': res.en.information,
-              'sight_category': res.sight_category.id
+              'sight_category': res.sight_category.id,
+              'images_details': res.images_array.map(x => {
+                this.t.push(this.formBuilder.group({
+                  description_fr: ['', Validators.required],
+                  description_en: ['', Validators.required],
+                  description_de: ['', Validators.required],
+                  title_de: ['', Validators.required],
+                  title_en: ['', Validators.required],
+                  title_fr: ['', Validators.required]
+                }));
+                return {
+                  title_de: !!x.de ? x.de.title : '' ,
+                  description_de: !!x.de ? x.de.description : '',
+                  title_fr: !!x.de ? x.fr.title : '',
+                  description_fr: !!x.de ? x.fr.description : '',
+                  title_en: !!x.de ? x.en.title : '',
+                  description_en: !!x.de ? x.en.description : '',
+                }
+              })
             });
           });
         }
@@ -95,17 +113,6 @@ export class SightsDetailComponent implements OnInit {
           this.longitude = place.geometry.location.lng();
         });
       });
-    });
-
-    this.sightForm = this.formBuilder.group({
-      name_de: ['', Validators.required],
-      name_fr: ['', Validators.required],
-      name_en: ['', Validators.required],
-      information_de: ['', Validators.required],
-      information_fr: ['', Validators.required],
-      information_en: ['', Validators.required],
-      sight_category: ['', Validators.required],
-
     });
   }
 
@@ -133,7 +140,11 @@ export class SightsDetailComponent implements OnInit {
       }
     });
     for(let dx of deleted_ref) {
-      await this.afStorage.storage.refFromURL(dx.downloadURL).delete();
+      try {
+        await this.afStorage.storage.refFromURL(dx.downloadURL).delete();        
+      } catch(err) {
+        console.log(err);
+      }
     };
     for (let x of fileArray) {
       if(!!x.file) {
@@ -145,22 +156,38 @@ export class SightsDetailComponent implements OnInit {
     return ref_array;
   }
 
-    
-    // convenience getter for easy access to form fields
-    get f() { return this.sightForm.controls; }
+  // convenience getter for easy access to form fields
+  get f() { return this.sightForm.controls; }
+  get t() { return this.f.images_details as FormArray; }
 
 
   public async onSubmit() {
+    if (this.sightForm.invalid) {
+      return;
+    }
     const images_ref = await this.handleFiles(this.prev_imagesArray, this.imagesArray, 'images');
     const audio_ref = await this.handleFiles(this.prev_audioArray, this.audioArray, 'audio');
+    const image_detail_refs = images_ref.map((x, i) => {
+      return {
+        ...x, 
+        de: {
+          title: this.t.value[i].title_de,
+          description: this.t.value[i].description_de
+        },
+        fr: {
+          title: this.t.value[i].title_fr,
+          description: this.t.value[i].description_fr
+        },
+        en: {
+          title: this.t.value[i].title_en,
+          description: this.t.value[i].description_en
+        }
+      };
+    });
 
     this.submitted = true;
 
     // stop here if form is invalid
-    if (this.sightForm.invalid) {
-        return;
-    }
-
     const result = {
       de: {
         name : this.sightForm.value.name_de,
@@ -179,7 +206,7 @@ export class SightsDetailComponent implements OnInit {
         _long: this.longitude
       },
       sight_category: this.afs.doc('sight_categories/'+this.sightForm.value.sight_category).ref,
-      images_array: images_ref,
+      images_array: image_detail_refs,
       audio_array: audio_ref
     }
     if(this.objectId == null) { 
@@ -210,9 +237,17 @@ export class SightsDetailComponent implements OnInit {
         this.imagesArray.push({
           file: element, 
           src: this.fileReader.result
-          });  
+          });
       }
     }
+    this.t.push(this.formBuilder.group({
+      description_fr: ['', Validators.required],
+      description_en: ['', Validators.required],
+      description_de: ['', Validators.required],
+      title_de: ['', Validators.required],
+      title_en: ['', Validators.required],
+      title_fr: ['', Validators.required],
+    }));
   }
 
   private saveAudios(fileList) {
@@ -242,5 +277,8 @@ export class SightsDetailComponent implements OnInit {
   deleteAttachment(index, mode: string) {
     const targetArray = mode == 'audio' ? this.audioArray : this.imagesArray;
     targetArray.splice(index, 1)
+    if (mode == 'images') {
+      this.t.removeAt(index);
+    }
   }
 }

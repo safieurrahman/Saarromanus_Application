@@ -54,8 +54,8 @@ app.get('/routes/:id', async (request, response) => {
                     fr: sdata.fr,
                     de: sdata.de,
                     id: srec.id,
-                    thumbnail: sdata.images_array.length === 0 ? null : sdata.images_array[0].dowloadURL,
-                    resourceName: sdata.images_array.length === 0 ? null : sdata.images_array[0].path,
+                    thumbnail: sdata.images_array.length === 0 ? null : sdata.images_array[0].downloadURL,
+                    resourceName: sdata.images_array.length === 0 ? null : sdata.images_array[0].path.split('/')[1],
                     coordinate: {
                         latitude: sdata.geolocation._lat,
                         longitude: sdata.geolocation._long
@@ -96,7 +96,7 @@ app.get('/sights', async (request, response) => {
                 de: element_data.de,
                 fr: element_data.fr,
                 thumbnail: element_data.images_array.length ? element_data.images_array[0].downloadURL : null,
-                resourceName: element_data.images_array.length ? element_data.images_array[0].path : null  
+                resourceName: element_data.images_array.length ? element_data.images_array[0].path.split('/')[1] : null  
             });
         });
         response.status(200).json({payload: data});    
@@ -117,8 +117,17 @@ app.get('/sights/:id', async (request, response) => {
         const scred: any = await db.collection('sight_categories').doc(data.sight_category.id).get();
         const scdata = scred.data();
         const resources = [
-            ...data.images_array.map((x: { downloadURL: any; path: any; }) => ({url: x.downloadURL, title: x.path, type: 'image/jpg'})),
-            ...data.images_array.map((x: { downloadURL: any; path: any; }) => ({url: x.downloadURL, title: x.path, type: 'audio/mpeg'}))
+            ...data.images_array.map((x: { downloadURL: any; path: any; en: any; de: any; fr: any; }) => {
+                return {
+                    url: x.downloadURL, 
+                    resourceName: x.path.split('/')[1], 
+                    type: 'image/jpg',
+                    en: !!x.en ? x.en : {description: '', title: ''},
+                    de: !!x.de ? x.de : {description: '', title: ''},
+                    fr: !!x.fr ? x.fr : {description: '', title: ''}
+                };
+                }),
+            ...data.audio_array.map((x: { downloadURL: any; path: any; }) => ({url: x.downloadURL, title: x.path.split('/')[1], type: 'audio/mpeg'}))
         ];
         const payload = {
             id: rec.id,
@@ -185,7 +194,7 @@ app.get('/sight_categories/:id', async (request, response) => {
                 de: element_data.de,
                 fr: element_data.fr,
                 thumbnail: element_data.images_array.length ? element_data.images_array[0].downloadURL : null,
-                resourceName: element_data.images_array.length ? element_data.images_array[0].path : null,
+                resourceName: element_data.images_array.length ? element_data.images_array[0].path.split('/')[1] : null,
                 sight_category: element_data.sight_category.id
             });
         });

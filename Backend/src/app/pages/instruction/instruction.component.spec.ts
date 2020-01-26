@@ -1,5 +1,5 @@
 import { TestBed, async } from '@angular/core/testing';
-import { InstructionComponent } from './instruction.component';
+import { InstructionDetailComponent } from './detail/detail.component';
 import { RouterTestingModule } from '@angular/router/testing';
 
 describe('SightCategoriesComponent', () => {
@@ -9,13 +9,13 @@ describe('SightCategoriesComponent', () => {
             RouterTestingModule,
           ],
          declarations: [
-          InstructionComponent
+          InstructionDetailComponent
       ],
     }).compileComponents();
   }));
 
   it('Should render the Sight Categories Module', async(() => {
-    const fixture = TestBed.createComponent(InstructionComponent);
+    const fixture = TestBed.createComponent(InstructionDetailComponent);
     const app = fixture.debugElement.componentInstance;
     expect(app).toBeTruthy();
   }));

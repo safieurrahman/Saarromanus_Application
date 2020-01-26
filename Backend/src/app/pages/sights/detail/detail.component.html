@@ -32,7 +32,7 @@
                     <div class="col-sm-12">
                       <div class="form-group">
                         <label for="inputLastName" class="label">Information (Deutsche)</label>
-                        <textarea rows="5" nbInput fullWidth shape="round"  placeholder="Details for the sight" formControlName="information_de" [ngClass]="{ 'is-invalid': submitted && f.information_de.errors }"></textarea>
+                        <textarea rows="5" nbInput fullWidth   placeholder="Details for the sight" formControlName="information_de" [ngClass]="{ 'is-invalid': submitted && f.information_de.errors }"></textarea>
                         <div *ngIf="submitted && f.information_de.errors">
                           <div class="error-message" *ngIf="f.information_de.errors.required">This field is required!</div>
                       </div>
@@ -52,7 +52,7 @@
                     <div class="col-sm-12">
                       <div class="form-group">
                         <label for="inputLastName" class="label">Information (English)</label>
-                        <textarea rows="5" nbInput fullWidth shape="round"  placeholder="Details for the sight" formControlName="information_en" [ngClass]="{ 'is-invalid': submitted && f.information_en.errors }"></textarea>
+                        <textarea rows="5" nbInput fullWidth   placeholder="Details for the sight" formControlName="information_en" [ngClass]="{ 'is-invalid': submitted && f.information_en.errors }"></textarea>
                         <div *ngIf="submitted && f.information_en.errors">
                           <div class="error-message" *ngIf="f.information_en.errors.required">This field is required!</div>
                       </div>
@@ -75,7 +75,7 @@
                     <div class="col-sm-12">
                       <div class="form-group">
                         <label for="inputLastName" class="label">Information (Francais)</label>
-                        <textarea rows="5" nbInput fullWidth shape="round"  placeholder="Details for the sight" formControlName="information_fr" [ngClass]="{ 'is-invalid': submitted && f.name_de.errors }"></textarea>
+                        <textarea rows="5" nbInput fullWidth   placeholder="Details for the sight" formControlName="information_fr" [ngClass]="{ 'is-invalid': submitted && f.name_de.errors }"></textarea>
                         <div *ngIf="submitted && f.information_fr.errors">
                           <div class="error-message" *ngIf="f.information_fr.errors.required">This field is required!</div>
                       </div>
@@ -117,19 +117,41 @@
             <br>
 
             <div class = "row">
-              <div class="col-md-6">
+              <div class="col-md-12">
                 <h6>Images</h6>
                 <div class="uploadfilecontainer" (click)="imageInput.click()">
                   <input hidden type="file" #imageInput accept="images/*" (change)="uploadFile($event.target.files, 'images')">
                 </div>
-                <div  class="files-list" *ngFor="let file of imagesArray;let i= index">
+                <div formArrayName="images_details" *ngFor="let file of imagesArray;let i= index">
+                  <div class="files-list">
                     <img src="{{file.src || file.downloadURL}}" class="preview-image">
-                    <button class="delete-file" (click)="deleteAttachment(i, 'images')">
-                      <img src="../../../../assets/images/Recycle_Bin_Full.png">
-                    </button>
+                      <button class="delete-file" (click)="deleteAttachment(i, 'images')">
+                        <img src="../../../../assets/images/Recycle_Bin_Full.png">
+                      </button>
+                    </div>
+                    <div class="row" [formGroupName]="i">
+                      <div class="col-md-4 col col-sm-12">
+                        <label for="inputEmail" class="label">Picture Title (Deutsche)</label>
+                        <input type="text" nbInput fullWidth formControlName="title_de">
+                        <label for="inputEmail" class="label">Description (Deutsche)</label>
+                        <textarea nbInput fullWidth formControlName="description_de"></textarea>
+                      </div>
+                      <div class="col-md-4">
+                        <label for="inputEmail" class="label">Picture Title (English)</label>
+                        <input type="text" nbInput fullWidth  formControlName="title_en">
+                        <label for="inputEmail" class="label">Description (English)</label>
+                        <textarea nbInput fullWidth formControlName="description_en"></textarea>
+                      </div>
+                      <div class="col-md-4">
+                        <label for="inputEmail" class="label">Picture Title (Francais)</label>
+                        <input type="text" nbInput fullWidth  formControlName="title_fr">
+                        <label for="inputEmail" class="label">Description (Francais)</label>
+                        <textarea nbInput fullWidth formControlName="description_fr"></textarea>
+                      </div>
+                    </div>
                 </div>
               </div>
-              <div class="col-md-6">
+              <div class="col-md-12">
                 <h6>Audio Files</h6>
                 <div class="uploadfilecontainer" (click)="audioInput.click()">
                   <input hidden type="file" #audioInput (change)="uploadFile($event.target.files, 'audio')">
