@@ -91,4 +91,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.menuService.navigateHome();
     return false;
   }
+
+  logout() {
+    if(window.confirm("Are you sure you want to logout?")) {
+      localStorage.clear();
+      this.menuService.navigateHome();
+    }
+  }
 }
