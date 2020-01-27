@@ -10,6 +10,6 @@ export default async () => {
 			payload: language,
 		};
 	} catch (error) {
-		console.log(error);
+		// console.log(error);
 	}
 };
