@@ -37,7 +37,7 @@ const AudioPlayer = ({ audios }) => {
 				setSoundObject(soundObj);
 				setIsPlaying(status.isPlaying);
 			} catch (error) {
-				console.log(error);
+				// console.log(error);
 			}
 		};
 		if (currentIndex !== null) {

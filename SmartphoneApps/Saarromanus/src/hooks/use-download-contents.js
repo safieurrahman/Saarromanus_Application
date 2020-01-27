@@ -24,10 +24,10 @@ export const insertNewRow = (tableName, id, object) => {
 			`INSERT OR REPLACE INTO ${tableName} (id, object) VALUES (?, ?)`,
 			[id, object],
 			() => {
-				console.log('Successfully Inserted Data Into', tableName);
+				// console.log('Successfully Inserted Data Into', tableName);
 			},
 			err => {
-				console.log(`INSERTION_ERROR: Table Name: ${tableName}`);
+				// console.log(`INSERTION_ERROR: Table Name: ${tableName}`);
 			}
 		);
 	});
@@ -50,23 +50,23 @@ export function findOneById(
 					try {
 						const data = rows._array[0];
 						if (data) {
-							console.log('Date Size:', data.object.length * 4);
+							// console.log('Date Size:', data.object.length * 4);
 							const result = JSON.parse(data.object);
 							setStatus(true);
 							populate(result);
 						} else {
-							console.log('No offline data..');
+							// console.log('No offline data..');
 							setStatus(false);
 						}
 					} catch (error) {
 						setStatus(false);
-						console.log('Data corrupted');
+						// console.log('Data corrupted');
 					}
 				}
 			);
 		});
 	} catch (error) {
-		console.log('something weired just happend');
+		// console.log('something weired just happend');
 	}
 }
 
@@ -93,7 +93,7 @@ const mapSightAsync = async sight => {
 	try {
 		await createLocalFolderAsync(localPath);
 	} catch (error) {
-		console.log('.');
+		// console.log('.');
 	}
 	try {
 		const mappedResourcesPromises = [];
@@ -104,7 +104,9 @@ const mapSightAsync = async sight => {
 						resource.url,
 						localPath,
 						resource.title || resource.resourceName
-					).catch(err => console.log('something went wrong.'));
+					).catch(err => {
+						// console.log('something went wrong.')
+					});
 					return { ...resource, url: localUri };
 				})()
 			);
@@ -113,7 +115,7 @@ const mapSightAsync = async sight => {
 		const newSight = { ...sight, resources: mappedResources };
 		return newSight;
 	} catch (error) {
-		console.log('...');
+		// console.log('...');
 	}
 };
 
@@ -156,7 +158,7 @@ const mapSightListAsync = async sightList => {
 	try {
 		await createLocalFolderAsync(localPath);
 	} catch (error) {
-		console.log('.');
+		// console.log('.');
 	}
 	try {
 		const mappedSightListPromises = [];
@@ -168,11 +170,11 @@ const mapSightListAsync = async sightList => {
 								sight.thumbnail,
 								localPath,
 								sight.resourceName
-						  ).catch(err =>
-								console.log(
-									'something went wrong while download the file'
-								)
-						  )
+						  ).catch(err => {
+								// console.log(
+								// 	'something went wrong while download the file'
+								// )
+						  })
 						: null;
 					return { ...sight, thumbnail: localUri };
 				})()
@@ -181,7 +183,7 @@ const mapSightListAsync = async sightList => {
 		const mappedSightList = await Promise.all(mappedSightListPromises);
 		return mappedSightList;
 	} catch (error) {
-		console.log('...');
+		// console.log('...');
 	}
 };
 
@@ -232,9 +234,9 @@ export const storeRouteAsync = async (
 		localSightsPromises.push(
 			(async () => {
 				// console.log('Now downlaoding sight:', sight.id, sight.en.name);
-				const fullSight = await getSight(sight.id).catch(err =>
-					console.log('Server down')
-				);
+				const fullSight = await getSight(sight.id).catch(err => {
+					// console.log('Server down')
+				});
 				await storeSightAsync(fullSight.payload);
 				// console.log('Stored in DB');
 			})()

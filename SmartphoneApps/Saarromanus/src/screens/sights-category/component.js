@@ -43,9 +43,9 @@ const SightsCategoryScreen = ({
 
 	useEffect(() => {
 		checkUpdate = async () => {
-			const resp = await checkForUpdate().catch(er =>
-				console.log('Server Down')
-			);
+			const resp = await checkForUpdate().catch(er => {
+				// console.log('Server Down')
+			});
 			if (
 				resp &&
 				resp.success &&

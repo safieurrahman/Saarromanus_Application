@@ -30,7 +30,7 @@
 		"package": "com.se.saarromanus",
 		"config": {
 			"googleMaps": {
-				"apiKey": "AIzaSyBbHT6Ry6A7alZTNOVy9T6LVM0etuz2xOA"
+				"apiKey": "YOUR_NEWLY_CREATED_API_KEY_WILL_GO_HERE"
 			}
 		}
 	}

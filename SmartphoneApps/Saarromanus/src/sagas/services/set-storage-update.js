@@ -7,6 +7,6 @@ export default async checkForUpdate => {
 			checkForUpdate.toString()
 		);
 	} catch (error) {
-		console.log(error);
+		// console.log(error);
 	}
 };
