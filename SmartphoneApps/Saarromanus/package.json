@@ -12,7 +12,7 @@
 	},
 	"dependencies": {
 		"@react-native-community/netinfo": "~3.2.1",
-		"axios": "^0.19.1",
+		"axios": "^0.21.1",
 		"expo": "^35.0.0",
 		"expo-av": "~7.0.1",
 		"expo-localization": "~7.0.0",
